@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:background="@drawable/rc_bg_item"
+        android:id="@id/rc_title_layout">
+
+        <io.rong.imkit.widget.AsyncImageView
+            android:id="@id/rc_img"
+            android:background="@drawable/rc_bg_item"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"/>
+
+        <TextView
+            android:id="@id/rc_txt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#75000000"
+            android:padding="6dp"
+            android:gravity="left"
+            android:textSize="18dp"
+            android:textColor="#ffffff"/>
+
+    </FrameLayout>
+    
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/rc_normal_bg"/>
+
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none"
+        android:divider="#D3D3D3"
+        android:dividerHeight="1px"
+        android:id="@id/rc_list"/>
+
+</LinearLayout>

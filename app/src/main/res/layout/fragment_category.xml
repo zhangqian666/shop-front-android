@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/text_black_ee"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical"
+              tools:context=".mvp.ui.fragments.CategoryFragment">
+
+    <android.support.v7.widget.Toolbar
+            android:fitsSystemWindows="true"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:gravity="bottom"
+            android:background="@color/red"
+            app:contentInsetStart="0dp">
+
+        <include layout="@layout/view_search_home"/>
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_left"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"/>
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_right"
+                android:layout_width="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_height="match_parent"/>
+    </LinearLayout>
+
+
+</LinearLayout>

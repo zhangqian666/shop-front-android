@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:layout_width="match_parent">
+    <ImageView
+            android:layout_width="match_parent"
+            android:paddingTop="17dp"
+            android:paddingBottom="17dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/icon_recommend_for_you"
+            android:layout_height="51dp"/>
+</LinearLayout>

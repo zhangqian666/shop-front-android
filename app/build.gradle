@@ -1,0 +1,100 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    useLibrary 'org.apache.http.legacy'
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId "com.zack.shop"
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+//        testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+    }
+    buildTypes {
+
+        debug {
+            //这两个变量是自定义的,自己也可以自定义字段,他会默认配置到BuildConfig中,app中可以根据这些字段执行一些操作
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            buildConfigField "boolean", "USE_CANARY", "true"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            buildConfigField "boolean", "USE_CANARY", "false"
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jni.srcDirs = []
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    packagingOptions {
+        exclude 'AndroidManifest.xml'
+    }
+
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //support
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation rootProject.ext.dependencies["appcompat-v7"]
+    implementation(rootProject.ext.dependencies["cardview-v7"]) {
+        exclude module: 'support-annotations'
+    }
+    implementation rootProject.ext.dependencies["constraint"]
+    implementation rootProject.ext.dependencies["support-v4"]
+    implementation rootProject.ext.dependencies["design"]
+    //tools
+    implementation rootProject.ext.dependencies["progressmanager"]
+    implementation rootProject.ext.dependencies["retrofit-url-manager"]
+    implementation rootProject.ext.dependencies["lifecyclemodel"]
+    implementation rootProject.ext.dependencies["fragmentation"]
+    implementation rootProject.ext.dependencies["fragmentation-core"]
+    implementation rootProject.ext.dependencies["brvah"]
+    implementation rootProject.ext.dependencies["banner"]
+    implementation rootProject.ext.dependencies["httplog"]
+    implementation rootProject.ext.dependencies["statusbarutil"]
+    implementation rootProject.ext.dependencies["lombok"]
+    annotationProcessor rootProject.ext.dependencies["lombok-compiler"]
+    annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+    //arms
+    //    implementation project(':arms')
+    //Github 仓库上最新的 Demo 具有下一个版本的新特性, 所以依赖最新的远程库会出现版本不兼容的情况, 详情请查看 https://github.com/JessYanCoding/MVPArms/wiki/Issues#2
+    implementation 'me.jessyan:arms:2.4.1'
+    //test
+    implementation project(':IMKit')
+    testImplementation rootProject.ext.dependencies["junit"]
+    debugImplementation rootProject.ext.dependencies["canary-debug"]
+    releaseImplementation rootProject.ext.dependencies["canary-release"]
+    testImplementation rootProject.ext.dependencies["canary-release"]
+}
