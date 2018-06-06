@@ -1,7 +1,8 @@
-# shop-front-android
-对应本github下的 shopback
+## shop-front-android
 
-  基于    https://github.com/JessYanCoding/MVPArms 这个框架开发的商城
+#[`shop-back-java`](https://github.com/zhangqian666/shop-back-java)对应的android前端
+
+基于https://github.com/JessYanCoding/MVPArms 这个框架开发的商城
 
 1. [`Mvp` Google's official` Mvp` architecture project, which contains several different schema branches (this is the Dagger branch).](https://github.com/googlesamples/android-architecture/tree/todo-mvp-dagger/)
 2. [`Dagger2`](https://github.com/google/dagger)
