@@ -75,6 +75,13 @@ public class CategoryFragment extends BaseSupportFragment<CategoryPresenter> imp
         initRightRecycler();
     }
 
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        assert mPresenter != null;
+        mPresenter.getCategorys(0);
+    }
+
     private void initRightRecycler() {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(_mActivity, 3);
         recyclerRight.setLayoutManager(gridLayoutManager);
@@ -95,7 +102,7 @@ public class CategoryFragment extends BaseSupportFragment<CategoryPresenter> imp
             mPresenter.getCategorys(((CategoryLeftAdapter) adapter).getData().get(position).getId());
         });
         recyclerLeft.setAdapter(categoryLeftAdapter);
-        mPresenter.getCategorys(0);
+
     }
 
     @Override

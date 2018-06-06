@@ -1,8 +1,6 @@
-package com.zack.shop.mvp.ui.utils;
+package com.zack.shop.mvp.utils;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;

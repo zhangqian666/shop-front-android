@@ -23,7 +23,8 @@ import com.zack.shop.di.module.LoginModule;
 import com.zack.shop.mvp.contract.LoginContract;
 import com.zack.shop.mvp.http.entity.login.JWTBean;
 import com.zack.shop.mvp.presenter.LoginPresenter;
-import com.zack.shop.mvp.ui.utils.SpUtils;
+import com.zack.shop.mvp.utils.AppConstant;
+import com.zack.shop.mvp.utils.SpUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -60,7 +61,8 @@ public class LoginActivity extends BaseSupportActivity<LoginPresenter> implement
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-        String token = (String) SpUtils.get(mContext, "token", "");
+        String token = (String) SpUtils.get(mContext, AppConstant.Api.TOKEN, "");
+        Timber.e(token + "===" + !TextUtils.isEmpty(token));
         if (!TextUtils.isEmpty(token)) {
             startActivity(new Intent(mContext, MainActivity.class));
             finish();
@@ -70,8 +72,6 @@ public class LoginActivity extends BaseSupportActivity<LoginPresenter> implement
 
     @OnClick(R.id.email_sign_in_button)
     public void onViewClicked() {
-        SpUtils.put(mContext, "text", "text");
-        Timber.e("%s", SpUtils.get(mContext, "text", ""));
         attemptLogin();
     }
 
@@ -121,7 +121,9 @@ public class LoginActivity extends BaseSupportActivity<LoginPresenter> implement
                 show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+                if (mProgressView != null) {
+                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+                }
             }
         });
 
@@ -129,8 +131,8 @@ public class LoginActivity extends BaseSupportActivity<LoginPresenter> implement
 
     @Override
     public void loginResult(JWTBean msg) {
-        SpUtils.put(mContext, "token", msg.getAccess_token());
-        showProgress(false);
+        SpUtils.put(mContext, AppConstant.Api.TOKEN, msg.getAccess_token());
+        Timber.e((String) SpUtils.get(mContext, AppConstant.Api.TOKEN, ""));
         startActivity(new Intent(mContext, MainActivity.class));
         finish();
     }
@@ -142,7 +144,7 @@ public class LoginActivity extends BaseSupportActivity<LoginPresenter> implement
 
     @Override
     public void hideLoading() {
-
+        showProgress(false);
     }
 
     @Override

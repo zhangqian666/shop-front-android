@@ -1,14 +1,12 @@
 package com.zack.shop.mvp.ui.adapter;
 
-import android.support.annotation.Nullable;
-
 import android.view.View;
+import android.widget.TextView;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zack.shop.R;
 import com.zack.shop.mvp.http.entity.category.CategoryBean;
-
-import java.util.List;
 
 /**
  * @Author 张迁-zhangqian
@@ -25,12 +23,16 @@ public class CategoryLeftAdapter extends BaseQuickAdapter<CategoryBean, BaseView
 
     @Override
     protected void convert(BaseViewHolder helper, CategoryBean item) {
+        TextView tvContent = helper.getView(R.id.tv_item);
+        tvContent.setText(item.getName());
         helper.setText(R.id.tv_item, item.getName());
         if (helper.getAdapterPosition() == selectedPosition) {
-            helper.getView(R.id.ll_item).setBackgroundColor(mContext.getResources().getColor(R.color.white));
+            tvContent.getPaint().setFakeBoldText(true);
+            helper.getView(R.id.ll_item).setBackgroundColor(mContext.getResources().getColor(R.color.normal_back_ground));
             helper.getView(R.id.iv_select).setVisibility(View.VISIBLE);
         } else {
-            helper.getView(R.id.ll_item).setBackgroundColor(mContext.getResources().getColor(R.color.text_black_ee));
+            tvContent.getPaint().setFakeBoldText(false);
+            helper.getView(R.id.ll_item).setBackgroundColor(mContext.getResources().getColor(R.color.gray_f6));
             helper.getView(R.id.iv_select).setVisibility(View.GONE);
         }
     }

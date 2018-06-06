@@ -18,7 +18,12 @@ package com.zack.shop.app.config;
 
 import android.app.Activity;
 import android.app.Application;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
+
+import com.zack.shop.R;
 
 import timber.log.Timber;
 
@@ -35,36 +40,53 @@ public class ActivityLifecycleCallbacksImpl implements Application.ActivityLifec
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-        Timber.w(activity + " - onActivityCreated");
+        Timber.w("%s - onActivityCreated", activity);
     }
 
     @Override
     public void onActivityStarted(Activity activity) {
-        Timber.w(activity + " - onActivityStarted");
+        Timber.w("%s - onActivityStarted", activity);
+        if (activity.findViewById(R.id.toolbar) != null) { //找到 Toolbar 并且替换 Actionbar
+            if (activity instanceof AppCompatActivity) {
+                ((AppCompatActivity) activity).setSupportActionBar(activity.findViewById(R.id.toolbar));
+                ((AppCompatActivity) activity).getSupportActionBar().setDisplayShowTitleEnabled(false);
+            } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    activity.setActionBar(activity.findViewById(R.id.toolbar));
+                    activity.getActionBar().setDisplayShowTitleEnabled(false);
+                }
+            }
+        }
+        if (activity.findViewById(R.id.toolbar_title) != null) { //找到 Toolbar 的标题栏并设置标题名
+            ((TextView) activity.findViewById(R.id.toolbar_title)).setText(activity.getTitle());
+        }
+        if (activity.findViewById(R.id.toolbar_back) != null) { //找到 Toolbar 的返回按钮,并且设置点击事件,点击关闭这个 Activity
+            activity.findViewById(R.id.toolbar_back).setOnClickListener(v -> activity.onBackPressed());
+        }
     }
 
     @Override
     public void onActivityResumed(Activity activity) {
-        Timber.w(activity + " - onActivityResumed");
+        Timber.w("%s - onActivityResumed", activity);
     }
 
     @Override
     public void onActivityPaused(Activity activity) {
-        Timber.w(activity + " - onActivityPaused");
+        Timber.w("%s - onActivityPaused", activity);
     }
 
     @Override
     public void onActivityStopped(Activity activity) {
-        Timber.w(activity + " - onActivityStopped");
+        Timber.w("%s - onActivityStopped", activity);
     }
 
     @Override
     public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-        Timber.w(activity + " - onActivitySaveInstanceState");
+        Timber.w("%s - onActivitySaveInstanceState", activity);
     }
 
     @Override
     public void onActivityDestroyed(Activity activity) {
-        Timber.w(activity + " - onActivityDestroyed");
+        Timber.w("%s - onActivityDestroyed", activity);
     }
 }

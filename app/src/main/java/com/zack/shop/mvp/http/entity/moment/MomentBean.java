@@ -1,7 +1,5 @@
 package com.zack.shop.mvp.http.entity.moment;
 
-import java.util.Date;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +25,7 @@ public class MomentBean {
     private String subImages;
     private Long lastSeeTime;
     private Integer star;
+    private Integer starEnable;
     private Integer seeTimes;
     private Integer momentCommentTimes;
 }

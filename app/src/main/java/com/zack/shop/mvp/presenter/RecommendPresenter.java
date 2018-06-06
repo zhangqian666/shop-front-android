@@ -5,11 +5,12 @@ import com.jess.arms.mvp.BasePresenter;
 import com.zack.shop.mvp.contract.RecommendContract;
 import com.zack.shop.mvp.http.entity.BaseResponse;
 import com.zack.shop.mvp.http.entity.product.RecommendBean;
-import com.zack.shop.mvp.ui.utils.RxUtils;
-import me.jessyan.rxerrorhandler.core.RxErrorHandler;
-import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
+import com.zack.shop.mvp.utils.RxUtils;
 
 import javax.inject.Inject;
+
+import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.zack.shop.mvp.ui.utils;
+package com.zack.shop.mvp.utils;
 
 
 import android.app.Activity;

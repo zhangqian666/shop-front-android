@@ -1,13 +1,15 @@
 package com.zack.shop.mvp.ui.activity;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.jaeger.library.StatusBarUtil;
 import com.jess.arms.di.component.AppComponent;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zack.shop.R;
 import com.zack.shop.app.base.BaseSupportActivity;
 import com.zack.shop.di.component.DaggerMainComponent;
@@ -21,14 +23,15 @@ import com.zack.shop.mvp.ui.fragments.CategoryFragment;
 import com.zack.shop.mvp.ui.fragments.FindFragment;
 import com.zack.shop.mvp.ui.fragments.RecommendFragment;
 import com.zack.shop.mvp.ui.fragments.SelfFragment;
-import com.zack.shop.mvp.ui.utils.RongIMUtils;
 import com.zack.shop.mvp.ui.widget.bottombar.BottomBar;
 import com.zack.shop.mvp.ui.widget.bottombar.BottomBarTab;
+import com.zack.shop.mvp.utils.AppConstant;
+import com.zack.shop.mvp.utils.RongIMUtils;
+import com.zack.shop.mvp.utils.SpUtils;
 
 import butterknife.BindView;
-import io.rong.imkit.RongIM;
-import io.rong.imlib.model.UserInfo;
 import me.yokeyword.fragmentation.ISupportFragment;
+import timber.log.Timber;
 
 public class MainActivity extends BaseSupportActivity<MainPresenter> implements MainContract.View {
 
@@ -55,10 +58,42 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
     public void initData(@Nullable Bundle savedInstanceState) {
         StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, null);
         initBottomBar();
+        requestPermissions();
         if (mPresenter != null) {
             mPresenter.getUserInfo();
             mPresenter.conversationToken();
         }
+    }
+
+    @SuppressLint("CheckResult")
+    private void requestPermissions() {
+        RxPermissions rxPermission = new RxPermissions(MainActivity.this);
+        rxPermission
+                .requestEach(Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_CALENDAR,
+                        Manifest.permission.READ_CALL_LOG,
+                        Manifest.permission.READ_CONTACTS,
+                        Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.READ_SMS,
+                        Manifest.permission.RECORD_AUDIO,
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.CALL_PHONE,
+                        Manifest.permission.SEND_SMS)
+                .subscribe(permission -> {
+                    if (permission.granted) {
+                        // 用户已经同意该权限
+                        Timber.e("%s is granted.", permission.name);
+                    } else if (permission.shouldShowRequestPermissionRationale) {
+                        // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
+                        Timber.d("%s is denied. More info should be provided.", permission.name);
+                    } else {
+                        // 用户拒绝了该权限，并且选中『不再询问』
+                        Timber.e("%s is denied.", permission.name);
+                    }
+                });
+
+
     }
 
     private void initBottomBar() {
@@ -107,15 +142,13 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
 
     @Override
     public void connectRongIM(TokenBean data) {
+        Timber.i("RongIM token : %s", data.getToken());
         RongIMUtils.connect(mContext, data.getToken());
     }
 
     @Override
     public void userInfo(UserBean data) {
-        RongIM.getInstance().setCurrentUserInfo(new UserInfo(data.getUid().toString(),
-                data.getUsername(),
-                Uri.parse(data.getImage())));
-        RongIM.getInstance().setMessageAttachedUserInfo(true);
+        SpUtils.put(mContext, AppConstant.User.INFO, data);
     }
 
     @Override

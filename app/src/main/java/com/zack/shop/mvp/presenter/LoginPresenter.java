@@ -5,7 +5,7 @@ import com.jess.arms.mvp.BasePresenter;
 import com.zack.shop.mvp.contract.LoginContract;
 import com.zack.shop.mvp.http.entity.BaseResponse;
 import com.zack.shop.mvp.http.entity.login.JWTBean;
-import com.zack.shop.mvp.ui.utils.RxUtils;
+import com.zack.shop.mvp.utils.RxUtils;
 
 import javax.inject.Inject;
 

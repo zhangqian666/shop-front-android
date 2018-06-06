@@ -1,5 +1,7 @@
 package com.zack.shop.mvp.presenter;
 
+import android.net.Uri;
+
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.mvp.BasePresenter;
 import com.zack.shop.mvp.contract.MainContract;
@@ -7,10 +9,12 @@ import com.zack.shop.mvp.http.entity.BaseResponse;
 import com.zack.shop.mvp.http.entity.conversation.TokenBean;
 import com.zack.shop.mvp.http.entity.login.UserBean;
 import com.zack.shop.mvp.model.UserModel;
-import com.zack.shop.mvp.ui.utils.RxUtils;
+import com.zack.shop.mvp.utils.RxUtils;
 
 import javax.inject.Inject;
 
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.UserInfo;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 
@@ -22,10 +26,7 @@ import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 @ActivityScope
 public class MainPresenter extends BasePresenter<MainContract.Model, MainContract.View> {
     RxErrorHandler rxErrorHandler;
-
-
     UserModel userModel;
-
     @Inject
     public MainPresenter(MainContract.Model model,
                          MainContract.View rootView,
@@ -65,6 +66,27 @@ public class MainPresenter extends BasePresenter<MainContract.Model, MainContrac
                         }
                     }
                 });
+
+        RongIM.setUserInfoProvider(s -> {
+            userModel.getUserInfo(Integer.parseInt(s))
+                    .compose(RxUtils.applySchedulers(mRootView))
+                    .subscribe(new ErrorHandleSubscriber<BaseResponse<UserBean>>(rxErrorHandler) {
+                        @Override
+                        public void onNext(BaseResponse<UserBean> userBeanBaseResponse) {
+                            if (userBeanBaseResponse.isSuccess()) {
+                                UserBean data = userBeanBaseResponse.getData();
+                                RongIM.getInstance().refreshUserInfoCache(
+                                        new UserInfo(
+                                                data.getUid().toString(),
+                                                data.getUsername(),
+                                                Uri.parse(data.getImage())));
+                            } else {
+                                mRootView.showMessage(userBeanBaseResponse.getMsg());
+                            }
+                        }
+                    });
+            return null;
+        }, true);
     }
 
 }

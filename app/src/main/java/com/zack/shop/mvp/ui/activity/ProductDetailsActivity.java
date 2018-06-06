@@ -1,4 +1,4 @@
-package com.zack.shop.mvp.ui.activity.conversation;
+package com.zack.shop.mvp.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,10 +8,7 @@ import com.jess.arms.di.component.AppComponent;
 import com.zack.shop.R;
 import com.zack.shop.app.base.BaseSupportActivity;
 
-import timber.log.Timber;
-
-public class ConversationListActivity extends BaseSupportActivity {
-
+public class ProductDetailsActivity extends BaseSupportActivity {
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
@@ -20,12 +17,11 @@ public class ConversationListActivity extends BaseSupportActivity {
 
     @Override
     public int initView(@Nullable Bundle savedInstanceState) {
-        Timber.e("onActivityCreated initView %s", this.getLocalClassName());
-        return R.layout.activity_conversation_list;
+        return R.layout.activity_product_details;
     }
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-        Timber.e("onActivityCreated initData %s", this.getLocalClassName());
+
     }
 }

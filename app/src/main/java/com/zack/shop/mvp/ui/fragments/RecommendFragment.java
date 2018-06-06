@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.jess.arms.di.component.AppComponent;
-import com.jess.arms.utils.LogUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.zack.shop.R;
@@ -28,10 +27,11 @@ import com.zack.shop.di.module.RecommendModule;
 import com.zack.shop.mvp.contract.RecommendContract;
 import com.zack.shop.mvp.http.entity.product.RecommendBean;
 import com.zack.shop.mvp.presenter.RecommendPresenter;
+import com.zack.shop.mvp.ui.activity.ProductDetailsActivity;
 import com.zack.shop.mvp.ui.adapter.RecommendQuickAdapter;
-import com.zack.shop.mvp.ui.utils.GlideImageLoader;
-import com.zack.shop.mvp.ui.utils.SpUtils;
 import com.zack.shop.mvp.ui.widget.RecommendItemDecoration;
+import com.zack.shop.mvp.utils.AppConstant;
+import com.zack.shop.mvp.utils.GlideImageLoader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,13 +94,17 @@ public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> i
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-        assert mPresenter != null;
-        mPresenter.getRecommend();
         initRecycler();
         initBanner();
         initAppLayout();
     }
 
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        assert mPresenter != null;
+        mPresenter.getRecommend();
+    }
 
     private void initAppLayout() {
         appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
@@ -109,29 +113,35 @@ public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> i
             } else {
                 swipe_refresh.setEnabled(false);
             }
-            mToolbar.setBackgroundColor(changeAlpha(getResources().getColor(R.color.red), Math.abs(verticalOffset * 1.0f) / appBarLayout.getTotalScrollRange()));
+            mToolbar.setBackgroundColor(changeAlpha(getResources().getColor(R.color.normal_back_ground), Math.abs(verticalOffset * 1.0f) / appBarLayout.getTotalScrollRange()));
         });
-        Map<String, Boolean> supportedConversation = new HashMap<>();
-        supportedConversation.put(Conversation.ConversationType.PRIVATE.getName(), false);
-        ivConversation.setOnClickListener(v ->
-                RongIM.getInstance().startConversationList(_mActivity, supportedConversation)
-        );
+        {
+            //启动聊天列表界面
+            Map<String, Boolean> supportedConversation = new HashMap<>();
+            supportedConversation.put(Conversation.ConversationType.PRIVATE.getName(), false);
+            ivConversation.setOnClickListener(v ->
+                    RongIM.getInstance().startConversationList(_mActivity, supportedConversation)
+            );
+        }
     }
 
     private void initRecycler() {
-        LogUtils.debugInfo("initRecycler");
+        Timber.e("initRecycler");
         swipe_refresh.setOnRefreshListener(() -> mPresenter.getRecommend());
         swipe_refresh.setProgressViewOffset(true, 130, 300);
         swipe_refresh.setColorSchemeColors(getResources().getColor(R.color.red));
         mRecyclerView.setLayoutManager(new GridLayoutManager(_mActivity, 2));
         mRecyclerView.addItemDecoration(new RecommendItemDecoration(10));
         mRecyclerView.setAdapter(recommendQuickAdapter);
-
         recommendQuickAdapter.setOnItemClickListener((adapter, view, position) -> {
-
-
-            RongIM.getInstance().startPrivateChat(_mActivity, "0", "小王子");
-        });
+                    Intent intent = new Intent(_mActivity, ProductDetailsActivity.class);
+                    Bundle extras = new Bundle();
+                    extras.putSerializable(AppConstant.ActivityIntent.Bean,
+                            ((RecommendBean.RecommendProductsBean) (adapter.getData()).get(position)));
+                    intent.putExtras(extras);
+                    startActivity(intent);
+                }
+        );
     }
 
     private void initBanner() {
@@ -162,8 +172,6 @@ public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> i
 
     @Override
     public void refreshBannerAndList(RecommendBean data) {
-        if (swipe_refresh != null && swipe_refresh.isRefreshing())
-            swipe_refresh.setRefreshing(false);
         recommendProductsBeans.clear();
         recommendProductsBeans.addAll(data.getRecommendProducts());
         recommendQuickAdapter.notifyDataSetChanged();
@@ -178,7 +186,8 @@ public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> i
 
     @Override
     public void hideLoading() {
-
+        if (swipe_refresh != null && swipe_refresh.isRefreshing())
+            swipe_refresh.setRefreshing(false);
     }
 
     @Override

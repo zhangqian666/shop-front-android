@@ -6,7 +6,7 @@ import com.jess.arms.utils.ArmsUtils;
 import com.zack.shop.mvp.contract.CategoryContract;
 import com.zack.shop.mvp.http.entity.BaseResponse;
 import com.zack.shop.mvp.http.entity.category.CategoryBean;
-import com.zack.shop.mvp.ui.utils.RxUtils;
+import com.zack.shop.mvp.utils.RxUtils;
 
 import java.util.ArrayList;
 import java.util.List;

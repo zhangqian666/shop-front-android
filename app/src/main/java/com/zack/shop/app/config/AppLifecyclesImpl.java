@@ -17,17 +17,14 @@ package com.zack.shop.app.config;
 
 import android.app.Application;
 import android.content.Context;
-import android.net.Uri;
 
 import com.jess.arms.base.delegate.AppLifecycles;
 import com.jess.arms.utils.ArmsUtils;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.zack.shop.BuildConfig;
-import com.zack.shop.mvp.ui.utils.RongIMUtils;
 
 import io.rong.imkit.RongIM;
-import io.rong.imlib.model.UserInfo;
 import timber.log.Timber;
 
 /**

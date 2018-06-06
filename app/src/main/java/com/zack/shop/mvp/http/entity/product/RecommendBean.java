@@ -1,6 +1,10 @@
 package com.zack.shop.mvp.http.entity.product;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.List;
 
 import lombok.Getter;
@@ -20,7 +24,7 @@ public class RecommendBean {
 
     @Getter
     @Setter
-    public static class RecommendProductsBean {
+    public class RecommendProductsBean implements Serializable{
         /**
          * id : 10002
          * categoryId : 1011
@@ -30,7 +34,6 @@ public class RecommendBean {
          * price : 0
          * stock : 1000
          * status : 1
-
          */
 
         private int id;
@@ -43,5 +46,6 @@ public class RecommendBean {
         private double price;
         private int stock;
         private int status;
+
     }
 }

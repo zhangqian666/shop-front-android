@@ -12,7 +12,8 @@ import android.view.ViewGroup;
 import com.jess.arms.di.component.AppComponent;
 import com.zack.shop.R;
 import com.zack.shop.app.base.BaseSupportFragment;
-import com.zack.shop.mvp.ui.utils.SpUtils;
+import com.zack.shop.mvp.utils.AppConstant;
+import com.zack.shop.mvp.utils.SpUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,7 +38,13 @@ public class SelfFragment extends BaseSupportFragment {
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-        SpUtils.put(_mActivity, "token", "");
+
+    }
+
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        SpUtils.put(_mActivity, AppConstant.Api.TOKEN, "");
     }
 
     @Override

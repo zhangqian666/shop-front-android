@@ -19,8 +19,14 @@ public class UserModel extends BaseModel {
         super(repositoryManager);
     }
 
+
     public Observable<BaseResponse<UserBean>> getUserInfo() {
         return mRepositoryManager.obtainRetrofitService(UserService.class)
-                .userDetails();
+                .userDetails(null);
+    }
+
+    public Observable<BaseResponse<UserBean>> getUserInfo(int userId) {
+        return mRepositoryManager.obtainRetrofitService(UserService.class)
+                .userDetails(userId);
     }
 }

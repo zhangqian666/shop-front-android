@@ -29,6 +29,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import io.rong.imkit.RongIM;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,14 +68,26 @@ public class FindFragment extends BaseSupportFragment<FindPresenter> implements 
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-        assert mPresenter != null;
-        mPresenter.getMoments();
+
         swipeRefreshLayout.setOnRefreshListener(this);
         recyclerFindList.setLayoutManager(new LinearLayoutManager(_mActivity));
         recyclerFindList.setAdapter(findAdapter);
+        findAdapter.setOnHeartClickListener(momentId -> {
+            assert mPresenter != null;
+            mPresenter.starMoment(momentId);
+        });
+        findAdapter.setOnItemClickListener((adapter, view, position) -> {
+            MomentBean momentBean = findAdapter.getData().get(position);
+            RongIM.getInstance().startPrivateChat(_mActivity, momentBean.getUserId().toString(), momentBean.getUsername());
+        });
 
-        findAdapter.setOnHeartClickListener(momentId -> mPresenter.starMoment(momentId));
+    }
 
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        assert mPresenter != null;
+        mPresenter.getMoments();
     }
 
     @Override
@@ -85,9 +98,7 @@ public class FindFragment extends BaseSupportFragment<FindPresenter> implements 
     @Override
     public void refreshView(List<MomentBean> data) {
         findAdapter.setNewData(data);
-        if (swipeRefreshLayout != null) {
-            swipeRefreshLayout.setRefreshing(false);
-        }
+
     }
 
     @Override
@@ -97,7 +108,9 @@ public class FindFragment extends BaseSupportFragment<FindPresenter> implements 
 
     @Override
     public void hideLoading() {
-
+        if (swipeRefreshLayout != null) {
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override

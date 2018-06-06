@@ -1,4 +1,4 @@
-package com.zack.shop.mvp.ui.utils;
+package com.zack.shop.mvp.utils;
 
 import android.content.Context;
 import android.net.Uri;
@@ -9,7 +9,7 @@ import com.youth.banner.loader.ImageLoader;
 /**
  * @Author 张迁-zhangqian
  * @Data 2018/5/11 下午7:18
- * @Package com.zack.shop.mvp.ui.utils
+ * @Package com.zack.shop.mvp.utils
  **/
 
 

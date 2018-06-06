@@ -13,7 +13,6 @@ import io.rong.push.notification.PushNotificationMessage;
 public class RongIMNotificationReceiver extends PushMessageReceiver {
     @Override
     public boolean onNotificationMessageArrived(Context context, PushNotificationMessage pushNotificationMessage) {
-
         return false;
     }
 

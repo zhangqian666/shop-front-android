@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
     android:layout_width="match_parent"
-    android:layout_height="48dp">
+    android:layout_height="48dp"
+    android:background="?attr/colorPrimary"
+    app:contentInsetStart="0dp">
 
-    <TextView
-        android:id="@+id/txt_left_title"
+    <RelativeLayout
+        android:id="@+id/toolbar_back"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_gravity="start|center_vertical"
-        android:layout_marginStart="10dp"
-        android:paddingStart="5dp"
-        android:drawableStart="@mipmap/icon_back"
-        android:gravity="center"
-        android:singleLine="true"
-        android:text="返回"
-        android:textColor="#ffffff"
-        android:textSize="@dimen/text_sub_title"
-        android:visibility="visible" />
+        android:layout_height="match_parent"
+        android:gravity="start">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
+            android:src="@mipmap/icon_back" />
+
+    </RelativeLayout>
 
     <TextView
-        android:id="@+id/txt_main_title"
+        android:id="@+id/toolbar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:singleLine="true"
-        android:text="标题"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/text_title"
-        android:visibility="visible" />
+        android:text="TITLE"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_title" />
 
     <TextView
-        android:id="@+id/txt_right_title"
+        android:id="@+id/toolbar_right"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_gravity="end|center_vertical"
@@ -40,4 +44,4 @@
         android:textSize="@dimen/text_sub_title"
         android:visibility="visible" />
 
-</FrameLayout>
+</android.support.v7.widget.Toolbar>

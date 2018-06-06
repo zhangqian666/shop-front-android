@@ -1,4 +1,4 @@
-package com.zack.shop.mvp.ui.utils;
+package com.zack.shop.mvp.utils;
 
 import android.content.Context;
 
@@ -9,7 +9,7 @@ import timber.log.Timber;
 /**
  * @Author 张迁-zhangqian
  * @Data 2018/5/30 上午11:21
- * @Package com.zack.shop.mvp.ui.utils
+ * @Package com.zack.shop.mvp.utils
  **/
 public class RongIMUtils {
 

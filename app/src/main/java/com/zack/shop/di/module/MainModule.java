@@ -29,6 +29,7 @@ public class MainModule {
         return view;
     }
 
+
     @ActivityScope
     @Provides
     public MainContract.Model provideModel(IRepositoryManager repositoryManager) {

@@ -37,6 +37,7 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/email"
+                    android:text="18310623602"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
@@ -51,6 +52,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:text="123456"
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
