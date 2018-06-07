@@ -3,7 +3,7 @@ package com.zack.shop.di.component;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.di.scope.ActivityScope;
 import com.zack.shop.di.module.LoginModule;
-import com.zack.shop.mvp.ui.activity.LoginActivity;
+import com.zack.shop.mvp.ui.activity.login.LoginActivity;
 
 import dagger.Component;
 

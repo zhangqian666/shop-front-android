@@ -27,7 +27,7 @@ import com.zack.shop.di.module.RecommendModule;
 import com.zack.shop.mvp.contract.RecommendContract;
 import com.zack.shop.mvp.http.entity.product.RecommendBean;
 import com.zack.shop.mvp.presenter.RecommendPresenter;
-import com.zack.shop.mvp.ui.activity.ProductDetailsActivity;
+import com.zack.shop.mvp.ui.activity.product.ProductDetailsActivity;
 import com.zack.shop.mvp.ui.adapter.RecommendQuickAdapter;
 import com.zack.shop.mvp.ui.widget.RecommendItemDecoration;
 import com.zack.shop.mvp.utils.AppConstant;

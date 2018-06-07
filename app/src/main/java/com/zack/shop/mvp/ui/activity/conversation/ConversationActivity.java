@@ -24,12 +24,11 @@ public class ConversationActivity extends BaseSupportActivity {
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-
+        ((TextView) findViewById(R.id.toolbar_title)).setText(getIntent().getData().getQueryParameter("title"));
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        ((TextView) findViewById(R.id.toolbar_title)).setText(getIntent().getData().getQueryParameter("title"));
+    public void onBackPressedSupport() {
+        super.onBackPressedSupport();
     }
 }

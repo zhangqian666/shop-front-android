@@ -30,9 +30,16 @@
   4. >朋友圈
   5. >个人界面
   
+  **节选图片**
+  
+  ![image](https://github.com/zhangqian666/shop-front-android/image/WechatIMG5.png)
+  ![image](https://github.com/zhangqian666/shop-front-android/image/WechatIMG6.png)
+  
   ## About Me
   * **Email**: <415677303@qq.com>  
   * **CSDN**: <https://blog.csdn.net/u014365133?viewmode=contents>
   * **GITHUB**: <https://github.com/zhangqian666>
+  
+  
 
   

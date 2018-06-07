@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
-    android:layout_height="48dp"
+    android:layout_height="wrap_content"
+    app:navigationIcon="@mipmap/icon_back"
     android:background="?attr/colorPrimary"
     app:contentInsetStart="0dp">
 
@@ -11,7 +12,8 @@
         android:id="@+id/toolbar_back"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:gravity="start">
+        android:gravity="start"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="wrap_content"

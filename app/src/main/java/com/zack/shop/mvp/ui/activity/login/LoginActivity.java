@@ -1,4 +1,4 @@
-package com.zack.shop.mvp.ui.activity;
+package com.zack.shop.mvp.ui.activity.login;
 
 
 import android.animation.Animator;
@@ -23,6 +23,7 @@ import com.zack.shop.di.module.LoginModule;
 import com.zack.shop.mvp.contract.LoginContract;
 import com.zack.shop.mvp.http.entity.login.JWTBean;
 import com.zack.shop.mvp.presenter.LoginPresenter;
+import com.zack.shop.mvp.ui.activity.MainActivity;
 import com.zack.shop.mvp.utils.AppConstant;
 import com.zack.shop.mvp.utils.SpUtils;
 
