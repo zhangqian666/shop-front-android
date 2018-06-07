@@ -32,8 +32,8 @@
   
   **节选图片**
   
-  ![image](https://github.com/zhangqian666/shop-front-android/image/WechatIMG5.png)
-  ![image](https://github.com/zhangqian666/shop-front-android/image/WechatIMG6.png)
+  ![image](https://github.com/zhangqian666/shop-front-android/blob/master/image/WechatIMG5.png)
+  ![image](https://github.com/zhangqian666/shop-front-android/blob/master/image/WechatIMG6.png)
   
   ## About Me
   * **Email**: <415677303@qq.com>  
