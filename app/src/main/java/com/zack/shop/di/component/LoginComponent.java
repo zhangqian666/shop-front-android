@@ -4,6 +4,7 @@ import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.di.scope.ActivityScope;
 import com.zack.shop.di.module.LoginModule;
 import com.zack.shop.mvp.ui.activity.login.LoginActivity;
+import com.zack.shop.mvp.ui.activity.login.RegisterActivity;
 
 import dagger.Component;
 
@@ -16,4 +17,6 @@ import dagger.Component;
 @Component(modules = LoginModule.class, dependencies = AppComponent.class)
 public interface LoginComponent {
     void inject(LoginActivity activity);
+
+    void inject(RegisterActivity registerActivity);
 }

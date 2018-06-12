@@ -19,5 +19,6 @@ public interface AppConstant {
 
    interface ActivityIntent {
      String Bean = "Bean";
+     String USER_BEAN = "user_bean";
    }
 }

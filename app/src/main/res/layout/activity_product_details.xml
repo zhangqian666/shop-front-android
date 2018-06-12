@@ -4,20 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/normal_back_ground"
     android:orientation="vertical"
     tools:context=".mvp.ui.activity.product.ProductDetailsActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:contentInsetStart="0dp"
-        app:navigationIcon="@mipmap/icon_back">
+        android:layout_height="@dimen/normal_height"
+        android:elevation="@dimen/normal_elevation_height"
+        app:contentInsetStart="0dp">
+
+        <RelativeLayout
+            android:id="@+id/toolbar_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="start">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="10dp"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/icon_back_black" />
+
+        </RelativeLayout>
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_title"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             app:tabIndicatorColor="@color/red"
             app:tabSelectedTextColor="@color/text_black_33"
@@ -77,6 +95,7 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="15dp"
             android:layout_marginStart="25dp"
+            android:elevation="@dimen/normal_elevation_height"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -97,10 +116,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/red"
+            android:background="@drawable/bg_btn_red"
             android:text="加入购物车"
             android:textColor="@color/white"
             android:textSize="@dimen/text_normal" />
-
     </LinearLayout>
 </LinearLayout>

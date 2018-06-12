@@ -19,5 +19,5 @@
             android:layout_height="43dp"
             android:gravity="center"
             android:textColor="@color/text_black_33"
-            android:textSize="@dimen/text_small"/>
+            android:textSize="@dimen/text_normal"/>
 </FrameLayout>

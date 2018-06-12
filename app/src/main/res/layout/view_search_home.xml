@@ -1,55 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tool_bar"
     android:layout_width="match_parent"
     android:layout_height="48dp"
-    android:orientation="horizontal">
+    android:background="@color/normal_back_ground"
+    android:elevation="@dimen/normal_elevation_height"
+    app:contentInsetStart="0dp">
 
-    <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="10dp"
-        android:src="@mipmap/icon_scan" />
-
-    <RelativeLayout
-        android:id="@+id/rl_search_bar"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:background="@drawable/bg_search_home"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:src="@mipmap/icon_scan" />
+
+            <RelativeLayout
+                android:id="@+id/rl_search_bar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_search_home"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
 
 
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/icon_search" />
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_search" />
 
-        <TextView
-            android:id="@+id/head_tv_search"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="48dp"
-            android:gravity="center_vertical"
-            android:text="请输入您要搜索的商品"
-            android:textColor="@color/text_black_99"
-            android:textSize="@dimen/text_normal" />
+                <TextView
+                    android:id="@+id/head_tv_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="48dp"
+                    android:gravity="center_vertical"
+                    android:text="请输入您要搜索的商品"
+                    android:textColor="@color/text_black_99"
+                    android:textSize="@dimen/text_normal" />
 
-    </RelativeLayout>
+            </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/iv_conversation"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginEnd="10dp"
-        android:src="@mipmap/icon_message" />
-</LinearLayout>
+            <ImageView
+                android:id="@+id/iv_conversation"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="10dp"
+                android:src="@mipmap/icon_message" />
+        </LinearLayout>
+
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/divider_height"-->
+            <!--android:background="@color/divider_color" />-->
+    </LinearLayout>
+</android.support.v7.widget.Toolbar>
 

@@ -21,8 +21,6 @@ import android.app.Application;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
-import android.widget.Toolbar;
 
 import com.zack.shop.R;
 import com.zack.shop.app.base.BaseSupportActivity;
@@ -45,28 +43,28 @@ public class ActivityLifecycleCallbacksImpl implements Application.ActivityLifec
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
         Timber.w("%s - onActivityCreated", activity);
-        if (activity.findViewById(R.id.toolbar) != null) { //找到 Toolbar 并且替换 Actionbar
-            if (activity instanceof AppCompatActivity) {
-                ((AppCompatActivity) activity).setSupportActionBar(activity.findViewById(R.id.toolbar));
-                Objects.requireNonNull(((AppCompatActivity) activity).getSupportActionBar()).setDisplayShowTitleEnabled(false);
-                Objects.requireNonNull(((AppCompatActivity) activity).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
-            } else {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    activity.setActionBar(activity.findViewById(R.id.toolbar));
-                    Objects.requireNonNull(activity.getActionBar()).setDisplayShowTitleEnabled(false);
-                    activity.getActionBar().setDisplayHomeAsUpEnabled(true);
-                }
-            }
-            ((Toolbar) activity.findViewById(R.id.toolbar)).setNavigationOnClickListener(v -> ((BaseSupportActivity) activity).onBackPressedSupport());
-        }
-        if (activity.findViewById(R.id.toolbar_title) != null) { //找到 Toolbar 的标题栏并设置标题名
-            ((TextView) activity.findViewById(R.id.toolbar_title)).setText(activity.getTitle());
-        }
+
     }
 
     @Override
     public void onActivityStarted(Activity activity) {
         Timber.w("%s - onActivityStarted", activity);
+        if (activity.findViewById(R.id.toolbar) != null) { //找到 Toolbar 并且替换 Actionbar
+            if (activity instanceof AppCompatActivity) {
+                ((AppCompatActivity) activity).setSupportActionBar(activity.findViewById(R.id.toolbar));
+                Objects.requireNonNull(((AppCompatActivity) activity).getSupportActionBar()).setDisplayShowTitleEnabled(false);
+            } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    activity.setActionBar(activity.findViewById(R.id.toolbar));
+                    Objects.requireNonNull(activity.getActionBar()).setDisplayShowTitleEnabled(false);
+                }
+            }
+        }
+        if (activity.findViewById(R.id.toolbar_back) != null) { //找到 Toolbar 的标题栏并设置标题名
+            activity.findViewById(R.id.toolbar_back)
+                    .setOnClickListener(v -> ((BaseSupportActivity) activity).onBackPressedSupport()
+                    );
+        }
 
     }
 

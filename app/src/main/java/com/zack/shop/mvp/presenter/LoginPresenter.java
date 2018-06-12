@@ -5,6 +5,7 @@ import com.jess.arms.mvp.BasePresenter;
 import com.zack.shop.mvp.contract.LoginContract;
 import com.zack.shop.mvp.http.entity.BaseResponse;
 import com.zack.shop.mvp.http.entity.login.JWTBean;
+import com.zack.shop.mvp.http.entity.login.UserBean;
 import com.zack.shop.mvp.utils.RxUtils;
 
 import javax.inject.Inject;
@@ -41,4 +42,35 @@ public class LoginPresenter extends BasePresenter<LoginContract.Model, LoginCont
                     }
                 });
     }
+
+    public void sendSms(String phone) {
+        mModel.sendSms(phone)
+                .compose(RxUtils.applySchedulers(mRootView))
+                .subscribe(new ErrorHandleSubscriber<BaseResponse<String>>(rxErrorHandler) {
+                    @Override
+                    public void onNext(BaseResponse<String> stringBaseResponse) {
+                        if (stringBaseResponse.isSuccess())
+                            mRootView.showMessage(stringBaseResponse.getData());
+                        else
+                            mRootView.showMessage(stringBaseResponse.getMsg());
+                    }
+                });
+    }
+
+    public void register(String password,
+                         String phone,
+                         String smsCode) {
+        mModel.register(password, phone, smsCode)
+                .compose(RxUtils.applySchedulers(mRootView))
+                .subscribe(new ErrorHandleSubscriber<BaseResponse<UserBean>>(rxErrorHandler) {
+                    @Override
+                    public void onNext(BaseResponse<UserBean> userBeanBaseResponse) {
+                        if (userBeanBaseResponse.isSuccess())
+                            mRootView.registerSuccess(userBeanBaseResponse.getData());
+                        else
+                            mRootView.showMessage(userBeanBaseResponse.getMsg());
+                    }
+                });
+    }
+
 }

@@ -2,11 +2,12 @@ package com.zack.shop.mvp.ui.adapter;
 
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
+
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zack.shop.R;
-import com.zack.shop.mvp.http.entity.product.RecommendBean;
+import com.zack.shop.mvp.http.entity.product.Product;
 
 import java.util.List;
 
@@ -17,14 +18,14 @@ import java.util.List;
  **/
 
 
-public class RecommendQuickAdapter extends BaseQuickAdapter<RecommendBean.RecommendProductsBean, BaseViewHolder> {
+public class RecommendQuickAdapter extends BaseQuickAdapter<Product, BaseViewHolder> {
 
-    public RecommendQuickAdapter(@Nullable List<RecommendBean.RecommendProductsBean> data) {
+    public RecommendQuickAdapter(@Nullable List<Product> data) {
         super(R.layout.adapter_item_recommend, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, RecommendBean.RecommendProductsBean item) {
+    protected void convert(BaseViewHolder helper, Product item) {
         Glide.with(mContext)
                 .load(item.getMainImage())
                 .into(((ImageView) helper.getView(R.id.iv_product)));

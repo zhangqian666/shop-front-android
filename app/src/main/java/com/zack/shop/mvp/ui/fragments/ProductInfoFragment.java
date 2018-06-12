@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -18,7 +19,7 @@ import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.zack.shop.R;
 import com.zack.shop.app.base.BaseSupportFragment;
-import com.zack.shop.mvp.http.entity.product.RecommendBean;
+import com.zack.shop.mvp.http.entity.product.Product;
 import com.zack.shop.mvp.ui.activity.product.ProductDetailsActivity;
 import com.zack.shop.mvp.ui.widget.SlideDetailsLayout;
 import com.zack.shop.mvp.utils.AppConstant;
@@ -28,13 +29,15 @@ import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * @Author 张迁-zhangqian
  * @Data 2018/6/6 下午4:21
  * @Package com.zack.shop.mvp.ui.fragments
  **/
-public class ProductInfoFragment extends BaseSupportFragment implements View.OnClickListener, SlideDetailsLayout.OnSlideDetailsListener {
+public class ProductInfoFragment extends BaseSupportFragment implements SlideDetailsLayout.OnSlideDetailsListener {
 
 
     @BindView(R.id.sv_switch)
@@ -67,15 +70,22 @@ public class ProductInfoFragment extends BaseSupportFragment implements View.OnC
     LinearLayout llCurrentProduct;
     @BindView(R.id.fab_up_slide)
     FloatingActionButton fabUpSlide;
-    private RecommendBean.RecommendProductsBean productBean;
+    @BindView(R.id.ll_activity)
+    LinearLayout llActivity;
+    @BindView(R.id.iv_ensure)
+    ImageView ivEnsure;
+    @BindView(R.id.ll_comment)
+    LinearLayout llComment;
+    Unbinder unbinder;
+    private Product productBean;
 
 
     public ProductInfoFragment() {
+
     }
 
     @Override
     public void setupFragmentComponent(@NonNull AppComponent appComponent) {
-
     }
 
     @Override
@@ -88,25 +98,17 @@ public class ProductInfoFragment extends BaseSupportFragment implements View.OnC
         getData();
         initBanner();
         initText();
-        initListenter();
+        slideDetailsLayout.setOnSlideDetailsListener(this);
         initFab();
     }
 
     private void getData() {
-        productBean = ((RecommendBean.RecommendProductsBean) _mActivity.getIntent().getSerializableExtra(AppConstant.ActivityIntent.Bean));
+        productBean = ((Product) _mActivity.getIntent().getSerializableExtra(AppConstant.ActivityIntent.Bean));
     }
 
     private void initFab() {
         oldPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         fabUpSlide.hide();
-    }
-
-    private void initListenter() {
-        fabUpSlide.setOnClickListener(this);
-        llCurrentProduct.setOnClickListener(this);
-        llEmptyComment.setOnClickListener(this);
-        llPullUp.setOnClickListener(this);
-        slideDetailsLayout.setOnSlideDetailsListener(this);
     }
 
     private void initText() {
@@ -125,24 +127,24 @@ public class ProductInfoFragment extends BaseSupportFragment implements View.OnC
             {
                 bannerTitle.setImageLoader(new GlideImageLoader());
 //                //设置自动轮播，默认为true
-//                bannerTitle.isAutoPlay(true);
+                bannerTitle.isAutoPlay(false);
 //                //设置轮播时间
 //                bannerTitle.setDelayTime(1500);
                 //设置指示器位置（当banner模式中有指示器时）
                 bannerTitle.setIndicatorGravity(BannerConfig.CENTER);
                 bannerTitle.setImages(subImages);
-//                bannerTitle.start();
+                bannerTitle.start();
             }
             {
                 bannerRecommend.setImageLoader(new GlideImageLoader());
 //                //设置自动轮播，默认为true
-//                bannerRecommend.isAutoPlay(true);
+                bannerRecommend.isAutoPlay(false);
 //                //设置轮播时间
 //                bannerRecommend.setDelayTime(1500);
                 //设置指示器位置（当banner模式中有指示器时）
                 bannerRecommend.setIndicatorGravity(BannerConfig.CENTER);
                 bannerRecommend.setImages(subImages);
-//                bannerRecommend.start();
+                bannerRecommend.start();
             }
         }
     }
@@ -152,25 +154,29 @@ public class ProductInfoFragment extends BaseSupportFragment implements View.OnC
 
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
+    @OnClick({R.id.ll_current_goods, R.id.ll_empty_comment, R.id.ll_pull_up, R.id.sv_switch, R.id.fab_up_slide})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ll_current_goods:
+                break;
+            case R.id.ll_empty_comment:
+                break;
             case R.id.ll_pull_up:
                 //上拉查看图文详情
                 slideDetailsLayout.smoothOpen(true);
                 break;
-
+            case R.id.sv_switch:
+                break;
             case R.id.fab_up_slide:
                 //点击滑动到顶部
                 scrollView.smoothScrollTo(0, 0);
                 slideDetailsLayout.smoothClose(true);
                 break;
-
         }
     }
 
     @Override
-    public void onStatucChanged(SlideDetailsLayout.Status status) {
+    public void onStatusChanged(SlideDetailsLayout.Status status) {
         ProductDetailsActivity mActivity = (ProductDetailsActivity) _mActivity;
         if (status == SlideDetailsLayout.Status.OPEN) {
             //当前为图文详情页
@@ -182,5 +188,6 @@ public class ProductInfoFragment extends BaseSupportFragment implements View.OnC
             mActivity.showTitle(false);
         }
     }
+
 
 }

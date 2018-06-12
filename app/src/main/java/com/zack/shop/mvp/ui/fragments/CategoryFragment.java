@@ -25,6 +25,7 @@ import com.zack.shop.mvp.presenter.CategoryPresenter;
 import com.zack.shop.mvp.ui.adapter.CategoryLeftAdapter;
 import com.zack.shop.mvp.ui.adapter.CategoryRightAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -45,8 +46,7 @@ public class CategoryFragment extends BaseSupportFragment<CategoryPresenter> imp
     CategoryLeftAdapter categoryLeftAdapter;
     @Inject
     CategoryRightAdapter categoryRightAdapter;
-    @Inject
-    List<CategoryBean> categoryBeans;
+
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -85,13 +85,6 @@ public class CategoryFragment extends BaseSupportFragment<CategoryPresenter> imp
     private void initRightRecycler() {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(_mActivity, 3);
         recyclerRight.setLayoutManager(gridLayoutManager);
-        categoryRightAdapter.setSpanSizeLookup((gridLayoutManager1, position) -> {
-            if (categoryBeans.get(position).getItemType() == CategoryBean.HEADER) {
-                return 3;
-            } else {
-                return 1;
-            }
-        });
         recyclerRight.setAdapter(categoryRightAdapter);
     }
 
@@ -99,7 +92,11 @@ public class CategoryFragment extends BaseSupportFragment<CategoryPresenter> imp
         recyclerLeft.setLayoutManager(new LinearLayoutManager(_mActivity));
         categoryLeftAdapter.setOnItemClickListener((adapter, view, position) -> {
             categoryLeftAdapter.setSelectedPosition(position);
-            mPresenter.getCategorys(((CategoryLeftAdapter) adapter).getData().get(position).getId());
+
+            categoryRightAdapter.setNewData(new ArrayList<>());
+            if (mPresenter != null) {
+                mPresenter.getCategorys(((CategoryLeftAdapter) adapter).getData().get(position).getId());
+            }
         });
         recyclerLeft.setAdapter(categoryLeftAdapter);
 
@@ -110,15 +107,15 @@ public class CategoryFragment extends BaseSupportFragment<CategoryPresenter> imp
         categoryLeftAdapter.replaceData(data);
         categoryLeftAdapter.setSelectedPosition(0);
         if (data.size() != 0) {
-            mPresenter.getCategorys(data.get(0).getId());
+            if (mPresenter != null) {
+                mPresenter.getCategorys(data.get(0).getId());
+            }
         }
     }
 
     @Override
     public void getItemCategoryBeanList(List<CategoryBean> data) {
-        categoryBeans.clear();
-        categoryBeans.addAll(data);
-        categoryRightAdapter.notifyDataSetChanged();
+        categoryRightAdapter.setNewData(data);
     }
 
     @Override

@@ -1,14 +1,9 @@
 package com.zack.shop.mvp.ui.adapter;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.jess.arms.utils.ArmsUtils;
 import com.zack.shop.R;
@@ -28,6 +23,14 @@ public class CategoryRightAdapter extends BaseMultiItemQuickAdapter<CategoryBean
         super(data);
         addItemType(CategoryBean.ITEM, R.layout.adapter_item_right_category);
         addItemType(CategoryBean.HEADER, R.layout.adapter_header_right_category);
+
+        setSpanSizeLookup((gridLayoutManager, position) -> {
+            if (getData().get(position).getItemType() == CategoryBean.HEADER) {
+                return 3;
+            } else {
+                return 1;
+            }
+        });
     }
 
     @Override
@@ -45,4 +48,5 @@ public class CategoryRightAdapter extends BaseMultiItemQuickAdapter<CategoryBean
 
         }
     }
+
 }

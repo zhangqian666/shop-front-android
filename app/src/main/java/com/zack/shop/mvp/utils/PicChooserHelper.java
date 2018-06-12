@@ -45,7 +45,7 @@ public class PicChooserHelper {
         mPicType = picType;
     }
 
-    private void takePicFromAlbum() {
+    public void takePicFromAlbum() {
         Intent picIntent = new Intent("android.intent.action.GET_CONTENT");
         picIntent.setType("image/*");
         if (mFragment == null) {
@@ -55,7 +55,7 @@ public class PicChooserHelper {
         }
     }
 
-    private void takePicFromCamera() {
+    public void takePicFromCamera() {
         mCameraFileUri = createAlbumUri();
 
 

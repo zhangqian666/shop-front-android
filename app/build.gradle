@@ -62,7 +62,7 @@ buildscript {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //support
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
     implementation 'com.android.support:support-v4:27.1.1'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -85,6 +85,7 @@ dependencies {
     implementation rootProject.ext.dependencies["httplog"]
     implementation rootProject.ext.dependencies["statusbarutil"]
     implementation rootProject.ext.dependencies["lombok"]
+    implementation rootProject.ext.dependencies["dagger2"]
     annotationProcessor rootProject.ext.dependencies["lombok-compiler"]
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
@@ -98,4 +99,5 @@ dependencies {
     debugImplementation rootProject.ext.dependencies["canary-debug"]
     releaseImplementation rootProject.ext.dependencies["canary-release"]
     testImplementation rootProject.ext.dependencies["canary-release"]
+    implementation 'com.github.HuanTanSheng:EasyPhotos:2.3.2'
 }

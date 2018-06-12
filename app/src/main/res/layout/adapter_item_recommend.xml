@@ -35,7 +35,7 @@
                 android:layout_marginTop="5dp"
                 android:id="@+id/tv_product_price"
                 android:text="¥990"
-                android:textColor="@color/red_33"
+                android:textColor="@color/red"
                 android:textSize="@dimen/text_small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

@@ -36,11 +36,11 @@ public class RecommendPresenter extends BasePresenter<RecommendContract.Model, R
                 .compose(RxUtils.applySchedulers(mRootView))
                 .subscribe(new ErrorHandleSubscriber<BaseResponse<RecommendBean>>(rxErrorHandler) {
                     @Override
-                    public void onNext(BaseResponse<RecommendBean> recommendBeanBaseResponse) {
-                        if (recommendBeanBaseResponse.isSuccess()) {
-                            mRootView.refreshBannerAndList(recommendBeanBaseResponse.getData());
+                    public void onNext(BaseResponse<RecommendBean> baseResponse) {
+                        if (baseResponse.isSuccess()) {
+                            mRootView.refreshBannerAndList(baseResponse.getData());
                         } else {
-                            mRootView.showMessage(recommendBeanBaseResponse.getMsg());
+                            mRootView.showMessage(baseResponse.getMsg());
                         }
                     }
                 });

@@ -2,10 +2,10 @@ package com.zack.shop.mvp.http.api.service;
 
 import com.zack.shop.mvp.http.entity.BaseResponse;
 import com.zack.shop.mvp.http.entity.product.Product;
+import com.zack.shop.mvp.http.entity.product.RecommendBean;
 
 import java.util.List;
 
-import com.zack.shop.mvp.http.entity.product.RecommendBean;;
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -42,5 +42,7 @@ public interface ProductService {
             @Field("pageSize") int pageSize,
             @Field("orderBy") String orderBy
     );
+
+
 
 }

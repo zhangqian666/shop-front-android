@@ -27,6 +27,7 @@ import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 public class MainPresenter extends BasePresenter<MainContract.Model, MainContract.View> {
     RxErrorHandler rxErrorHandler;
     UserModel userModel;
+
     @Inject
     public MainPresenter(MainContract.Model model,
                          MainContract.View rootView,
@@ -88,5 +89,7 @@ public class MainPresenter extends BasePresenter<MainContract.Model, MainContrac
             return null;
         }, true);
     }
+
+
 
 }

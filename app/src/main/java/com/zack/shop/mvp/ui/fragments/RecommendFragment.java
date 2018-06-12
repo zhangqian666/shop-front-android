@@ -25,6 +25,7 @@ import com.zack.shop.app.base.BaseSupportFragment;
 import com.zack.shop.di.component.DaggerRecommendComponent;
 import com.zack.shop.di.module.RecommendModule;
 import com.zack.shop.mvp.contract.RecommendContract;
+import com.zack.shop.mvp.http.entity.product.Product;
 import com.zack.shop.mvp.http.entity.product.RecommendBean;
 import com.zack.shop.mvp.presenter.RecommendPresenter;
 import com.zack.shop.mvp.ui.activity.product.ProductDetailsActivity;
@@ -67,7 +68,7 @@ public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> i
     ImageView ivConversation;
 
     @Inject
-    List<RecommendBean.RecommendProductsBean> recommendProductsBeans;
+    List<Product> recommendProductsBeans;
 
     @Inject
     RecommendQuickAdapter recommendQuickAdapter;
@@ -113,7 +114,7 @@ public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> i
             } else {
                 swipe_refresh.setEnabled(false);
             }
-            mToolbar.setBackgroundColor(changeAlpha(getResources().getColor(R.color.normal_back_ground), Math.abs(verticalOffset * 1.0f) / appBarLayout.getTotalScrollRange()));
+            mToolbar.setBackgroundColor(changeAlpha(getResources().getColor(R.color.white), Math.abs(verticalOffset * 1.0f) / appBarLayout.getTotalScrollRange()));
         });
         {
             //启动聊天列表界面
@@ -137,7 +138,7 @@ public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> i
                     Intent intent = new Intent(_mActivity, ProductDetailsActivity.class);
                     Bundle extras = new Bundle();
                     extras.putSerializable(AppConstant.ActivityIntent.Bean,
-                            ((RecommendBean.RecommendProductsBean) (adapter.getData()).get(position)));
+                            ((Product) (adapter.getData()).get(position)));
                     intent.putExtras(extras);
                     startActivity(intent);
                 }

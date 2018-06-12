@@ -7,16 +7,12 @@
     android:orientation="vertical"
     tools:context=".mvp.ui.fragments.FindFragment">
 
-
-    <android.support.v7.widget.Toolbar
+    <View
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:fitsSystemWindows="true"
-        android:gravity="bottom"
-        app:contentInsetStart="0dp">
+        android:layout_height="@dimen/statusbar_view_height"
+        android:background="@color/normal_back_ground" />
 
-        <include layout="@layout/view_search_home" />
-    </android.support.v7.widget.Toolbar>
+    <include layout="@layout/simple_tool_bar" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"

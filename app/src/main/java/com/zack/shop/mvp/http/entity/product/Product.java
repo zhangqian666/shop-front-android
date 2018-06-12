@@ -1,6 +1,8 @@
 package com.zack.shop.mvp.http.entity.product;
 
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,10 +14,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Product {
+public class Product implements Serializable{
     private Integer id;
     private Integer categoryId;
     private Integer userId;
+    private String username;
     private String name;
     private String subtitle;
     private String mainImage;

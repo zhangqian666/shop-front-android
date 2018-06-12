@@ -38,4 +38,14 @@ public class MomentModel extends BaseModel implements FindContract.Model {
                 .starMoments(momentId);
     }
 
+    public Observable<BaseResponse> createMoments(
+            String title,
+            String subTitle,
+            String details,
+            String mainImage,
+            String subImages) {
+        return mRepositoryManager.obtainRetrofitService(MomentService.class)
+                .createMoments(title, subTitle, details, mainImage, subImages);
+    }
+
 }

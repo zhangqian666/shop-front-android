@@ -30,3 +30,6 @@
 -dontwarn lombok.**
 #-keep class com.zack.volley.**{*;}
 -keep class com.zack.shop.**{*;}
+
+##图片选择起
+-keep class com.huantansheng.easyphotos.models.** { *; }

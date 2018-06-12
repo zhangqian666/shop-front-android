@@ -26,6 +26,7 @@ import com.zack.shop.mvp.ui.fragments.SelfFragment;
 import com.zack.shop.mvp.ui.widget.bottombar.BottomBar;
 import com.zack.shop.mvp.ui.widget.bottombar.BottomBarTab;
 import com.zack.shop.mvp.utils.AppConstant;
+import com.zack.shop.mvp.utils.PicChooserHelper;
 import com.zack.shop.mvp.utils.RongIMUtils;
 import com.zack.shop.mvp.utils.SpUtils;
 
@@ -39,6 +40,7 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
     BottomBar mBottomBar;
 
     private ISupportFragment[] mFragments = new ISupportFragment[5];
+    private PicChooserHelper picChooserHelper;
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
@@ -56,7 +58,7 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-        StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, null);
+        setStatusBar();
         initBottomBar();
         requestPermissions();
         if (mPresenter != null) {
@@ -174,5 +176,9 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
     @Override
     public void killMyself() {
 
+    }
+
+    protected void setStatusBar() {
+        StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, null);
     }
 }

@@ -3,6 +3,7 @@ package com.zack.shop.mvp.ui.activity.conversation;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.TextView;
 
 import com.jess.arms.di.component.AppComponent;
@@ -10,7 +11,6 @@ import com.zack.shop.R;
 import com.zack.shop.app.base.BaseSupportActivity;
 
 public class ConversationActivity extends BaseSupportActivity {
-
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
@@ -25,10 +25,13 @@ public class ConversationActivity extends BaseSupportActivity {
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
         ((TextView) findViewById(R.id.toolbar_title)).setText(getIntent().getData().getQueryParameter("title"));
+        findViewById(R.id.toolbar_back).setVisibility(View.VISIBLE);
+
     }
 
     @Override
     public void onBackPressedSupport() {
+        finish();
         super.onBackPressedSupport();
     }
 }

@@ -9,15 +9,12 @@
     android:orientation="vertical"
     tools:context=".mvp.ui.fragments.CategoryFragment">
 
-    <android.support.v7.widget.Toolbar
+    <View
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:fitsSystemWindows="true"
-        android:gravity="bottom"
-        app:contentInsetStart="0dp">
+        android:layout_height="@dimen/statusbar_view_height"
+        android:background="@color/normal_back_ground" />
 
-        <include layout="@layout/view_search_home" />
-    </android.support.v7.widget.Toolbar>
+    <include layout="@layout/view_search_home" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,8 +31,8 @@
             android:id="@+id/recycler_right"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
             android:paddingTop="8dp" />
     </LinearLayout>
 

@@ -32,7 +32,7 @@ public class CategoryLeftAdapter extends BaseQuickAdapter<CategoryBean, BaseView
             helper.getView(R.id.iv_select).setVisibility(View.VISIBLE);
         } else {
             tvContent.getPaint().setFakeBoldText(false);
-            helper.getView(R.id.ll_item).setBackgroundColor(mContext.getResources().getColor(R.color.gray_f6));
+            helper.getView(R.id.ll_item).setBackgroundColor(mContext.getResources().getColor(R.color.divider_color));
             helper.getView(R.id.iv_select).setVisibility(View.GONE);
         }
     }

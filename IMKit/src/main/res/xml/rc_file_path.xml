@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<paths>
-    <external-path name="rc_external_path" path="."/>
-</paths>
+<resources>
+    <paths>
+        <external-path
+            name="rc_external_path"
+            path="." />
+
+    </paths>
+    <paths>
+        <root-path
+            name="camera_photos"
+            path="" />
+    </paths>
+</resources>

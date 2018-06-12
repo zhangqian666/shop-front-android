@@ -27,7 +27,9 @@ package com.zack.shop.mvp.http.api;
 public interface Api {
 //    String APP_DOMAIN = "http://192.168.199.115:8080";
     String APP_DOMAIN = "http://192.168.4.174:8080";
+//    String APP_DOMAIN = "http://192.168.199.115";
 //    String APP_DOMAIN = "http://192.168.199.115:8080";
+//    String APP_DOMAIN = "http://172.20.10.4:8080";
 //    String APP_DOMAIN = "http://10.0.0.1:8080";
 //    String APP_DOMAIN = "http://39.106.46.79";
     int RequestSuccess = 0;

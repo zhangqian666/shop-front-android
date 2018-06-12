@@ -3,47 +3,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:navigationIcon="@mipmap/icon_back"
-    android:background="?attr/colorPrimary"
+    android:layout_height="@dimen/normal_height"
+    android:background="@color/normal_back_ground"
+    android:elevation="@dimen/normal_elevation_height"
     app:contentInsetStart="0dp">
 
-    <RelativeLayout
-        android:id="@+id/toolbar_back"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="start"
-        android:visibility="gone">
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="15dp"
-            android:layout_marginStart="15dp"
-            android:src="@mipmap/icon_back" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-    </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/toolbar_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="start"
+                android:visibility="gone">
 
-    <TextView
-        android:id="@+id/toolbar_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:singleLine="true"
-        android:text="TITLE"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_title" />
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="10dp"
+                    android:adjustViewBounds="true"
+                    android:src="@mipmap/icon_back_black" />
 
-    <TextView
-        android:id="@+id/toolbar_right"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_gravity="end|center_vertical"
-        android:layout_marginEnd="10dp"
-        android:gravity="center"
-        android:textColor="#ffffff"
-        android:textSize="@dimen/text_sub_title"
-        android:visibility="visible" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:singleLine="true"
+                android:text="TITLE"
+                android:textColor="@color/text_black_33"
+                android:textSize="@dimen/text_title" />
+
+            <TextView
+                android:id="@+id/toolbar_right"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="15dp"
+                android:gravity="center"
+                android:textColor="@color/text_black_33"
+                android:textSize="@dimen/text_sub_title"
+                android:visibility="visible" />
+        </FrameLayout>
+
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/divider_height"-->
+            <!--android:background="@color/divider_color" />-->
+    </LinearLayout>
 
 </android.support.v7.widget.Toolbar>

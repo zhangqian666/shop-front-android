@@ -1,5 +1,6 @@
 package com.zack.shop.mvp.ui.activity.product;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,7 +14,11 @@ import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 import com.zack.shop.R;
 import com.zack.shop.app.base.BaseSupportActivity;
-import com.zack.shop.mvp.http.entity.product.RecommendBean;
+import com.zack.shop.di.component.DaggerProductDetailsComponent;
+import com.zack.shop.di.module.ProductDetailsModule;
+import com.zack.shop.mvp.contract.ProductDetailsContract;
+import com.zack.shop.mvp.http.entity.product.Product;
+import com.zack.shop.mvp.presenter.ProductDetailsPresenter;
 import com.zack.shop.mvp.ui.adapter.ItemTitlePagerAdapter;
 import com.zack.shop.mvp.ui.fragments.ProductDetailsFragment;
 import com.zack.shop.mvp.ui.fragments.ProductInfoFragment;
@@ -27,7 +32,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import io.rong.imkit.RongIM;
 
-public class ProductDetailsActivity extends BaseSupportActivity {
+public class ProductDetailsActivity extends BaseSupportActivity<ProductDetailsPresenter> implements ProductDetailsContract.View {
 
     @BindView(R.id.tool_bar)
     Toolbar toolbar;
@@ -40,11 +45,14 @@ public class ProductDetailsActivity extends BaseSupportActivity {
 
     private List<Fragment> baseSupportFragments = new ArrayList<>();
     private String[] titles = {"产品", "详情"};
-    private RecommendBean.RecommendProductsBean productBean;
+    private Product productBean;
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
-
+        DaggerProductDetailsComponent.builder()
+                .appComponent(appComponent)
+                .productDetailsModule(new ProductDetailsModule(this))
+                .build().inject(this);
     }
 
     @Override
@@ -86,18 +94,45 @@ public class ProductDetailsActivity extends BaseSupportActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_connect_sale:
-                RongIM.getInstance().startPrivateChat(mContext, String.valueOf(productBean.getUserId()), "临时会话");
+                RongIM.getInstance().startPrivateChat(mContext, String.valueOf(productBean.getUserId()), productBean.getUsername());
                 break;
             case R.id.ll_connect_cart:
                 ArmsUtils.snackbarText("购物车");
                 break;
             case R.id.btn_add_cart:
-                ArmsUtils.snackbarText("加入购物车");
+                if (mPresenter != null) {
+                    mPresenter.addProduct(productBean.getId(), 1);
+                }
                 break;
         }
     }
 
     public void getData() {
-        productBean = ((RecommendBean.RecommendProductsBean) getIntent().getSerializableExtra(AppConstant.ActivityIntent.Bean));
+        productBean = ((Product) getIntent().getSerializableExtra(AppConstant.ActivityIntent.Bean));
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showMessage(@NonNull String message) {
+        ArmsUtils.snackbarText(message);
+    }
+
+    @Override
+    public void launchActivity(@NonNull Intent intent) {
+
+    }
+
+    @Override
+    public void killMyself() {
+
     }
 }

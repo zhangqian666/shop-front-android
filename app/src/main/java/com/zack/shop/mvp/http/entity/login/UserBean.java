@@ -1,6 +1,8 @@
 package com.zack.shop.mvp.http.entity.login;
 
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +13,7 @@ import lombok.Setter;
  **/
 @Getter
 @Setter
-public class UserBean {
+public class UserBean implements Serializable {
 
     private Integer uid;
 
@@ -20,6 +22,7 @@ public class UserBean {
      * 用户名
      */
     private String username;
+
     private String email;
 
     private String phone;

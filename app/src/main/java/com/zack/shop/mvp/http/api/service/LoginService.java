@@ -9,7 +9,6 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 
 /**
@@ -21,7 +20,7 @@ public interface LoginService {
 
     @GET("/code/sms")
     Observable<BaseResponse<String>> sendSms(
-            @Query("mobile") int mobile);
+            @Query("phone") String mobile);
 
     @FormUrlEncoded
     @POST("/user/register")

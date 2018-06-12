@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
@@ -22,6 +23,7 @@ import com.zack.shop.di.module.FindModule;
 import com.zack.shop.mvp.contract.FindContract;
 import com.zack.shop.mvp.http.entity.moment.MomentBean;
 import com.zack.shop.mvp.presenter.FindPresenter;
+import com.zack.shop.mvp.ui.activity.find.PublishCommentActivity;
 import com.zack.shop.mvp.ui.adapter.FindAdapter;
 
 import java.util.List;
@@ -46,6 +48,11 @@ public class FindFragment extends BaseSupportFragment<FindPresenter> implements 
     @Inject
     FindAdapter findAdapter;
 
+    @BindView(R.id.toolbar_title)
+    TextView toolbarTitle;
+    @BindView(R.id.toolbar_right)
+    TextView toolbarRight;
+
 
     public FindFragment() {
         // Required empty public constructor
@@ -68,7 +75,12 @@ public class FindFragment extends BaseSupportFragment<FindPresenter> implements 
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-
+        toolbarRight.setVisibility(View.VISIBLE);
+        toolbarRight.setText("添加");
+        toolbarRight.setOnClickListener(v -> {
+            startActivity(new Intent(_mActivity, PublishCommentActivity.class));
+        });
+        toolbarTitle.setText("发现");
         swipeRefreshLayout.setOnRefreshListener(this);
         recyclerFindList.setLayoutManager(new LinearLayoutManager(_mActivity));
         recyclerFindList.setAdapter(findAdapter);

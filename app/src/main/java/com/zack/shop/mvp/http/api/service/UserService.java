@@ -29,7 +29,7 @@ public interface UserService {
     @Multipart
     @POST(value = "/user/update/image")
     Observable<BaseResponse<String>> updateUserImage(
-            @Part("upload_file") MultipartBody.Part upload_file
+            @Part MultipartBody.Part upload_file
     );
 
 

@@ -2,11 +2,13 @@ package com.zack.shop.mvp.model;
 
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
+import com.zack.shop.mvp.contract.SelfContract;
 import com.zack.shop.mvp.http.api.service.UserService;
 import com.zack.shop.mvp.http.entity.BaseResponse;
 import com.zack.shop.mvp.http.entity.login.UserBean;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 
 
 /**
@@ -14,7 +16,7 @@ import io.reactivex.Observable;
  * @Data 2018/5/30 下午4:16
  * @Package com.zack.shop.mvp.model
  **/
-public class UserModel extends BaseModel {
+public class UserModel extends BaseModel implements SelfContract.Model {
     public UserModel(IRepositoryManager repositoryManager) {
         super(repositoryManager);
     }
@@ -28,5 +30,10 @@ public class UserModel extends BaseModel {
     public Observable<BaseResponse<UserBean>> getUserInfo(int userId) {
         return mRepositoryManager.obtainRetrofitService(UserService.class)
                 .userDetails(userId);
+    }
+
+    public Observable<BaseResponse<String>> updateUserImage(MultipartBody.Part upload_file) {
+        return mRepositoryManager.obtainRetrofitService(UserService.class)
+                .updateUserImage(upload_file);
     }
 }

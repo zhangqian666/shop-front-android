@@ -43,13 +43,76 @@
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/tool_bar"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:gravity="bottom"
+                    android:layout_height="wrap_content"
+                    android:background="@color/normal_back_ground"
                     app:contentInsetStart="0dp"
                     app:layout_collapseMode="pin">
 
-                    <include layout="@layout/view_search_home" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/statusbar_view_height" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="10dp"
+                                android:src="@mipmap/icon_scan" />
+
+                            <RelativeLayout
+                                android:id="@+id/rl_search_bar"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginBottom="8dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_search_home"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true">
+
+
+                                <ImageView
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_centerVertical="true"
+                                    android:src="@mipmap/icon_search" />
+
+                                <TextView
+                                    android:id="@+id/head_tv_search"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginStart="48dp"
+                                    android:gravity="center_vertical"
+                                    android:text="请输入您要搜索的商品"
+                                    android:textColor="@color/text_black_99"
+                                    android:textSize="@dimen/text_normal" />
+
+                            </RelativeLayout>
+
+                            <ImageView
+                                android:id="@+id/iv_conversation"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="10dp"
+                                android:src="@mipmap/icon_message" />
+                        </LinearLayout>
+                    </LinearLayout>
                 </android.support.v7.widget.Toolbar>
+
             </android.support.design.widget.CollapsingToolbarLayout>
 
         </android.support.design.widget.AppBarLayout>

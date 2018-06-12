@@ -7,7 +7,7 @@ import com.jess.arms.di.scope.FragmentScope;
 import com.jess.arms.integration.IRepositoryManager;
 import com.zack.shop.R;
 import com.zack.shop.mvp.contract.RecommendContract;
-import com.zack.shop.mvp.http.entity.product.RecommendBean;
+import com.zack.shop.mvp.http.entity.product.Product;
 import com.zack.shop.mvp.model.ProductModel;
 import com.zack.shop.mvp.ui.adapter.RecommendQuickAdapter;
 
@@ -34,7 +34,7 @@ public class RecommendModule {
 
     @FragmentScope
     @Provides
-    public List<RecommendBean.RecommendProductsBean> provideRecommendProductsBean() {
+    public List<Product> provideRecommendProductsBean() {
         return new ArrayList<>();
     }
 
@@ -42,7 +42,7 @@ public class RecommendModule {
     @FragmentScope
     @Provides
     public RecommendQuickAdapter prodvideBaseQuickAdapter(
-            List<RecommendBean.RecommendProductsBean> recommendProductsBeans, Application application) {
+            List<Product> recommendProductsBeans, Application application) {
         RecommendQuickAdapter recommendQuickAdapter = new RecommendQuickAdapter(recommendProductsBeans);
         recommendQuickAdapter.addHeaderView(LayoutInflater.from(application).inflate(R.layout.layout_recommend_for_you, null));
         return recommendQuickAdapter;

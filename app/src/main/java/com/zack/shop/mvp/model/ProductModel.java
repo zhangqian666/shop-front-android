@@ -2,11 +2,20 @@ package com.zack.shop.mvp.model;
 
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
+import com.zack.shop.mvp.contract.ProductDetailsContract;
 import com.zack.shop.mvp.contract.RecommendContract;
+import com.zack.shop.mvp.http.api.service.CartService;
 import com.zack.shop.mvp.http.api.service.ProductService;
+import com.zack.shop.mvp.http.api.service.UploadService;
 import com.zack.shop.mvp.http.entity.BaseResponse;
+import com.zack.shop.mvp.http.entity.cart.CartBean;
 import com.zack.shop.mvp.http.entity.product.RecommendBean;
+
+import java.util.List;
+import java.util.Map;
+
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 
 /**
  * @Author 张迁-zhangqian
@@ -15,7 +24,7 @@ import io.reactivex.Observable;
  **/
 
 
-public class ProductModel extends BaseModel implements RecommendContract.Model {
+public class ProductModel extends BaseModel implements RecommendContract.Model, ProductDetailsContract.Model {
 
     public ProductModel(IRepositoryManager repositoryManager) {
         super(repositoryManager);
@@ -25,6 +34,42 @@ public class ProductModel extends BaseModel implements RecommendContract.Model {
         return mRepositoryManager
                 .obtainRetrofitService(ProductService.class)
                 .getRecommendedProducts(0, 0, "");
-
     }
+
+    public Observable<BaseResponse> addProduct(Integer productId, Integer count) {
+        return mRepositoryManager
+                .obtainRetrofitService(CartService.class)
+                .addProduct(productId, count);
+    }
+
+    public Observable<BaseResponse> deleteProduct(String productIds) {
+        return mRepositoryManager
+                .obtainRetrofitService(CartService.class)
+                .deleteProduct(productIds);
+    }
+
+    public Observable<BaseResponse<Map<Integer, List<CartBean>>>> selectProduct(Integer productId, Integer checked) {
+        return mRepositoryManager
+                .obtainRetrofitService(CartService.class)
+                .selectProduct(productId, checked);
+    }
+
+    public Observable<BaseResponse<Map<Integer, List<CartBean>>>> updateProductCount(Integer productId, Integer count) {
+        return mRepositoryManager
+                .obtainRetrofitService(CartService.class)
+                .updateProductCount(productId, count);
+    }
+
+
+    public Observable<BaseResponse<String>> upLoadImage(MultipartBody.Part upload_file) {
+        return mRepositoryManager.obtainRetrofitService(UploadService.class)
+                .uploadImage(upload_file);
+    }
+
+    public Observable<BaseResponse<List<String>>> upLoadImages(List<MultipartBody.Part> upload_file) {
+        return mRepositoryManager.obtainRetrofitService(UploadService.class)
+                .uploadImages(upload_file);
+    }
+
+
 }

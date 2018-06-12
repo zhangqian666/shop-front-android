@@ -38,6 +38,9 @@ public class FindAdapter extends BaseQuickAdapter<MomentBean, BaseViewHolder> {
         {
             //点赞处理
             CheckBox star = helper.getView(R.id.tv_bottom_star);
+            star.setOnCheckedChangeListener(null);
+            star.setEnabled(true);
+
             if (item.getStarEnable() == 1) {
                 star.setChecked(false);
             } else {
@@ -51,12 +54,13 @@ public class FindAdapter extends BaseQuickAdapter<MomentBean, BaseViewHolder> {
                         onHeartClickListener.onHeartClick(item.getId());
                 }
             });
+
         }
 
         {
             //图片处理
-            if (!TextUtils.isEmpty(item.getMainImage())) {
-                String[] split = item.getMainImage().split(",");
+            if (!TextUtils.isEmpty(item.getSubImages())) {
+                String[] split = item.getSubImages().split(",");
                 List<String> imageList = Arrays.asList(split);
 
                 RecyclerView imageRecycler = helper.getView(R.id.recycler_image_list);

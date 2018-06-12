@@ -4,6 +4,7 @@ import com.jess.arms.mvp.IModel;
 import com.jess.arms.mvp.IView;
 import com.zack.shop.mvp.http.entity.BaseResponse;
 import com.zack.shop.mvp.http.entity.product.RecommendBean;
+
 import io.reactivex.Observable;
 
 /**
