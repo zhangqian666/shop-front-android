@@ -1,91 +1,121 @@
 package com.zack.shop.mvp.ui.adapter;
 
-import android.content.Intent;
-import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zack.shop.R;
 import com.zack.shop.mvp.http.entity.cart.CartBean;
-import com.zack.shop.mvp.ui.activity.product.ProductDetailsActivity;
-import com.zack.shop.mvp.ui.widget.AmountView;
-import com.zack.shop.mvp.utils.AppConstant;
+import com.zack.shop.mvp.http.entity.cart.StoreBean;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author 张迁-zhangqian
  * @Data 2018/6/9 下午6:30
  * @Package com.zack.shop.mvp.ui.adapter
  **/
-public class CartListAdapter extends BaseQuickAdapter<CartBean, BaseViewHolder> {
+public class CartListAdapter extends BaseQuickAdapter<StoreBean, BaseViewHolder> {
 
     public CartListAdapter() {
-        super(R.layout.adapter_item_cart);
+        super(R.layout.adapter_item_cart_store);
     }
 
-    private boolean isAllChecked = false;
 
     @Override
-    protected void convert(BaseViewHolder helper, CartBean item) {
-        helper.setText(R.id.tv_product_title, item.getProductVo().getName());
-        helper.setText(R.id.tv_product_price, String.format("%s", item.getProductVo().getPrice()));
-        helper.setText(R.id.tv_producer, String.format("商家：%s", item.getProductVo().getUsername()));
-        Glide.with(mContext).load(item.getProductVo().getMainImage()).into(((ImageView) helper.getView(R.id.iv_product)));
-        AmountView amountView = helper.getView(R.id.amount_view);
-        amountView.setMaxValue(item.getProductVo().getStock());
-        amountView.setCurrentAmount(item.getQuantity());
-        amountView.setOnAmountChangeListener((view, amount) -> {
-            if (onClickCartItemListener != null)
-                onClickCartItemListener.onClickAmountCount(item, amount);
-        });
+    protected void convert(BaseViewHolder helper, StoreBean item) {
+        helper.setText(R.id.tv_store_name, item.getUsername());
+        initInnerAdapter(helper, item);
+    }
 
-        if (helper.getAdapterPosition() != 0 && (getData().get(helper.getAdapterPosition()).getProductVo().getUserId().intValue()
-                == getData().get(helper.getAdapterPosition() - 1).getProductVo().getUserId().intValue())) {
-            helper.getView(R.id.tv_producer).setVisibility(View.GONE);
-        } else {
-            helper.getView(R.id.tv_producer).setVisibility(View.VISIBLE);
-        }
+    private void initInnerAdapter(BaseViewHolder helper, StoreBean item) {
+        RecyclerView innerRecyclerView = helper.getView(R.id.recycler_list);
+        innerRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        CartInnerListAdapter cartInnerListAdapter = new CartInnerListAdapter(item.getCartVos());
+        innerRecyclerView.setAdapter(cartInnerListAdapter);
+        cartInnerListAdapter.setOnClickCartItemListener(new CartInnerListAdapter.OnClickCartItemListener() {
+            @Override
+            public void onClickAmountCount(View view, CartBean cartBean, int count) {
+                if (onClickStoreItemListener != null)
+                    onClickStoreItemListener.onClickAmountCount(view, cartBean, count);
+            }
 
-        {
-            CheckBox cb = helper.getView(R.id.btn_checked);
-            cb.setOnCheckedChangeListener(null);
-            cb.setChecked(isAllChecked);
-            cb.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                if (onClickCartItemListener != null) {
-                    onClickCartItemListener.onChecked(item, isChecked);
+            @Override
+            public void onAllChecked(boolean isAllChecked) {
+                item.setChecked(isAllChecked);
+                notifyDataSetChanged();
+                if (onClickStoreItemListener != null) {
+                    onClickStoreItemListener.onChecked(isAllChecked());
                 }
-            });
-        }
-
-        helper.getView(R.id.iv_product).setOnClickListener(v -> {
-            Intent intent = new Intent(mContext, ProductDetailsActivity.class);
-            Bundle extras = new Bundle();
-            extras.putSerializable(AppConstant.ActivityIntent.Bean,
-                    item.getProductVo());
-            intent.putExtras(extras);
-            mContext.startActivity(intent);
+            }
         });
 
+        CheckBox checkBox = helper.getView(R.id.btn_checked);
+        checkBox.setOnCheckedChangeListener(null);
+        checkBox.setChecked(item.isChecked());
+        checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            setStoreAllChecked(helper.getAdapterPosition(), isChecked);
+            cartInnerListAdapter.setAllChecked(isChecked);
+            if (onClickStoreItemListener != null) {
+                onClickStoreItemListener.onChecked(isAllChecked());
+            }
+        });
+    }
 
+    private void setStoreAllChecked(int position, boolean isChecked) {
+        getData().get(position).setChecked(isChecked);
+        for (CartBean cb : getData().get(position).getCartVos())
+            cb.setChecked(isChecked);
+    }
+
+    public List<CartBean> getAllCheckedCartBean() {
+        List<CartBean> cartBeans = new ArrayList<>();
+        for (StoreBean sb : getData()) {
+            for (CartBean cb : sb.getCartVos()) {
+                if (cb.isChecked()) cartBeans.add(cb);
+            }
+        }
+        return cartBeans;
+    }
+
+
+    private boolean isAllChecked() {
+        boolean isAllchecked = true;
+        for (StoreBean sb : getData()) {
+            if (!sb.isChecked()) {
+                isAllchecked = false;
+            }
+        }
+        return isAllchecked;
     }
 
     public void setAllChecked(boolean allChecked) {
-        isAllChecked = allChecked;
+        for (StoreBean sb : getData()) {
+            sb.setChecked(allChecked);
+            for (CartBean cb : sb.getCartVos()) {
+                cb.setChecked(allChecked);
+            }
+        }
         notifyDataSetChanged();
     }
 
-    public interface OnClickCartItemListener {
-        void onClickAmountCount(CartBean cartBean, int count);
+    public interface OnClickStoreItemListener {
+        void onChecked(boolean isAllChecked);
 
-        void onChecked(CartBean cartBean, boolean isChecked);
+        void onClickAmountCount(View view, CartBean cartBean, int count);
+
+
     }
 
-    private OnClickCartItemListener onClickCartItemListener;
+    private OnClickStoreItemListener onClickStoreItemListener;
 
-    public void setOnClickCartItemListener(OnClickCartItemListener onClickCartItemListener) {
-        this.onClickCartItemListener = onClickCartItemListener;
+    public void setOnClickStoreItemListener(OnClickStoreItemListener onClickStoreItemListener) {
+        this.onClickStoreItemListener =
+                onClickStoreItemListener;
     }
+
 }

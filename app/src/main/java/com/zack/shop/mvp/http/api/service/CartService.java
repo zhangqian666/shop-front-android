@@ -2,9 +2,9 @@ package com.zack.shop.mvp.http.api.service;
 
 import com.zack.shop.mvp.http.entity.BaseResponse;
 import com.zack.shop.mvp.http.entity.cart.CartBean;
+import com.zack.shop.mvp.http.entity.cart.StoreBean;
 
 import java.util.List;
-import java.util.Map;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -20,7 +20,7 @@ import retrofit2.http.POST;
 public interface CartService {
 
     @GET("/user/cart/list")
-    Observable<BaseResponse<Map<Integer, List<CartBean>>>> list(
+    Observable<BaseResponse<List<StoreBean>>> list(
     );
 
     @FormUrlEncoded
@@ -38,7 +38,7 @@ public interface CartService {
 
     @FormUrlEncoded
     @POST("/user/cart/select")
-    Observable<BaseResponse<Map<Integer, List<CartBean>>>> selectProduct(
+    Observable<BaseResponse<List<StoreBean>>> selectProduct(
             @Field("productId") Integer productId,
             @Field("checked") Integer checked
 
@@ -46,7 +46,7 @@ public interface CartService {
 
     @FormUrlEncoded
     @POST("/user/cart/update/count")
-    Observable<BaseResponse<Map<Integer, List<CartBean>>>> updateProductCount(
+    Observable<BaseResponse<CartBean>> updateProductCount(
             @Field("productId") Integer productId,
             @Field("count") Integer count
 

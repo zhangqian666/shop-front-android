@@ -18,8 +18,10 @@ public class CartBean implements MultiItemEntity {
     private Integer userId;
     private Integer productId;
     private Integer quantity;
-    private Integer checked;
+//    private Integer checked;
     private Product productVo;
+
+    private boolean isChecked;
 
     final public static int ITEM = 1;
     final public static int ITEM_WITH_HEADER = 0;

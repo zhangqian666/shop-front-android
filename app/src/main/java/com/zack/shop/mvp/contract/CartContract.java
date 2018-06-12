@@ -4,9 +4,9 @@ import com.jess.arms.mvp.IModel;
 import com.jess.arms.mvp.IView;
 import com.zack.shop.mvp.http.entity.BaseResponse;
 import com.zack.shop.mvp.http.entity.cart.CartBean;
+import com.zack.shop.mvp.http.entity.cart.StoreBean;
 
 import java.util.List;
-import java.util.Map;
 
 import io.reactivex.Observable;
 
@@ -18,18 +18,18 @@ import io.reactivex.Observable;
 public interface CartContract {
     interface Model extends IModel {
 
-        Observable<BaseResponse<Map<Integer, List<CartBean>>>> list();
+        Observable<BaseResponse<List<StoreBean>>> list();
 
         Observable<BaseResponse> addProduct(Integer productId,
                                             Integer count);
 
         Observable<BaseResponse> deleteProduct(String productIds);
 
-        Observable<BaseResponse<Map<Integer, List<CartBean>>>> selectProduct(
+        Observable<BaseResponse<List<StoreBean>>> selectProduct(
                 Integer productId,
                 Integer checked);
 
-        Observable<BaseResponse<Map<Integer, List<CartBean>>>> updateProductCount(
+        Observable<BaseResponse<CartBean>> updateProductCount(
                 Integer productId,
                 Integer count
 
@@ -38,10 +38,10 @@ public interface CartContract {
     }
 
     interface View extends IView {
-        void cartList(List<CartBean> data);
+        void cartList(List<StoreBean> data);
 
         void deleteProductIdsSuccess();
 
-        void updateProductCount(List<CartBean> baseResponse);
+        void updateProductCount(CartBean baseResponse);
     }
 }

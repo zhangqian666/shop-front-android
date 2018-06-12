@@ -27,7 +27,7 @@ public class ProductDetailsPresenter extends BasePresenter<ProductDetailsContrac
     }
 
     public void addProduct(Integer productId, Integer count) {
-        mModel.addProduct(productId, count)
+        mModel.addCart(productId, count)
                 .compose(RxUtils.applySchedulers(mRootView))
                 .subscribe(new ErrorHandleSubscriber<BaseResponse>(rxErrorHandler) {
                     @Override
@@ -43,27 +43,4 @@ public class ProductDetailsPresenter extends BasePresenter<ProductDetailsContrac
 
     }
 
-    public void deleteProduct(String productIds) {
-        mModel.deleteProduct(productIds)
-                .compose(RxUtils.applySchedulers(mRootView))
-                .subscribe(new ErrorHandleSubscriber<BaseResponse>(rxErrorHandler) {
-                    @Override
-                    public void onNext(BaseResponse baseResponse) {
-
-                    }
-                });
-
-    }
-
-    public void updateProductCount(Integer productId, Integer count) {
-        mModel.updateProductCount(productId, count)
-                .compose(RxUtils.applySchedulers(mRootView))
-                .subscribe(new ErrorHandleSubscriber<BaseResponse>(rxErrorHandler) {
-                    @Override
-                    public void onNext(BaseResponse baseResponse) {
-
-                    }
-                });
-
-    }
 }

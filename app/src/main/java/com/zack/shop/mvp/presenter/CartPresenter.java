@@ -6,11 +6,11 @@ import com.jess.arms.utils.RxLifecycleUtils;
 import com.zack.shop.mvp.contract.CartContract;
 import com.zack.shop.mvp.http.entity.BaseResponse;
 import com.zack.shop.mvp.http.entity.cart.CartBean;
+import com.zack.shop.mvp.http.entity.cart.StoreBean;
+import com.zack.shop.mvp.ui.widget.AmountView;
 import com.zack.shop.mvp.utils.RxUtils;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -36,19 +36,8 @@ public class CartPresenter extends BasePresenter<CartContract.Model, CartContrac
 
 
     public void list() {
-        mModel.list().subscribeOn(Schedulers.io())
-                .map(mapBaseResponse -> {
-                    if (mapBaseResponse.isSuccess()) {
-                        mRootView.showMessage(mapBaseResponse.getMsg());
-                    }
-                    List<CartBean> cartBeans = new ArrayList<>();
-                    Map<Integer, List<CartBean>> data = mapBaseResponse.getData();
-                    for (Map.Entry<Integer, List<CartBean>> entry : data.entrySet()) {
-                        cartBeans.addAll(entry.getValue());
-                    }
-
-                    return cartBeans;
-                })
+        mModel.list()
+                .subscribeOn(Schedulers.io())
                 .doOnSubscribe(disposable -> {
                 })
                 .subscribeOn(AndroidSchedulers.mainThread())
@@ -56,10 +45,10 @@ public class CartPresenter extends BasePresenter<CartContract.Model, CartContrac
                 .doFinally(() -> {
                     mRootView.hideLoading();//隐藏进度条
                 }).compose(RxLifecycleUtils.bindToLifecycle(mRootView))
-                .subscribe(new ErrorHandleSubscriber<List<CartBean>>(rxErrorHandler) {
+                .subscribe(new ErrorHandleSubscriber<BaseResponse<List<StoreBean>>>(rxErrorHandler) {
                     @Override
-                    public void onNext(List<CartBean> baseResponse) {
-                        mRootView.cartList(baseResponse);
+                    public void onNext(BaseResponse<List<StoreBean>> baseResponse) {
+                        mRootView.cartList(baseResponse.getData());
 
                     }
                 });
@@ -70,48 +59,36 @@ public class CartPresenter extends BasePresenter<CartContract.Model, CartContrac
     public void selectProduct(Integer productId,
                               Integer checked) {
         mModel.selectProduct(productId, checked)
-                .map(mapBaseResponse -> {
-                    if (mapBaseResponse.isSuccess()) {
-                        mRootView.showMessage(mapBaseResponse.getMsg());
-                    }
-                    List<CartBean> cartBeans = new ArrayList<>();
-                    Map<Integer, List<CartBean>> data = mapBaseResponse.getData();
-                    for (Map.Entry<Integer, List<CartBean>> entry : data.entrySet()) {
-                        cartBeans.addAll(entry.getValue());
-                    }
-
-                    return cartBeans;
-                })
                 .compose(RxUtils.applySchedulers(mRootView))
-                .subscribe(new ErrorHandleSubscriber<List<CartBean>>(rxErrorHandler) {
+                .subscribe(new ErrorHandleSubscriber<BaseResponse<List<StoreBean>>>(rxErrorHandler) {
                     @Override
-                    public void onNext(List<CartBean> baseResponse) {
-                        mRootView.cartList(baseResponse);
+                    public void onNext(BaseResponse<List<StoreBean>> baseResponse) {
+                        mRootView.cartList(baseResponse.getData());
 
                     }
                 });
     }
 
-    public void updateProductCount(Integer productId,
+    public void updateProductCount(AmountView view, CartBean cartBean,
                                    Integer count) {
-        mModel.updateProductCount(productId, count)
-                .map(mapBaseResponse -> {
-                    if (mapBaseResponse.isSuccess()) {
-                        mRootView.showMessage(mapBaseResponse.getMsg());
-                    }
-                    List<CartBean> cartBeans = new ArrayList<>();
-                    Map<Integer, List<CartBean>> data = mapBaseResponse.getData();
-                    for (Map.Entry<Integer, List<CartBean>> entry : data.entrySet()) {
-                        cartBeans.addAll(entry.getValue());
+        mModel.updateProductCount(cartBean.getProductId(), count)
+                .compose(RxUtils.applySchedulers(mRootView))
+                .subscribe(new ErrorHandleSubscriber<BaseResponse<CartBean>>(rxErrorHandler) {
+                    @Override
+                    public void onNext(BaseResponse<CartBean> cartBeanBaseResponse) {
+                        if (cartBeanBaseResponse.isSuccess()) {
+                            cartBean.setQuantity(cartBeanBaseResponse.getData().getQuantity());
+                            mRootView.updateProductCount(cartBeanBaseResponse.getData());
+                        } else {
+                            view.setCurrentAmount(cartBean.getQuantity());
+                            mRootView.showMessage(cartBeanBaseResponse.getMsg());
+                        }
                     }
 
-                    return cartBeans;
-                })
-                .compose(RxUtils.applySchedulers(mRootView))
-                .subscribe(new ErrorHandleSubscriber<List<CartBean>>(rxErrorHandler) {
                     @Override
-                    public void onNext(List<CartBean> baseResponse) {
-                        mRootView.updateProductCount(baseResponse);
+                    public void onError(Throwable t) {
+                        super.onError(t);
+                        view.setCurrentAmount(cartBean.getQuantity());
 
                     }
                 });

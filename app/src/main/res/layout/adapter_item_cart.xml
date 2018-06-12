@@ -1,71 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="100dp"
+    android:layout_marginEnd="@dimen/margin_left_right"
+    android:layout_marginStart="@dimen/margin_left_right"
+    android:background="@color/white"
+    android:gravity="center_vertical">
 
-    <TextView
-        android:id="@+id/tv_producer"
+    <CheckBox
+        android:id="@+id/btn_checked"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/bg_checkbox"
+        android:button="@null" />
+
+
+    <ImageView
+        android:id="@+id/iv_product"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="fitCenter" />
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_left_right"
-        android:text="商家：测试商家"
-        android:textColor="@color/text_black_33"
-        android:textSize="@dimen/text_sub_title" />
+        android:layout_height="80dp"
+        android:layout_marginStart="5dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginEnd="@dimen/margin_left_right"
-        android:layout_marginStart="@dimen/margin_left_right"
-        android:background="@color/white"
-        android:gravity="center_vertical">
-
-        <CheckBox
-            android:id="@+id/btn_checked"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/bg_checkbox"
-            android:button="@null" />
-
-        <ImageView
-            android:id="@+id/iv_product"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:scaleType="fitCenter" />
-
-        <RelativeLayout
+        <TextView
+            android:id="@+id/tv_product_title"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginStart="5dp">
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="商品名称"
+            android:textColor="@color/text_black_33"
+            android:textSize="@dimen/text_normal" />
 
-            <TextView
-                android:id="@+id/tv_product_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="商品名称"
-                android:textColor="@color/text_black_33"
-                android:textSize="@dimen/text_normal" />
+        <TextView
+            android:id="@+id/tv_product_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_product_title"
+            android:layout_marginTop="5dp"
+            android:text="商品详情"
+            android:textColor="@color/text_black_99"
+            android:textSize="@dimen/text_small" />
 
-            <TextView
-                android:id="@+id/tv_product_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:text="88.00"
-                android:textColor="@color/red"
-                android:textSize="@dimen/text_sub_title" />
+        <TextView
+            android:id="@+id/tv_product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="88.00"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_sub_title" />
 
-            <com.zack.shop.mvp.ui.widget.AmountView
-                android:id="@+id/amount_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="10dp" />
+        <com.zack.shop.mvp.ui.widget.AmountView
+            android:id="@+id/amount_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp" />
 
-        </RelativeLayout>
-    </LinearLayout>
+    </RelativeLayout>
+
 </LinearLayout>

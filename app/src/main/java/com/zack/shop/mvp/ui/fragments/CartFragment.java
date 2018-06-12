@@ -25,11 +25,12 @@ import com.zack.shop.di.component.DaggerCartComponent;
 import com.zack.shop.di.module.CartModule;
 import com.zack.shop.mvp.contract.CartContract;
 import com.zack.shop.mvp.http.entity.cart.CartBean;
+import com.zack.shop.mvp.http.entity.cart.StoreBean;
 import com.zack.shop.mvp.presenter.CartPresenter;
 import com.zack.shop.mvp.ui.adapter.CartListAdapter;
+import com.zack.shop.mvp.ui.widget.AmountView;
 import com.zack.shop.mvp.utils.ProgressDialogUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -62,8 +63,6 @@ public class CartFragment extends BaseSupportFragment<CartPresenter> implements 
 
     private boolean isEdite = true;
     private ProgressDialogUtils progressDialogUtils;
-
-    private List<CartBean> cartBeans = new ArrayList<>();
 
 
     public CartFragment() {
@@ -101,7 +100,6 @@ public class CartFragment extends BaseSupportFragment<CartPresenter> implements 
             } else {
                 toolbarRight.setText("编辑");
                 changeToComplete(false);
-
             }
         });
     }
@@ -115,30 +113,23 @@ public class CartFragment extends BaseSupportFragment<CartPresenter> implements 
     private void initRecyclerView() {
         swipeRefresh.setOnRefreshListener(() -> mPresenter.list());
         recyclerList.setLayoutManager(new LinearLayoutManager(_mActivity));
-//        DividerItemDecoration decor = new DividerItemDecoration(_mActivity, DividerItemDecoration.VERTICAL);
-//        decor.setDrawable(getResources().getDrawable(R.drawable.divider_cart_recycler));
-//        recyclerList.addItemDecoration(decor);
         recyclerList.setAdapter(cartListAdapter);
-        cartListAdapter.setOnClickCartItemListener(new CartListAdapter.OnClickCartItemListener() {
+        cartListAdapter.setOnClickStoreItemListener(new CartListAdapter.OnClickStoreItemListener() {
             @Override
-            public void onClickAmountCount(CartBean cartBean, int count) {
-                if (mPresenter != null) {
-                    mPresenter.updateProductCount(cartBean.getProductId(), count);
-                }
+            public void onChecked(boolean isAllChecked) {
+                refreshCurrentPrice();
+                cbBalance.setOnCheckedChangeListener(null);
+                cbBalance.setChecked(isAllChecked);
+                cbBalance.setOnCheckedChangeListener(CartFragment.this);
             }
 
             @Override
-            public void onChecked(CartBean cartBean, boolean isChecked) {
-                if (isChecked) {
-                    cartBeans.add(cartBean);
-                } else {
-                    cartBeans.remove(cartBean);
+            public void onClickAmountCount(View view, CartBean cartBean, int count) {
+                if (mPresenter != null) {
+                    mPresenter.updateProductCount((AmountView) view,cartBean, count);
                 }
-                refreshAllCheckAndCurrentPrice();
             }
         });
-
-
     }
 
     @Override
@@ -152,13 +143,14 @@ public class CartFragment extends BaseSupportFragment<CartPresenter> implements 
     @OnClick(R.id.btn_balance)
     public void onViewClicked() {
         if (isEdite) {
-            if (cartBeans.size() == 0) {
+            List<CartBean> allCheckedCartBean = cartListAdapter.getAllCheckedCartBean();
+            if (allCheckedCartBean.size() == 0) {
                 return;
             }
             //删除当前选中的产品
             {
                 StringBuilder productIds = new StringBuilder();
-                for (CartBean cb : cartBeans) {
+                for (CartBean cb : allCheckedCartBean) {
                     productIds.append(cb.getProductId()).append(",");
                 }
                 productIds.deleteCharAt(productIds.length() - 1);
@@ -186,28 +178,6 @@ public class CartFragment extends BaseSupportFragment<CartPresenter> implements 
         }
     }
 
-    @Override
-    public void cartList(List<CartBean> data) {
-        cartBeans.clear();
-        cartListAdapter.setNewData(data);
-        refreshAllCheckAndCurrentPrice();
-    }
-
-    @Override
-    public void deleteProductIdsSuccess() {
-        if (mPresenter != null) {
-            mPresenter.list();
-        }
-        toolbarRight.setText("编辑");
-        changeToComplete(false);
-    }
-
-    @Override
-    public void updateProductCount(List<CartBean> baseResponse) {
-        cartBeans.clear();
-        cartListAdapter.setNewData(baseResponse);
-        refreshAllCheckAndCurrentPrice();
-    }
 
     @Override
     public void showLoading() {
@@ -239,32 +209,45 @@ public class CartFragment extends BaseSupportFragment<CartPresenter> implements 
 
     public void refreshCurrentPrice() {
         double price = 0;
-        for (CartBean cb : cartBeans) {
-            price = price + cb.getProductVo().getPrice() * cb.getQuantity();
+        for (StoreBean sb : cartListAdapter.getData()) {
+            for (CartBean cb : sb.getCartVos()) {
+                if (cb.isChecked())
+                    price = price + cb.getProductVo().getPrice() * cb.getQuantity();
+            }
         }
         tvBalance.setText(String.format("合计: %s", price));
-    }
-
-    public void refreshAllCheckAndCurrentPrice() {
-        boolean isAllChecked = false;
-        if (cartListAdapter.getData().size() != 0 && cartListAdapter.getData().size() == cartBeans.size()) {
-            isAllChecked = true;
-        }
-        cbBalance.setOnCheckedChangeListener(null);
-        cbBalance.setChecked(isAllChecked);
-        cbBalance.setOnCheckedChangeListener(this);
-
-        refreshCurrentPrice();
     }
 
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         cartListAdapter.setAllChecked(isChecked);
-        cartBeans.clear();
-        if (isChecked) {
-            cartBeans.addAll(cartListAdapter.getData());
-        }
         refreshCurrentPrice();
+    }
+
+    @Override
+    public void cartList(List<StoreBean> data) {
+
+        cartListAdapter.setNewData(data);
+        cartListAdapter.setAllChecked(false);
+        refreshCurrentPrice();
+
+        cbBalance.setOnCheckedChangeListener(null);
+        cbBalance.setChecked(false);
+        cbBalance.setOnCheckedChangeListener(this);
+    }
+
+    @Override
+    public void deleteProductIdsSuccess() {
+        if (mPresenter != null) {
+            mPresenter.list();
+        }
+        toolbarRight.setText("编辑");
+        changeToComplete(false);
+    }
+
+    @Override
+    public void updateProductCount(CartBean baseResponse) {
+
     }
 }

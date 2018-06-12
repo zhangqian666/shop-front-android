@@ -63,13 +63,10 @@ public class AmountView extends LinearLayout implements View.OnClickListener, Te
         etAmount.removeTextChangedListener(this);
         etAmount.setOnEditorActionListener(null);
 
-        etAmount.setOnFocusChangeListener(new OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                Timber.e("onFocusChange %s", hasFocus);
-                if (!hasFocus) {
-                    etAmount.setText(String.valueOf(currentAmount));
-                }
+        etAmount.setOnFocusChangeListener((v, hasFocus) -> {
+            Timber.e("onFocusChange %s", hasFocus);
+            if (!hasFocus) {
+                etAmount.setText(String.valueOf(currentAmount));
             }
         });
 
@@ -87,20 +84,6 @@ public class AmountView extends LinearLayout implements View.OnClickListener, Te
             }
             return false;
         });
-
-//        LayoutParams btnParams = new LayoutParams(btnWidth, LayoutParams.MATCH_PARENT);
-//        btnDecrease.setLayoutParams(btnParams);
-//        btnIncrease.setLayoutParams(btnParams);
-//        if (btnTextSize != 0) {
-//            btnDecrease.setTextSize(TypedValue.COMPLEX_UNIT_PX, btnTextSize);
-//            btnIncrease.setTextSize(TypedValue.COMPLEX_UNIT_PX, btnTextSize);
-//        }
-//
-//        LayoutParams textParams = new LayoutParams(tvWidth, LayoutParams.MATCH_PARENT);
-//        etAmount.setLayoutParams(textParams);
-//        if (tvTextSize != 0) {
-//            etAmount.setTextSize(tvTextSize);
-//        }
     }
 
     private void hideSoft(View v) {
@@ -114,12 +97,17 @@ public class AmountView extends LinearLayout implements View.OnClickListener, Te
         this.mListener = onAmountChangeListener;
     }
 
+    public void recoverAmount(){
+        etAmount.removeTextChangedListener(this);
+        etAmount.setText(String.valueOf(currentAmount));
+        etAmount.addTextChangedListener(this);
+    }
+
     public void setCurrentAmount(int currentAmount) {
         this.currentAmount = currentAmount;
         etAmount.removeTextChangedListener(this);
         etAmount.setText(String.valueOf(currentAmount));
         etAmount.addTextChangedListener(this);
-
         if (currentAmount >= maxValue) {
             btnIncrease.setEnabled(false);
         } else {

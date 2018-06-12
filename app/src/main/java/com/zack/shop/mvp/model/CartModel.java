@@ -6,9 +6,9 @@ import com.zack.shop.mvp.contract.CartContract;
 import com.zack.shop.mvp.http.api.service.CartService;
 import com.zack.shop.mvp.http.entity.BaseResponse;
 import com.zack.shop.mvp.http.entity.cart.CartBean;
+import com.zack.shop.mvp.http.entity.cart.StoreBean;
 
 import java.util.List;
-import java.util.Map;
 
 import io.reactivex.Observable;
 
@@ -23,7 +23,7 @@ public class CartModel extends BaseModel implements CartContract.Model {
         super(repositoryManager);
     }
 
-    public Observable<BaseResponse<Map<Integer, List<CartBean>>>> list() {
+    public Observable<BaseResponse<List<StoreBean>>> list() {
         return mRepositoryManager.obtainRetrofitService(CartService.class)
                 .list();
     }
@@ -39,14 +39,14 @@ public class CartModel extends BaseModel implements CartContract.Model {
                 .deleteProduct(productIds);
     }
 
-    public Observable<BaseResponse<Map<Integer, List<CartBean>>>> selectProduct(
+    public Observable<BaseResponse<List<StoreBean>>> selectProduct(
             Integer productId,
             Integer checked) {
         return mRepositoryManager.obtainRetrofitService(CartService.class)
                 .selectProduct(productId, checked);
     }
 
-    public Observable<BaseResponse<Map<Integer, List<CartBean>>>> updateProductCount(
+    public Observable<BaseResponse<CartBean>> updateProductCount(
             Integer productId,
             Integer count
 
