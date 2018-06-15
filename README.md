@@ -26,14 +26,13 @@
   
   1. >推荐界面
   2. >商品分类界面
+   ![image](https://github.com/zhangqian666/shop-front-android/blob/master/image/33CF3C3B-4CBA-4AA8-9AFA-D4A9BE771F0E.jpeg)
   3. >购物车界面
   4. >朋友圈
+   ![image](https://github.com/zhangqian666/shop-front-android/blob/master/image/5B9C79C4-C26A-4D7C-A5AF-29A72E0D32B9.jpeg)
   5. >个人界面
+   ![image](https://github.com/zhangqian666/shop-front-android/blob/master/image/36BE4255-EE1D-454A-BB56-A8DC41365D07.jpeg)
   
-  **节选图片**
-  
-  ![image](https://github.com/zhangqian666/shop-front-android/blob/master/image/WechatIMG5.png)
-  ![image](https://github.com/zhangqian666/shop-front-android/blob/master/image/WechatIMG6.png)
   
   ## About Me
   * **Email**: <415677303@qq.com>  
