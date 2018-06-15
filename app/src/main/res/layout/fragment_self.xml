@@ -46,7 +46,7 @@
                         android:layout_height="60dp"
                         android:layout_marginEnd="20dp"
                         android:layout_marginStart="20dp"
-                        android:background="@color/red" />
+                        android:background="@drawable/icon_circle_gray" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -98,7 +98,8 @@
                         android:layout_marginEnd="10dp"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
-                        android:src="@mipmap/icon_message_white" />
+                        android:src="@mipmap/icon_message_white"
+                        android:visibility="gone" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -374,7 +375,66 @@
                 android:textSize="@dimen/text_small" />
         </LinearLayout>
 
+        <!--我的工具-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
+            <LinearLayout
+                android:id="@+id/ll_create_product"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/icon_create_product" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="发布商品"
+                    android:textColor="@color/text_black_99"
+                    android:textSize="@dimen/text_small" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_manage_product"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/icon_manage_product" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="管理商品"
+                    android:textColor="@color/text_black_99"
+                    android:textSize="@dimen/text_small" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3" />
+
+        </LinearLayout>
     </LinearLayout>
 
 

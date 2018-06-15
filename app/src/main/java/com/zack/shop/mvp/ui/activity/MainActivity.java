@@ -31,16 +31,25 @@ import com.zack.shop.mvp.utils.RongIMUtils;
 import com.zack.shop.mvp.utils.SpUtils;
 
 import butterknife.BindView;
+import io.rong.imkit.RongIM;
+import io.rong.imkit.manager.IUnReadMessageObserver;
+import io.rong.imlib.RongIMClient;
+import io.rong.imlib.model.Conversation;
 import me.yokeyword.fragmentation.ISupportFragment;
 import timber.log.Timber;
 
-public class MainActivity extends BaseSupportActivity<MainPresenter> implements MainContract.View {
+public class MainActivity extends BaseSupportActivity<MainPresenter> implements MainContract.View, IUnReadMessageObserver {
 
     @BindView(R.id.bottom_bar)
     BottomBar mBottomBar;
 
     private ISupportFragment[] mFragments = new ISupportFragment[5];
     private PicChooserHelper picChooserHelper;
+    private BottomBarTab homeTab;
+    private BottomBarTab categoryTab;
+    private BottomBarTab cartTab;
+    private BottomBarTab findTab;
+    private BottomBarTab selfTab;
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
@@ -60,11 +69,39 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
     public void initData(@Nullable Bundle savedInstanceState) {
         setStatusBar();
         initBottomBar();
+        initRongIM();
         requestPermissions();
         if (mPresenter != null) {
             mPresenter.getUserInfo();
             mPresenter.conversationToken();
         }
+    }
+
+    private void initRongIM() {
+        RongIM.getInstance().getUnreadCount(new RongIMClient.ResultCallback<Integer>() {
+            @Override
+            public void onSuccess(Integer integer) {
+                homeTab.setUnreadCount(integer);
+            }
+
+            @Override
+            public void onError(RongIMClient.ErrorCode errorCode) {
+
+            }
+        }, Conversation.ConversationType.PRIVATE);
+        RongIM.getInstance().addUnReadMessageCountChangedObserver(MainActivity.this, Conversation.ConversationType.PRIVATE);
+    }
+
+    @Override
+    public void onCountChanged(int i) {
+        homeTab.setUnreadCount(i);
+    }
+
+    @Override
+
+    protected void onDestroy() {
+        super.onDestroy();
+        RongIM.getInstance().removeUnReadMessageCountChangedObserver(this);
     }
 
     @SuppressLint("CheckResult")
@@ -100,12 +137,17 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
 
     private void initBottomBar() {
         addFragment();
+        homeTab = new BottomBarTab(mContext, R.drawable.icon_navigation_home, "首页");
+        categoryTab = new BottomBarTab(mContext, R.drawable.icon_navigation_category, "分类");
+        cartTab = new BottomBarTab(mContext, R.drawable.icon_navigation_cart, "购物车");
+        findTab = new BottomBarTab(mContext, R.drawable.icon_navigation_find, "发现");
+        selfTab = new BottomBarTab(mContext, R.drawable.icon_navigation_self, "个人");
         mBottomBar
-                .addItem(new BottomBarTab(mContext, R.drawable.icon_navigation_home, "首页"))
-                .addItem(new BottomBarTab(mContext, R.drawable.icon_navigation_category, "分类"))
-                .addItem(new BottomBarTab(mContext, R.drawable.icon_navigation_cart, "购物车"))
-                .addItem(new BottomBarTab(mContext, R.drawable.icon_navigation_find, "发现"))
-                .addItem(new BottomBarTab(mContext, R.drawable.icon_navigation_self, "个人"));
+                .addItem(homeTab)
+                .addItem(categoryTab)
+                .addItem(cartTab)
+                .addItem(findTab)
+                .addItem(selfTab);
         mBottomBar.setOnTabSelectedListener(new BottomBar.OnTabSelectedListener() {
             @Override
             public void onTabSelected(int position, int prePosition) {
@@ -181,4 +223,6 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
     protected void setStatusBar() {
         StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, null);
     }
+
+
 }

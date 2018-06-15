@@ -32,6 +32,16 @@ public class UserModel extends BaseModel implements SelfContract.Model {
                 .userDetails(userId);
     }
 
+    public Observable<BaseResponse> updateUserName(String username) {
+        return mRepositoryManager.obtainRetrofitService(UserService.class)
+                .updateUserName(username);
+    }
+
+    public Observable<BaseResponse> updatePassword(String password) {
+        return mRepositoryManager.obtainRetrofitService(UserService.class)
+                .updatePassword(password);
+    }
+
     public Observable<BaseResponse<String>> updateUserImage(MultipartBody.Part upload_file) {
         return mRepositoryManager.obtainRetrofitService(UserService.class)
                 .updateUserImage(upload_file);

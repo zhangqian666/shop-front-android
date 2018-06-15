@@ -61,7 +61,7 @@ public class CartFragment extends BaseSupportFragment<CartPresenter> implements 
     @BindView(R.id.btn_balance)
     Button btnBalance;
 
-    private boolean isEdite = true;
+    private boolean isEdite = false;
     private ProgressDialogUtils progressDialogUtils;
 
 
@@ -114,6 +114,7 @@ public class CartFragment extends BaseSupportFragment<CartPresenter> implements 
         swipeRefresh.setOnRefreshListener(() -> mPresenter.list());
         recyclerList.setLayoutManager(new LinearLayoutManager(_mActivity));
         recyclerList.setAdapter(cartListAdapter);
+        cartListAdapter.setEmptyView(LayoutInflater.from(_mActivity).inflate(R.layout.view_empty, null));
         cartListAdapter.setOnClickStoreItemListener(new CartListAdapter.OnClickStoreItemListener() {
             @Override
             public void onChecked(boolean isAllChecked) {
@@ -126,7 +127,7 @@ public class CartFragment extends BaseSupportFragment<CartPresenter> implements 
             @Override
             public void onClickAmountCount(View view, CartBean cartBean, int count) {
                 if (mPresenter != null) {
-                    mPresenter.updateProductCount((AmountView) view,cartBean, count);
+                    mPresenter.updateProductCount((AmountView) view, cartBean, count);
                 }
             }
         });
@@ -158,6 +159,7 @@ public class CartFragment extends BaseSupportFragment<CartPresenter> implements 
                     mPresenter.deleteProduct(productIds.toString());
                 }
             }
+            changeToComplete(false);
         } else {
             ArmsUtils.snackbarText("去结算");
         }

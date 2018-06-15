@@ -39,6 +39,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                output ->
+                    def outputFile = output.outputFile
+                    if (outputFile.name.contains("debug")) {
+                        outputFileName = new File("../debug/", "app-debug.apk")
+                    }
+                    def date = new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("GMT+08"))
+                    if (outputFile.name.contains("release")) {
+                        outputFileName = new File("../release/", "zack-release-V${variant.versionCode}-${date}.apk")
+                    }
+            }
+    }
 
     sourceSets {
         main {

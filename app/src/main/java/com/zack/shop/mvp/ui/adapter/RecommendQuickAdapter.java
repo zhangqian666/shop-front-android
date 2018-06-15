@@ -31,6 +31,6 @@ public class RecommendQuickAdapter extends BaseQuickAdapter<Product, BaseViewHol
                 .into(((ImageView) helper.getView(R.id.iv_product)));
         helper.setText(R.id.tv_product_name, item.getName());
         helper.setText(R.id.tv_product_details, item.getSubtitle());
-        helper.setText(R.id.tv_product_price, String.format("¥%s", item.getPrice()));
+        helper.setText(R.id.tv_product_price, String.format("%s", item.getPrice()));
     }
 }

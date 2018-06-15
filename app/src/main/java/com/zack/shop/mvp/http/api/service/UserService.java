@@ -25,6 +25,18 @@ public interface UserService {
             @Field("userId") Integer userId
     );
 
+    @FormUrlEncoded
+    @POST("/user/update/username")
+    Observable<BaseResponse> updateUserName(
+            @Field("username") String username
+    );
+
+    @FormUrlEncoded
+    @POST("/user/update/password")
+    Observable<BaseResponse> updatePassword(
+            @Field("password") String password
+    );
+
 
     @Multipart
     @POST(value = "/user/update/image")

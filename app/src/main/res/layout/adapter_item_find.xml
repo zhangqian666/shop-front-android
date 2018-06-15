@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/ll_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_left_right"
@@ -70,8 +71,8 @@
             android:layout_weight="1" />
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:scaleType="fitXY"
             android:src="@drawable/icon_chat" />
 
@@ -81,18 +82,27 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:gravity="start"
-            android:minWidth="30dp"
             android:text="300"
             android:textColor="@color/text_black_99"
             android:textSize="@dimen/text_small" />
 
         <CheckBox
+            android:id="@+id/cb_bottom_star"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="30dp"
+            android:background="@drawable/icon_heart_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:textColor="@color/text_black_99"
+            android:textSize="@dimen/text_small" />
+
+        <TextView
             android:id="@+id/tv_bottom_star"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:button="@null"
-            android:drawableStart="@drawable/icon_heart_selector"
-            android:gravity="center"
+            android:layout_marginStart="5dp"
+            android:text="33"
             android:textColor="@color/text_black_99"
             android:textSize="@dimen/text_small" />
 

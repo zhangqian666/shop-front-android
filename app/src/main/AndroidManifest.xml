@@ -34,7 +34,7 @@
             android:name="com.zack.shop.app.GlobalConfiguration"
             android:value="ConfigModule" />
 
-        <activity android:name=".mvp.ui.activity.find.CommentDetailsActivity" />
+        <activity android:name=".mvp.ui.activity.comment.CommentDetailsActivity" />
 
         <!-- rong cloud  start -->
         <provider
@@ -93,7 +93,10 @@
         <activity android:name=".mvp.ui.activity.product.ProductDetailsActivity" />
         <activity android:name=".mvp.ui.activity.login.RegisterActivity" />
         <activity android:name=".mvp.ui.activity.set.AppSetActivity" />
-        <activity android:name=".mvp.ui.activity.find.PublishCommentActivity"></activity>
+        <activity android:name=".mvp.ui.activity.comment.PublishCommentActivity" />
+        <activity android:name=".mvp.ui.activity.order.CreateOrderActivity" />
+        <activity android:name=".mvp.ui.activity.product.CreateProductActivity" />
+        <activity android:name=".mvp.ui.activity.product.ManageProductActivity"></activity>
     </application>
 
 </manifest>

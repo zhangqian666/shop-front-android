@@ -1,6 +1,5 @@
-package com.zack.shop.mvp.ui.activity.find;
+package com.zack.shop.mvp.ui.activity.comment;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

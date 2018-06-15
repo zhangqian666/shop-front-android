@@ -57,6 +57,15 @@ public class SelfPresenter extends BasePresenter<IModel, SelfContract.View> {
         MultipartBody.Part face = MultipartBody.Part.createFormData("upload_file", "header_image.png", RequestBody.create(MediaType.parse("multipart/form-data"), new File(upload_file)));
         userModel.updateUserImage(face)
                 .compose(RxUtils.applySchedulers(mRootView))
-                .subscribe();
+                .subscribe(new ErrorHandleSubscriber<BaseResponse<String>>(rxErrorHandler) {
+                    @Override
+                    public void onNext(BaseResponse<String> stringBaseResponse) {
+                        if (stringBaseResponse.isSuccess()){
+                            mRootView.updateUserImageSuccess();
+                        } else {
+                            mRootView.showMessage(stringBaseResponse.getMsg());
+                        }
+                    }
+                });
     }
 }

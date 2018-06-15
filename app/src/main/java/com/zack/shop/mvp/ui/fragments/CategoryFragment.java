@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
@@ -37,6 +38,8 @@ import butterknife.BindView;
  */
 public class CategoryFragment extends BaseSupportFragment<CategoryPresenter> implements CategoryContract.View {
 
+    @BindView(R.id.toolbar_title)
+    TextView toolbarTitle;
 
     @BindView(R.id.recycler_left)
     RecyclerView recyclerLeft;
@@ -71,8 +74,13 @@ public class CategoryFragment extends BaseSupportFragment<CategoryPresenter> imp
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
+        initHeader();
         initLeftRecycler();
         initRightRecycler();
+    }
+
+    private void initHeader() {
+        toolbarTitle.setText("分类");
     }
 
     @Override
@@ -86,6 +94,7 @@ public class CategoryFragment extends BaseSupportFragment<CategoryPresenter> imp
         GridLayoutManager gridLayoutManager = new GridLayoutManager(_mActivity, 3);
         recyclerRight.setLayoutManager(gridLayoutManager);
         recyclerRight.setAdapter(categoryRightAdapter);
+        categoryRightAdapter.setEmptyView(LayoutInflater.from(_mActivity).inflate(R.layout.view_empty, null));
     }
 
     private void initLeftRecycler() {
@@ -99,6 +108,7 @@ public class CategoryFragment extends BaseSupportFragment<CategoryPresenter> imp
             }
         });
         recyclerLeft.setAdapter(categoryLeftAdapter);
+        categoryLeftAdapter.setEmptyView(LayoutInflater.from(_mActivity).inflate(R.layout.view_empty, null));
 
     }
 

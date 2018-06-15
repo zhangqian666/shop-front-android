@@ -6,11 +6,12 @@
     android:orientation="vertical"
     tools:context=".mvp.ui.fragments.CartFragment">
 
-    <include
-        layout="@layout/simple_tool_bar"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp" />
+        android:layout_height="@dimen/statusbar_view_height"
+        android:background="@color/normal_back_ground" />
+
+    <include layout="@layout/simple_tool_bar" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"

@@ -8,6 +8,7 @@ import com.zack.shop.mvp.http.api.service.CartService;
 import com.zack.shop.mvp.http.api.service.ProductService;
 import com.zack.shop.mvp.http.api.service.UploadService;
 import com.zack.shop.mvp.http.entity.BaseResponse;
+import com.zack.shop.mvp.http.entity.product.Product;
 import com.zack.shop.mvp.http.entity.product.RecommendBean;
 
 import java.util.List;
@@ -34,10 +35,35 @@ public class ProductModel extends BaseModel implements RecommendContract.Model, 
                 .getRecommendedProducts(0, 0, "");
     }
 
+    public Observable<BaseResponse<List<Product>>> list() {
+        return mRepositoryManager.obtainRetrofitService(ProductService.class)
+                .list();
+    }
+
+    public Observable<BaseResponse> updateStatus(Integer productId,
+                                                 Integer status) {
+        return mRepositoryManager.obtainRetrofitService(ProductService.class)
+                .updateStatus(productId, status);
+    }
+
     public Observable<BaseResponse> addCart(Integer productId, Integer count) {
         return mRepositoryManager
                 .obtainRetrofitService(CartService.class)
                 .addProduct(productId, count);
+    }
+
+    public Observable<BaseResponse<Product>> createProduct(
+            Integer id,
+            Integer categoryId,
+            String name,
+            String subtitle,
+            String mainImage,
+            String subImage,
+            double price,
+            Integer stock,
+            Integer status) {
+        return mRepositoryManager.obtainRetrofitService(ProductService.class)
+                .createProduct(id,categoryId, name, subtitle, mainImage, subImage, "", price, stock, status);
     }
 
     public Observable<BaseResponse<String>> upLoadImage(MultipartBody.Part upload_file) {

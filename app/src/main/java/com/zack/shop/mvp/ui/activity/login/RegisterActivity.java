@@ -21,9 +21,13 @@ import com.zack.shop.mvp.contract.LoginContract;
 import com.zack.shop.mvp.http.entity.login.JWTBean;
 import com.zack.shop.mvp.http.entity.login.UserBean;
 import com.zack.shop.mvp.presenter.LoginPresenter;
+import com.zack.shop.mvp.ui.activity.MainActivity;
+import com.zack.shop.mvp.utils.AppConstant;
+import com.zack.shop.mvp.utils.SpUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import timber.log.Timber;
 
 public class RegisterActivity extends BaseSupportActivity<LoginPresenter> implements LoginContract.View {
 
@@ -65,14 +69,19 @@ public class RegisterActivity extends BaseSupportActivity<LoginPresenter> implem
 
     @Override
     public void loginResult(JWTBean msg) {
-
+        SpUtils.put(mContext, AppConstant.Api.TOKEN, msg.getAccess_token());
+        Timber.e((String) SpUtils.get(mContext, AppConstant.Api.TOKEN, ""));
+        startActivity(new Intent(mContext, MainActivity.class));
+        finish();
     }
 
     @Override
     public void registerSuccess(UserBean userBean) {
         String phones = phone.getText().toString().trim();
         String passwords = password.getText().toString().trim();
-        mPresenter.login(phones, passwords);
+        if (mPresenter != null) {
+            mPresenter.login(phones, passwords);
+        }
     }
 
     @Override
@@ -109,11 +118,15 @@ public class RegisterActivity extends BaseSupportActivity<LoginPresenter> implem
         switch (view.getId()) {
             case R.id.send_sms:
                 if (canUsePhone(phones))
-                    mPresenter.sendSms(phones);
+                    if (mPresenter != null) {
+                        mPresenter.sendSms(phones);
+                    }
                 break;
             case R.id.btn_register:
                 if (canUsePhone(phones) && canUseCode(codes) && canUsePassword(passwords))
-                    mPresenter.register(passwords, phones, codes);
+                    if (mPresenter != null) {
+                        mPresenter.register(passwords, phones, codes);
+                    }
                 break;
         }
     }

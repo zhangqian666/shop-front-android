@@ -24,5 +24,7 @@ public interface SelfContract {
     interface View extends IView {
 
         void getUserInfo(UserBean data);
+
+        void updateUserImageSuccess();
     }
 }

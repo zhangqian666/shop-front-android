@@ -4,7 +4,12 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.jess.arms.utils.ArmsUtils;
@@ -35,9 +40,20 @@ public class FindAdapter extends BaseQuickAdapter<MomentBean, BaseViewHolder> {
         helper.setText(R.id.tv_bottom_star, String.format("%s", item.getStar()));
         helper.setText(R.id.tv_bottom_comment, String.format("%s", item.getMomentCommentTimes()));
 
+
+        Glide.with(mContext)
+                .load(item.getUserImage())
+                .apply(new RequestOptions().transforms(new CenterCrop(), new RoundedCorners(120)))
+                .into(((ImageView) helper.getView(R.id.iv_user_image)));
+
+        helper.getView(R.id.ll_user).setOnClickListener(v -> {
+            if (onHeartClickListener!=null)onHeartClickListener.onHeaderClick(item.getUserId(),item.getUsername());
+        });
+
+
         {
             //点赞处理
-            CheckBox star = helper.getView(R.id.tv_bottom_star);
+            CheckBox star = helper.getView(R.id.cb_bottom_star);
             star.setOnCheckedChangeListener(null);
             star.setEnabled(true);
 
@@ -86,5 +102,7 @@ public class FindAdapter extends BaseQuickAdapter<MomentBean, BaseViewHolder> {
 
     public interface OnHeartClickListener {
         void onHeartClick(int momentId);
+
+        void onHeaderClick(Integer userId, String username);
     }
 }

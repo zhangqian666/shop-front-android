@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".mvp.ui.activity.find.PublishCommentActivity">
+    tools:context=".mvp.ui.activity.comment.PublishCommentActivity">
 
     <include layout="@layout/simple_tool_bar" />
 
@@ -13,14 +13,13 @@
         android:id="@+id/et_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/bg_publish_comment"
+        android:layout_marginBottom="@dimen/margin_left_right"
+        android:layout_marginTop="@dimen/margin_left_right"
+        android:background="@color/white"
         android:gravity="start"
         android:minHeight="100dp"
-        android:padding="5dp"
+        android:paddingEnd="@dimen/margin_left_right"
+        android:paddingStart="@dimen/margin_left_right"
         android:textColor="@color/text_black_33"
         android:textSize="@dimen/text_normal" />
 
@@ -28,6 +27,6 @@
         android:id="@+id/recycler_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp" />
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp" />
 </LinearLayout>

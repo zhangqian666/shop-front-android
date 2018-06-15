@@ -4,27 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/normal_back_ground"
     android:orientation="vertical"
     tools:context=".mvp.ui.activity.set.AppSetActivity">
 
     <include layout="@layout/simple_tool_bar" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/divider_color" />
-
     <LinearLayout
+        android:id="@+id/ll_name"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-
+        android:layout_height="@dimen/normal_height"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
         android:gravity="center_vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="@dimen/margin_left_right"
             android:text="姓名"
             android:textColor="@color/text_black_33"
             android:textSize="@dimen/text_normal" />
@@ -43,24 +40,51 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginEnd="@dimen/margin_left_right"
             android:src="@mipmap/icon_right_img" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/divider_color" />
-
     <LinearLayout
+        android:id="@+id/ll_phone"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/normal_height"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
         android:gravity="center_vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="@dimen/margin_left_right"
+            android:text="手机号"
+            android:textColor="@color/text_black_33"
+            android:textSize="@dimen/text_normal" />
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="18311110000"
+            android:textColor="@color/text_black_99"
+            android:textSize="@dimen/text_normal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_sex"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normal_height"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_left_right"
             android:text="性别"
             android:textColor="@color/text_black_33"
             android:textSize="@dimen/text_normal" />
@@ -79,14 +103,33 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginEnd="@dimen/margin_left_right"
             android:src="@mipmap/icon_right_img" />
     </LinearLayout>
 
-    <View
+    <LinearLayout
+        android:id="@+id/ll_address"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/divider_color" />
+        android:layout_height="@dimen/normal_height"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_left_right"
+            android:layout_weight="1"
+            android:text="地址管理"
+            android:textColor="@color/text_black_33"
+            android:textSize="@dimen/text_normal" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="@dimen/margin_left_right"
+            android:src="@mipmap/icon_right_img" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_logout"

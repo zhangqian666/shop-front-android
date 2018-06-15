@@ -43,13 +43,15 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import io.rong.imkit.RongIM;
+import io.rong.imkit.manager.IUnReadMessageObserver;
+import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
 import timber.log.Timber;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> implements RecommendContract.View {
+public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> implements RecommendContract.View, IUnReadMessageObserver {
 
     @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout swipe_refresh;
@@ -66,6 +68,9 @@ public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> i
     Toolbar mToolbar;
     @BindView(R.id.iv_conversation)
     ImageView ivConversation;
+
+    @BindView(R.id.iv_red_point)
+    ImageView ivRedPoint;
 
     @Inject
     List<Product> recommendProductsBeans;
@@ -98,7 +103,9 @@ public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> i
         initRecycler();
         initBanner();
         initAppLayout();
+        initRongIM();
     }
+
 
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
@@ -134,6 +141,7 @@ public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> i
         mRecyclerView.setLayoutManager(new GridLayoutManager(_mActivity, 2));
         mRecyclerView.addItemDecoration(new RecommendItemDecoration(10));
         mRecyclerView.setAdapter(recommendQuickAdapter);
+        recommendQuickAdapter.setEmptyView(LayoutInflater.from(_mActivity).inflate(R.layout.view_empty, null));
         recommendQuickAdapter.setOnItemClickListener((adapter, view, position) -> {
                     Intent intent = new Intent(_mActivity, ProductDetailsActivity.class);
                     Bundle extras = new Bundle();
@@ -180,6 +188,11 @@ public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> i
 
     }
 
+
+    public void setRedPoint(boolean visible) {
+        ivRedPoint.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
     @Override
     public void showLoading() {
 
@@ -204,5 +217,32 @@ public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> i
     @Override
     public void killMyself() {
 
+    }
+
+    private void initRongIM() {
+        RongIM.getInstance().getUnreadCount(new RongIMClient.ResultCallback<Integer>() {
+            @Override
+            public void onSuccess(Integer integer) {
+                setRedPoint(integer > 0);
+            }
+
+            @Override
+            public void onError(RongIMClient.ErrorCode errorCode) {
+
+            }
+        }, Conversation.ConversationType.PRIVATE);
+        RongIM.getInstance().addUnReadMessageCountChangedObserver(this, Conversation.ConversationType.PRIVATE);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RongIM.getInstance().removeUnReadMessageCountChangedObserver(this);
+    }
+
+
+    @Override
+    public void onCountChanged(int i) {
+        setRedPoint(i > 0);
     }
 }

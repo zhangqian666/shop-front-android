@@ -21,7 +21,7 @@
         android:id="@+id/iv_product"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:scaleType="fitCenter" />
+        android:scaleType="centerCrop" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -49,13 +49,24 @@
             android:textSize="@dimen/text_small" />
 
         <TextView
+            android:id="@+id/tv_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="¥"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_small_little" />
+
+        <TextView
             android:id="@+id/tv_product_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_marginStart="2dp"
+            android:layout_toRightOf="@+id/tv_money"
             android:text="88.00"
             android:textColor="@color/red"
-            android:textSize="@dimen/text_sub_title" />
+            android:textSize="@dimen/text_small" />
 
         <com.zack.shop.mvp.ui.widget.AmountView
             android:id="@+id/amount_view"

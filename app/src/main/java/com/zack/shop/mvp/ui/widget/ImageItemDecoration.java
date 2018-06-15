@@ -23,11 +23,11 @@ public class ImageItemDecoration extends RecyclerView.ItemDecoration {
         int position = parent.getChildAdapterPosition(view);
         if (position % 3 == 1) {
             outRect.top = space;
+//            outRect.left = space;
+//            outRect.right = space;
         } else if (position % 3 == 2) {
-            outRect.left = space;
             outRect.top = space;
         } else {
-            outRect.right = space;
             outRect.top = space;
         }
     }

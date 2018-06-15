@@ -17,8 +17,14 @@ public interface AppConstant {
         String INFO = "userInfo";
     }
 
-   interface ActivityIntent {
-     String Bean = "Bean";
-     String USER_BEAN = "user_bean";
-   }
+    interface ActivityIntent {
+        String Bean = "Bean";
+        String USER_BEAN = "user_bean";
+        String PRODUCT_BEAN = "product_bean";
+    }
+
+    interface Image {
+        String FILE_PROVIDER = "com.zack.shop.FileProvider";
+
+    }
 }

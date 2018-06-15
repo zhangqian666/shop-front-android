@@ -102,13 +102,29 @@
 
                             </RelativeLayout>
 
-                            <ImageView
-                                android:id="@+id/iv_conversation"
+                            <FrameLayout
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginEnd="10dp"
-                                android:src="@mipmap/icon_message" />
+                                android:layout_marginEnd="10dp">
+
+                                <ImageView
+                                    android:id="@+id/iv_conversation"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginEnd="10dp"
+                                    android:src="@mipmap/icon_message" />
+
+                                <ImageView
+                                    android:id="@+id/iv_red_point"
+                                    android:layout_width="10dp"
+                                    android:layout_height="10dp"
+                                    android:layout_gravity="end"
+                                    android:background="@drawable/bg_circle_red"
+                                    android:scaleType="fitXY"
+                                    android:visibility="gone" />
+                            </FrameLayout>
                         </LinearLayout>
                     </LinearLayout>
                 </android.support.v7.widget.Toolbar>

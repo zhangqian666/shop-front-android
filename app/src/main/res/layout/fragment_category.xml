@@ -14,7 +14,9 @@
         android:layout_height="@dimen/statusbar_view_height"
         android:background="@color/normal_back_ground" />
 
-    <include layout="@layout/view_search_home" />
+    <include layout="@layout/simple_tool_bar" />
+
+    <!--<include layout="@layout/view_search_home" />-->
 
     <LinearLayout
         android:layout_width="match_parent"

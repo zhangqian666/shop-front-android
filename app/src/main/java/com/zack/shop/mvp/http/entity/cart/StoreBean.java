@@ -16,6 +16,5 @@ public class StoreBean {
     private Integer userId;
     private String username;
     private List<CartBean> cartVos;
-
     private boolean isChecked;
 }

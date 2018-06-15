@@ -14,6 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 import com.zack.shop.R;
@@ -23,6 +26,8 @@ import com.zack.shop.di.module.SelfModule;
 import com.zack.shop.mvp.contract.SelfContract;
 import com.zack.shop.mvp.http.entity.login.UserBean;
 import com.zack.shop.mvp.presenter.SelfPresenter;
+import com.zack.shop.mvp.ui.activity.product.CreateProductActivity;
+import com.zack.shop.mvp.ui.activity.product.ManageProductActivity;
 import com.zack.shop.mvp.ui.activity.set.AppSetActivity;
 import com.zack.shop.mvp.utils.AppConstant;
 import com.zack.shop.mvp.utils.PicChooserHelper;
@@ -49,6 +54,8 @@ public class SelfFragment extends BaseSupportFragment<SelfPresenter> implements 
     TextView tvName;
     private PicChooserHelper picChooserHelper;
 
+    private UserBean userBean;
+
     public SelfFragment() {
         // Required empty public constructor
     }
@@ -73,12 +80,11 @@ public class SelfFragment extends BaseSupportFragment<SelfPresenter> implements 
     }
 
     @Override
-    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
-        super.onLazyInitView(savedInstanceState);
+    public void onStart() {
+        super.onStart();
         if (mPresenter != null) {
             mPresenter.getUserInfo();
         }
-
     }
 
     @Override
@@ -86,7 +92,7 @@ public class SelfFragment extends BaseSupportFragment<SelfPresenter> implements 
 
     }
 
-    @OnClick({R.id.iv_header, R.id.iv_set, R.id.iv_message, R.id.ll_header, R.id.ll_wait_send, R.id.ll_wait_receive, R.id.ll_pay_after})
+    @OnClick({R.id.iv_header, R.id.iv_set, R.id.iv_message, R.id.ll_header, R.id.ll_wait_send, R.id.ll_wait_receive, R.id.ll_pay_after, R.id.ll_create_product, R.id.ll_manage_product})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_header:
@@ -115,6 +121,12 @@ public class SelfFragment extends BaseSupportFragment<SelfPresenter> implements 
             case R.id.ll_wait_receive:
                 break;
             case R.id.ll_pay_after:
+                break;
+            case R.id.ll_create_product:
+                _mActivity.startActivity(new Intent(_mActivity, CreateProductActivity.class));
+                break;
+            case R.id.ll_manage_product:
+                _mActivity.startActivity(new Intent(_mActivity, ManageProductActivity.class));
                 break;
         }
     }
@@ -151,13 +163,22 @@ public class SelfFragment extends BaseSupportFragment<SelfPresenter> implements 
             picChooserHelper.onActivityResult(requestCode, resultCode, data);
     }
 
-    private UserBean userBean;
 
     @Override
     public void getUserInfo(UserBean data) {
-        Glide.with(_mActivity).load(data.getImage()).into(ivHeader);
+        Glide.with(_mActivity)
+                .load(data.getImage())//new MultiTransformation(
+                .apply(new RequestOptions().transforms(new CenterCrop(), new RoundedCorners(120)))
+                .into(ivHeader);
         tvName.setText(data.getUsername());
         this.userBean = data;
+    }
+
+    @Override
+    public void updateUserImageSuccess() {
+        if (mPresenter != null) {
+            mPresenter.getUserInfo();
+        }
     }
 
     @Override

@@ -23,7 +23,7 @@ import com.zack.shop.di.module.FindModule;
 import com.zack.shop.mvp.contract.FindContract;
 import com.zack.shop.mvp.http.entity.moment.MomentBean;
 import com.zack.shop.mvp.presenter.FindPresenter;
-import com.zack.shop.mvp.ui.activity.find.PublishCommentActivity;
+import com.zack.shop.mvp.ui.activity.comment.PublishCommentActivity;
 import com.zack.shop.mvp.ui.adapter.FindAdapter;
 
 import java.util.List;
@@ -84,22 +84,30 @@ public class FindFragment extends BaseSupportFragment<FindPresenter> implements 
         swipeRefreshLayout.setOnRefreshListener(this);
         recyclerFindList.setLayoutManager(new LinearLayoutManager(_mActivity));
         recyclerFindList.setAdapter(findAdapter);
-        findAdapter.setOnHeartClickListener(momentId -> {
-            assert mPresenter != null;
-            mPresenter.starMoment(momentId);
-        });
-        findAdapter.setOnItemClickListener((adapter, view, position) -> {
-            MomentBean momentBean = findAdapter.getData().get(position);
-            RongIM.getInstance().startPrivateChat(_mActivity, momentBean.getUserId().toString(), momentBean.getUsername());
+        findAdapter.setEmptyView(LayoutInflater.from(_mActivity).inflate(R.layout.view_empty, null));
+        findAdapter.setOnHeartClickListener(new FindAdapter.OnHeartClickListener() {
+            @Override
+            public void onHeartClick(int momentId) {
+                if (mPresenter != null) {
+                    mPresenter.starMoment(momentId);
+                }
+            }
+
+            @Override
+            public void onHeaderClick(Integer userId, String username) {
+                RongIM.getInstance().startPrivateChat(_mActivity, userId.toString(), username);
+
+            }
         });
 
     }
 
     @Override
-    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
-        super.onLazyInitView(savedInstanceState);
-        assert mPresenter != null;
-        mPresenter.getMoments();
+    public void onStart() {
+        super.onStart();
+        if (mPresenter != null) {
+            mPresenter.getMoments();
+        }
     }
 
     @Override

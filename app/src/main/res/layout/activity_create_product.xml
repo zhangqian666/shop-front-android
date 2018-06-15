@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/normal_back_ground"
+    android:orientation="vertical"
+    tools:context=".mvp.ui.activity.product.CreateProductActivity">
+
+    <include layout="@layout/simple_tool_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_left_right" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/normal_height"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_left_right"
+                    android:text="商品名："
+                    android:textColor="@color/text_black_33"
+                    android:textSize="@dimen/text_normal" />
+
+                <EditText
+                    android:id="@+id/et_product_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_left_right"
+                    android:layout_marginStart="@dimen/margin_left_right"
+                    android:background="@null"
+                    android:hint="请输入商品名"
+                    android:textColor="@color/text_black_33"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/normal_height"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_left_right"
+                    android:text="商品简介："
+                    android:textColor="@color/text_black_33"
+                    android:textSize="@dimen/text_normal" />
+
+                <EditText
+                    android:id="@+id/et_product_subname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_left_right"
+                    android:layout_marginStart="@dimen/margin_left_right"
+                    android:background="@null"
+                    android:hint="请输入简介"
+                    android:textColor="@color/text_black_33"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/normal_height"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_left_right"
+                    android:text="价格："
+                    android:textColor="@color/text_black_33"
+                    android:textSize="@dimen/text_normal" />
+
+                <EditText
+                    android:id="@+id/et_product_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_left_right"
+                    android:layout_marginStart="@dimen/margin_left_right"
+                    android:background="@null"
+                    android:hint="请输入价格"
+                    android:inputType="number"
+                    android:textColor="@color/text_black_33"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/normal_height"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_left_right"
+                    android:text="库存："
+                    android:textColor="@color/text_black_33"
+                    android:textSize="@dimen/text_normal" />
+
+                <EditText
+                    android:id="@+id/et_product_stock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_left_right"
+                    android:layout_marginStart="@dimen/margin_left_right"
+                    android:background="@null"
+                    android:hint="请输入库存量"
+                    android:inputType="number"
+                    android:textColor="@color/text_black_33"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

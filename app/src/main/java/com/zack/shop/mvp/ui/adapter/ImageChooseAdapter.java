@@ -15,12 +15,12 @@ import java.util.List;
  * @Data 2018/6/10 下午9:32
  * @Package com.zack.shop.mvp.ui.adapter
  **/
-public class PublishCommentAdapter extends BaseMultiItemQuickAdapter<ImageChooseBean, BaseViewHolder> {
+public class ImageChooseAdapter extends BaseMultiItemQuickAdapter<ImageChooseBean, BaseViewHolder> {
 
-    public PublishCommentAdapter(List<ImageChooseBean> data) {
+    public ImageChooseAdapter(List<ImageChooseBean> data) {
         super(data);
-        addItemType(ImageChooseBean.URL, R.layout.adapter_item_publish_comment);
-        addItemType(ImageChooseBean.RES, R.layout.adapter_item_publish_comment);
+        addItemType(ImageChooseBean.URL, R.layout.adapter_item_image_choose);
+        addItemType(ImageChooseBean.RES, R.layout.adapter_item_image_choose);
     }
 
 

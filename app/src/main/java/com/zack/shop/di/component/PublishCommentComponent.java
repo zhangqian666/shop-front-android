@@ -3,7 +3,7 @@ package com.zack.shop.di.component;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.di.scope.ActivityScope;
 import com.zack.shop.di.module.PublishCommentModule;
-import com.zack.shop.mvp.ui.activity.find.PublishCommentActivity;
+import com.zack.shop.mvp.ui.activity.comment.PublishCommentActivity;
 
 import dagger.Component;
 

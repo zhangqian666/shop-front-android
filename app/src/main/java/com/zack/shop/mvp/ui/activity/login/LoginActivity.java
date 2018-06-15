@@ -78,7 +78,6 @@ public class LoginActivity extends BaseSupportActivity<LoginPresenter> implement
     }
 
     private void attemptLogin() {
-
         String phone = mPhoneView.getText().toString();
         String password = mPasswordView.getText().toString();
 

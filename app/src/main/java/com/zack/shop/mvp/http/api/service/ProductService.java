@@ -43,6 +43,32 @@ public interface ProductService {
             @Field("orderBy") String orderBy
     );
 
+    @POST("/manage/product/update")
+    @FormUrlEncoded
+    Observable<BaseResponse<Product>> createProduct(
+            @Field("id") Integer id,
+            @Field("categoryId") Integer categoryId,
+            @Field("name") String name,
+            @Field("subtitle") String subtitle,
+            @Field("mainImage") String mainImage,
+            @Field("subImages") String subImages,
+            @Field("detail") String detail,
+            @Field("price") double price,
+            @Field("stock") Integer stock,
+            @Field("status") Integer status
+    );
+
+    @POST("/manage/product/list")
+    Observable<BaseResponse<List<Product>>> list(
+
+    );
+
+    @FormUrlEncoded
+    @POST("/manage/product/status")
+    Observable<BaseResponse> updateStatus(
+            @Field("productId") Integer productId,
+            @Field("status") Integer status
+    );
 
 
 }

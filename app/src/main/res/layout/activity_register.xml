@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/normal_back_ground"
     android:orientation="vertical"
     tools:context=".mvp.ui.activity.login.RegisterActivity">
 
@@ -20,16 +21,17 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/normal_height"
                 android:layout_marginTop="20dp"
+                android:background="@color/white"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="@dimen/margin_left_right"
+                    android:layout_marginStart="@dimen/margin_left_right"
                     android:adjustViewBounds="true"
                     android:src="@mipmap/icon_login_phone" />
 
@@ -42,32 +44,26 @@
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="18310623602"
                     android:textColor="@color/text_black_33"
                     android:textSize="@dimen/text_normal" />
 
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:background="@color/main_color_aa" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="@dimen/normal_height"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="@dimen/margin_left_right"
+                    android:layout_marginStart="@dimen/margin_left_right"
                     android:adjustViewBounds="true"
                     android:src="@mipmap/icon_login_password" />
 
@@ -88,7 +84,7 @@
                     android:id="@+id/send_sms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginEnd="@dimen/margin_left_right"
                     android:text="发送验证码"
                     android:textColor="@color/main_color"
                     android:textSize="@dimen/text_normal" />
@@ -96,25 +92,19 @@
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:background="@color/main_color_aa" />
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="@dimen/normal_height"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="@dimen/margin_left_right"
+                    android:layout_marginStart="@dimen/margin_left_right"
                     android:adjustViewBounds="true"
                     android:src="@mipmap/icon_login_password" />
 
@@ -127,28 +117,19 @@
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="123456"
                     android:textColor="@color/text_black_33"
                     android:textSize="@dimen/text_normal" />
 
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:background="@color/main_color_aa" />
-
             <Button
                 android:id="@+id/btn_register"
-                style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginEnd="40dp"
                 android:layout_marginStart="40dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="@dimen/normal_height"
                 android:background="@drawable/bg_login_btn"
                 android:text="立即注册"
                 android:textColor="@color/white"
