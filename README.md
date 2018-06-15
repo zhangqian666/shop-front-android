@@ -27,6 +27,7 @@
   1. >推荐界面
   2. >商品分类界面
    ![image](https://github.com/zhangqian666/shop-front-android/blob/master/image/33CF3C3B-4CBA-4AA8-9AFA-D4A9BE771F0E.jpeg)
+   <img src="https://github.com/zhangqian666/shop-front-android/blob/master/image/33CF3C3B-4CBA-4AA8-9AFA-D4A9BE771F0E.jpeg" width = "400" height = "720">
   3. >购物车界面
   4. >朋友圈
    ![image](https://github.com/zhangqian666/shop-front-android/blob/master/image/5B9C79C4-C26A-4D7C-A5AF-29A72E0D32B9.jpeg)
