@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -95,6 +96,8 @@ public class ManageProductActivity extends BaseSupportActivity<ManageProductPres
                 startActivity(intent);
             }
         });
+
+        manageProductAdapter.setEmptyView(LayoutInflater.from(mContext).inflate(R.layout.view_empty, null));
 
     }
 
