@@ -50,7 +50,8 @@ public class FindPresenter extends BasePresenter<FindContract.Model, FindContrac
                 .subscribe(new ErrorHandleSubscriber<BaseResponse>(rxErrorHandler) {
                     @Override
                     public void onNext(BaseResponse baseResponse) {
-                        mRootView.showMessage(baseResponse.getMsg());
+                        if (baseResponse.isSuccess()) mRootView.starSuccess();
+                        else mRootView.showMessage(baseResponse.getMsg());
                     }
                 });
     }

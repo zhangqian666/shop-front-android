@@ -48,7 +48,6 @@ public class AppLifecyclesImpl implements AppLifecycles {
 
     private void initRongIM(Application application) {
         RongIM.init(application);
-
     }
 
 

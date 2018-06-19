@@ -26,9 +26,10 @@ public interface UserService {
     );
 
     @FormUrlEncoded
-    @POST("/user/update/username")
-    Observable<BaseResponse> updateUserName(
-            @Field("username") String username
+    @POST("/user/update/info")
+    Observable<BaseResponse> updateInfo(
+            @Field("username") String username,
+            @Field("sex") Integer sex
     );
 
     @FormUrlEncoded
@@ -36,7 +37,6 @@ public interface UserService {
     Observable<BaseResponse> updatePassword(
             @Field("password") String password
     );
-
 
     @Multipart
     @POST(value = "/user/update/image")

@@ -2,6 +2,7 @@ package com.zack.shop.mvp.contract;
 
 import com.jess.arms.mvp.IModel;
 import com.jess.arms.mvp.IView;
+import com.zack.shop.mvp.http.entity.login.UserBean;
 
 /**
  * @Author 张迁-zhangqian
@@ -13,6 +14,8 @@ public interface AppSetContract {
         void updatePasswordSuccess();
 
         void updateUsernameSuccess();
+
+        void userInfoSuccess(UserBean data);
     }
 
     interface Model extends IModel {

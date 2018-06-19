@@ -122,6 +122,13 @@ public class FindFragment extends BaseSupportFragment<FindPresenter> implements 
     }
 
     @Override
+    public void starSuccess() {
+        if (mPresenter != null) {
+            mPresenter.getMoments();
+        }
+    }
+
+    @Override
     public void showLoading() {
 
     }
@@ -153,7 +160,8 @@ public class FindFragment extends BaseSupportFragment<FindPresenter> implements 
      */
     @Override
     public void onRefresh() {
-        assert mPresenter != null;
-        mPresenter.getMoments();
+        if (mPresenter != null) {
+            mPresenter.getMoments();
+        }
     }
 }

@@ -20,6 +20,8 @@ public interface FindContract {
     interface View extends IView {
 
         void refreshView(List<MomentBean> data);
+
+        void starSuccess();
     }
 
     interface Model extends IModel {

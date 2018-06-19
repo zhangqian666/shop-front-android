@@ -20,7 +20,7 @@ public class ImageChooseAdapter extends BaseMultiItemQuickAdapter<ImageChooseBea
     public ImageChooseAdapter(List<ImageChooseBean> data) {
         super(data);
         addItemType(ImageChooseBean.URL, R.layout.adapter_item_image_choose);
-        addItemType(ImageChooseBean.RES, R.layout.adapter_item_image_choose);
+        addItemType(ImageChooseBean.RES, R.layout.adapter_item_image_choose_res);
     }
 
 
@@ -31,7 +31,6 @@ public class ImageChooseAdapter extends BaseMultiItemQuickAdapter<ImageChooseBea
                 Glide.with(mContext).load(item.getImageUrl()).into(((ImageView) helper.getView(R.id.iv_item)));
                 break;
             case ImageChooseBean.RES:
-                Glide.with(mContext).load(R.mipmap.icon_add_black).into(((ImageView) helper.getView(R.id.iv_item)));
                 break;
         }
     }

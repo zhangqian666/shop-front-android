@@ -32,9 +32,9 @@ public class UserModel extends BaseModel implements SelfContract.Model {
                 .userDetails(userId);
     }
 
-    public Observable<BaseResponse> updateUserName(String username) {
+    public Observable<BaseResponse> updateInfo(String username, Integer sex) {
         return mRepositoryManager.obtainRetrofitService(UserService.class)
-                .updateUserName(username);
+                .updateInfo(username,sex);
     }
 
     public Observable<BaseResponse> updatePassword(String password) {

@@ -15,9 +15,8 @@
     <application
         android:name=".app.base.BaseApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="theme">
@@ -96,7 +95,7 @@
         <activity android:name=".mvp.ui.activity.comment.PublishCommentActivity" />
         <activity android:name=".mvp.ui.activity.order.CreateOrderActivity" />
         <activity android:name=".mvp.ui.activity.product.CreateProductActivity" />
-        <activity android:name=".mvp.ui.activity.product.ManageProductActivity"></activity>
+        <activity android:name=".mvp.ui.activity.product.ManageProductActivity"/>
     </application>
 
 </manifest>
