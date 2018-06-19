@@ -49,10 +49,9 @@ public class AppSetActivity extends BaseSupportActivity<AppSetPresenter> impleme
     @BindView(R.id.btn_logout)
     Button btnLogout;
 
-    private UserBean userBean;
-
     @Inject
     AppManager appManager;
+    private UserBean userbean;
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
@@ -71,14 +70,17 @@ public class AppSetActivity extends BaseSupportActivity<AppSetPresenter> impleme
     public void initData(@Nullable Bundle savedInstanceState) {
         toolbarTitle.setText("个人设置");
         toolbarBack.setVisibility(View.VISIBLE);
-        userBean = ((UserBean) getIntent().getSerializableExtra(AppConstant.ActivityIntent.USER_BEAN));
-        tvName.setText(userBean.getUsername());
-        tvPhone.setText(userBean.getPhone());
-        tvSex.setText(userBean.getSex() == 0 ? "男" : "女");
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (mPresenter != null) {
+            mPresenter.userInfo();
+        }
+    }
 
-    @OnClick({R.id.btn_logout, R.id.ll_name})
+    @OnClick({R.id.btn_logout, R.id.ll_name, R.id.ll_sex})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_logout:
@@ -88,12 +90,10 @@ public class AppSetActivity extends BaseSupportActivity<AppSetPresenter> impleme
                 appManager.killAll(LoginActivity.class);
                 break;
             case R.id.ll_name:
-
                 View baseView = LayoutInflater.from(this).inflate(R.layout.dialog_view_edit, null);
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                 builder.setTitle("更改姓名");
                 builder.setView(baseView);
-                builder.setCancelable(false);
                 builder.setPositiveButton("修改", (dialog, which) -> {
                     String text = ((EditText) baseView.findViewById(R.id.et_content)).getText().toString();
                     if (TextUtils.isEmpty(text)) {
@@ -101,10 +101,31 @@ public class AppSetActivity extends BaseSupportActivity<AppSetPresenter> impleme
                         return;
                     }
                     if (mPresenter != null) {
-                        mPresenter.updateUserName(text);
+                        mPresenter.updateInfo(text, null);
                     }
                 });
                 builder.create().show();
+                break;
+            case R.id.ll_sex:
+                AlertDialog.Builder sexDialog = new AlertDialog.Builder(mContext);
+                sexDialog.setTitle("选择性别");
+                sexDialog.setItems(new String[]{"男", "女"}, (dialog, which) -> {
+                    switch (which) {
+                        case 0:
+                            if (userbean != null && userbean.getSex() == 0) return;
+                            if (mPresenter != null) {
+                                mPresenter.updateInfo(null, 0);
+                            }
+                            break;
+                        case 1:
+                            if (userbean != null && userbean.getSex() == 1) return;
+                            if (mPresenter != null) {
+                                mPresenter.updateInfo(null, 1);
+                            }
+                            break;
+                    }
+                });
+                sexDialog.create().show();
                 break;
         }
 
@@ -112,12 +133,24 @@ public class AppSetActivity extends BaseSupportActivity<AppSetPresenter> impleme
 
     @Override
     public void updatePasswordSuccess() {
-
+        if (mPresenter != null) {
+            mPresenter.userInfo();
+        }
     }
 
     @Override
     public void updateUsernameSuccess() {
+        if (mPresenter != null) {
+            mPresenter.userInfo();
+        }
+    }
 
+    @Override
+    public void userInfoSuccess(UserBean data) {
+        this.userbean = data;
+        tvName.setText(data.getUsername());
+        tvPhone.setText(data.getPhone());
+        tvSex.setText(data.getSex() == 0 ? "男" : "女");
     }
 
     @Override

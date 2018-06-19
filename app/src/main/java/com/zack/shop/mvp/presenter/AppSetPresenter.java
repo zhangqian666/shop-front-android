@@ -5,6 +5,7 @@ import com.jess.arms.mvp.BasePresenter;
 import com.jess.arms.mvp.IModel;
 import com.zack.shop.mvp.contract.AppSetContract;
 import com.zack.shop.mvp.http.entity.BaseResponse;
+import com.zack.shop.mvp.http.entity.login.UserBean;
 import com.zack.shop.mvp.model.UserModel;
 import com.zack.shop.mvp.utils.RxUtils;
 
@@ -32,24 +33,37 @@ public class AppSetPresenter extends BasePresenter<IModel, AppSetContract.View> 
         super(rootView);
     }
 
-    public void updateUserPassword(String password){
+    public void updateUserPassword(String password) {
         userModel.updatePassword(password)
                 .compose(RxUtils.applySchedulers(mRootView))
                 .subscribe(new ErrorHandleSubscriber<BaseResponse>(rxErrorHandler) {
                     @Override
                     public void onNext(BaseResponse baseResponse) {
-                        if (baseResponse.isSuccess())mRootView.updatePasswordSuccess();
+                        if (baseResponse.isSuccess()) mRootView.updatePasswordSuccess();
                     }
                 });
     }
 
-    public void updateUserName(String username){
-        userModel.updateUserName(username)
+    public void updateInfo(String username, Integer sex) {
+        userModel.updateInfo(username, sex)
                 .compose(RxUtils.applySchedulers(mRootView))
                 .subscribe(new ErrorHandleSubscriber<BaseResponse>(rxErrorHandler) {
                     @Override
                     public void onNext(BaseResponse baseResponse) {
-                        if (baseResponse.isSuccess())mRootView.updateUsernameSuccess();
+                        if (baseResponse.isSuccess()) mRootView.updateUsernameSuccess();
+                    }
+                });
+    }
+
+    public void userInfo() {
+        userModel.getUserInfo()
+                .compose(RxUtils.applySchedulers(mRootView))
+                .subscribe(new ErrorHandleSubscriber<BaseResponse<UserBean>>(rxErrorHandler) {
+                    @Override
+                    public void onNext(BaseResponse<UserBean> userBeanBaseResponse) {
+                        if (userBeanBaseResponse.isSuccess())
+                            mRootView.userInfoSuccess(userBeanBaseResponse.getData());
+                        else mRootView.showMessage(userBeanBaseResponse.getMsg());
                     }
                 });
     }

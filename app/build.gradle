@@ -23,6 +23,8 @@ android {
             }
         }
     }
+
+    //打包测试
     buildTypes {
 
         debug {
@@ -39,6 +41,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    //打包名称设置
     android.applicationVariants.all {
         variant ->
             variant.outputs.all {

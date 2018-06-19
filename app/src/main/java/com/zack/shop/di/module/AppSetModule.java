@@ -32,4 +32,5 @@ public class AppSetModule {
     public UserModel provideUserModel(IRepositoryManager repositoryManager) {
         return new UserModel(repositoryManager);
     }
+
 }
