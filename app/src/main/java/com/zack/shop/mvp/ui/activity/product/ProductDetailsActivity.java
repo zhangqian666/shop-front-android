@@ -108,7 +108,7 @@ public class ProductDetailsActivity extends BaseSupportActivity<ProductDetailsPr
     }
 
     public void getData() {
-        productBean = ((Product) getIntent().getSerializableExtra(AppConstant.ActivityIntent.Bean));
+        productBean = ((Product) getIntent().getSerializableExtra(AppConstant.ActivityIntent.BEAN));
     }
 
     @Override

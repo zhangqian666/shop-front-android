@@ -145,7 +145,7 @@ public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> i
         recommendQuickAdapter.setOnItemClickListener((adapter, view, position) -> {
                     Intent intent = new Intent(_mActivity, ProductDetailsActivity.class);
                     Bundle extras = new Bundle();
-                    extras.putSerializable(AppConstant.ActivityIntent.Bean,
+                    extras.putSerializable(AppConstant.ActivityIntent.BEAN,
                             ((Product) (adapter.getData()).get(position)));
                     intent.putExtras(extras);
                     startActivity(intent);

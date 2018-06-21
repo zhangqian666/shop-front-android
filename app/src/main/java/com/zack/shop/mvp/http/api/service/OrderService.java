@@ -1,7 +1,8 @@
 package com.zack.shop.mvp.http.api.service;
 
 import com.zack.shop.mvp.http.entity.BaseResponse;
-import com.zack.shop.mvp.http.entity.product.Product;
+import com.zack.shop.mvp.http.entity.order.OrderBean;
+import com.zack.shop.mvp.http.entity.order.OrderSettlementsBean;
 
 import java.util.List;
 
@@ -18,38 +19,42 @@ import retrofit2.http.POST;
 public interface OrderService {
 
 
-    @POST("/manage/order/list")
+    @POST("/user/order/list")
     @FormUrlEncoded
-    Observable<BaseResponse<List<Product>>> orderList(
-            @Field("keyword") String keyword,
-            @Field("categoryId") int categoryId,
-            @Field("pageNum") int pageNum,
-            @Field("pageSize") int pageSize,
-            @Field("orderBy") String orderBy
+    Observable<BaseResponse<List<OrderBean>>> orderList(
+            @Field("status") Integer status
+
     );
 
-    @POST("/manage/order/details")
+    @POST("/user/order/details")
     @FormUrlEncoded
-    Observable<BaseResponse<List<Product>>> orderDetails(
+    Observable<BaseResponse> orderDetails(
             @Field("orderNo") Long orderNo
     );
 
-    @POST("/manage/order/send_goods")
+    @POST("/user/order/send_goods")
     @FormUrlEncoded
-    Observable<BaseResponse<List<Product>>> orderSend(
+    Observable<BaseResponse> orderSend(
             @Field("orderNo") Long orderNo
     );
 
 
     @POST("/user/order/create")
     @FormUrlEncoded
-    Observable<BaseResponse<List<Product>>> orderCreate(
-            @Field("shippingId") Integer shippingId
+    Observable<BaseResponse<OrderSettlementsBean>> orderCreate(
+            @Field("shippingId") Integer shippingId,
+            @Field("productIds") String productIds
     );
 
-    @POST("/manage/order/cancel")
+    @POST("/user/order/precreate")
     @FormUrlEncoded
-    Observable<BaseResponse<List<Product>>> orderCancel(
+    Observable<BaseResponse<OrderSettlementsBean>> orderPreCreate(
+            @Field("productIds") String productIds
+    );
+
+    @POST("/user/order/cancel")
+    @FormUrlEncoded
+    Observable<BaseResponse> orderCancel(
             @Field("orderNo") Long orderNo
     );
 

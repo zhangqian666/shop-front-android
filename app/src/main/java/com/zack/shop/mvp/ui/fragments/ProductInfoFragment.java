@@ -103,7 +103,7 @@ public class ProductInfoFragment extends BaseSupportFragment implements SlideDet
     }
 
     private void getData() {
-        productBean = ((Product) _mActivity.getIntent().getSerializableExtra(AppConstant.ActivityIntent.Bean));
+        productBean = ((Product) _mActivity.getIntent().getSerializableExtra(AppConstant.ActivityIntent.BEAN));
     }
 
     private void initFab() {

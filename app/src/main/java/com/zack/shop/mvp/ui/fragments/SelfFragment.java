@@ -26,6 +26,7 @@ import com.zack.shop.di.module.SelfModule;
 import com.zack.shop.mvp.contract.SelfContract;
 import com.zack.shop.mvp.http.entity.login.UserBean;
 import com.zack.shop.mvp.presenter.SelfPresenter;
+import com.zack.shop.mvp.ui.activity.order.OrderManageListActivity;
 import com.zack.shop.mvp.ui.activity.product.CreateProductActivity;
 import com.zack.shop.mvp.ui.activity.product.ManageProductActivity;
 import com.zack.shop.mvp.ui.activity.set.AppSetActivity;
@@ -92,7 +93,7 @@ public class SelfFragment extends BaseSupportFragment<SelfPresenter> implements 
 
     }
 
-    @OnClick({R.id.iv_header, R.id.iv_set, R.id.iv_message, R.id.ll_header, R.id.ll_wait_send, R.id.ll_wait_receive, R.id.ll_pay_after, R.id.ll_create_product, R.id.ll_manage_product})
+    @OnClick({R.id.iv_header, R.id.iv_set, R.id.iv_message, R.id.ll_header, R.id.ll_wait_pay, R.id.ll_wait_send, R.id.ll_wait_receive, R.id.ll_pay_after, R.id.ll_create_product, R.id.ll_manage_product})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_header:
@@ -116,11 +117,17 @@ public class SelfFragment extends BaseSupportFragment<SelfPresenter> implements 
                 break;
             case R.id.ll_header:
                 break;
+            case R.id.ll_wait_pay:
+                _mActivity.startActivity(new Intent(_mActivity, OrderManageListActivity.class));
+                break;
             case R.id.ll_wait_send:
+                _mActivity.startActivity(new Intent(_mActivity, OrderManageListActivity.class));
                 break;
             case R.id.ll_wait_receive:
+                _mActivity.startActivity(new Intent(_mActivity, OrderManageListActivity.class));
                 break;
             case R.id.ll_pay_after:
+                ArmsUtils.snackbarText("售后");
                 break;
             case R.id.ll_create_product:
                 _mActivity.startActivity(new Intent(_mActivity, CreateProductActivity.class));
