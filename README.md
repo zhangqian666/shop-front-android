@@ -1,4 +1,5 @@
 ## shop-front-android
+希望大家多多点赞 点赞多的话 我写完后会出个教程（由于我最近搬家更新比较慢，但是我会尽快写完，不过目前也可以用）
 
 #[`shop-back-java`](https://github.com/zhangqian666/shop-back-java)对应的android前端
 
