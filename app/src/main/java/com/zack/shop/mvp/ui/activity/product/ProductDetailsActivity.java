@@ -20,8 +20,8 @@ import com.zack.shop.mvp.contract.ProductDetailsContract;
 import com.zack.shop.mvp.http.entity.product.Product;
 import com.zack.shop.mvp.presenter.ProductDetailsPresenter;
 import com.zack.shop.mvp.ui.adapter.ItemTitlePagerAdapter;
-import com.zack.shop.mvp.ui.fragments.ProductDetailsFragment;
-import com.zack.shop.mvp.ui.fragments.ProductInfoFragment;
+import com.zack.shop.mvp.ui.fragments.product.ProductDetailsFragment;
+import com.zack.shop.mvp.ui.fragments.product.ProductInfoFragment;
 import com.zack.shop.mvp.ui.widget.NoScrollViewPager;
 import com.zack.shop.mvp.utils.AppConstant;
 

@@ -73,7 +73,7 @@
             android:id="@+id/ll_connect_sale"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="@dimen/margin_left_right"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -86,15 +86,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="联系卖家" />
+                android:text="客服"
+                android:textColor="@color/text_black_66"
+                android:textSize="@dimen/text_normal" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_connect_cart"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginEnd="15dp"
-            android:layout_marginStart="25dp"
+            android:layout_marginEnd="@dimen/margin_left_right"
+            android:layout_marginStart="@dimen/margin_left_right"
             android:elevation="@dimen/normal_elevation_height"
             android:gravity="center"
             android:orientation="vertical">
@@ -102,13 +104,38 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@mipmap/icon_connect_cart" />
+                android:src="@mipmap/icon_shop_black" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="购物车" />
+                android:text="店铺"
+                android:textColor="@color/text_black_66"
+                android:textSize="@dimen/text_normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_favorites"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/margin_left_right"
+            android:elevation="@dimen/normal_elevation_height"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/icon_favorites" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="收藏"
+                android:textColor="@color/text_black_66"
+                android:textSize="@dimen/text_normal" />
         </LinearLayout>
 
         <Button
@@ -116,8 +143,18 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/bg_btn_red"
+            android:background="@color/yellow"
             android:text="加入购物车"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_normal" />
+
+        <Button
+            android:id="@+id/btn_pay"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn_red"
+            android:text="立即购买"
             android:textColor="@color/white"
             android:textSize="@dimen/text_normal" />
     </LinearLayout>

@@ -56,5 +56,19 @@ public class FindPresenter extends BasePresenter<FindContract.Model, FindContrac
                 });
     }
 
+    public void publishComment(Integer momentsId,
+                               String content, Integer replyId) {
+        mModel.momentsComment(momentsId, content, replyId, null)
+                .compose(RxUtils.applySchedulers(mRootView))
+                .subscribe(new ErrorHandleSubscriber<BaseResponse>(rxErrorHandler) {
+                    @Override
+                    public void onNext(BaseResponse baseResponse) {
+                        if (baseResponse.isSuccess()) mRootView.commentSuccess();
+                        else mRootView.showMessage(baseResponse.getMsg());
+                    }
+                });
+
+    }
+
 
 }

@@ -8,11 +8,13 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jess.arms.di.component.AppComponent;
+import com.jess.arms.utils.ArmsUtils;
 import com.zack.shop.R;
 import com.zack.shop.app.base.BaseSupportActivity;
 import com.zack.shop.di.component.DaggerOrderManagerListComponent;
@@ -64,7 +66,6 @@ public class OrderManageListActivity extends BaseSupportActivity<OrderManagePres
         toolbarBack.setVisibility(View.VISIBLE);
         initTabLayout();
         initSwipeAndRecycler();
-
     }
 
     private void initTabLayout() {
@@ -119,11 +120,26 @@ public class OrderManageListActivity extends BaseSupportActivity<OrderManagePres
         recyclerList.setLayoutManager(new LinearLayoutManager(this));
         orderManageListAdapter = new OrderManageListAdapter();
         recyclerList.setAdapter(orderManageListAdapter);
+        orderManageListAdapter.setEmptyView(
+                LayoutInflater.from(mContext).inflate(R.layout.view_empty, null)
+        );
+        orderManageListAdapter.setOnClickChooseListener(item -> {
+            if (mPresenter != null) {
+                mPresenter.cancelOrder(item.getOrderNo());
+            }
+        });
     }
 
     @Override
     public void orderList(List<OrderBean> data) {
         orderManageListAdapter.setNewData(data);
+    }
+
+    @Override
+    public void cancelOrderSuccess(Object data) {
+        if (mPresenter != null) {
+            mPresenter.orderList(currentPage == 0 ? null : currentPage);
+        }
     }
 
     @Override
@@ -138,7 +154,7 @@ public class OrderManageListActivity extends BaseSupportActivity<OrderManagePres
 
     @Override
     public void showMessage(@NonNull String message) {
-
+        ArmsUtils.snackbarText(message);
     }
 
     @Override

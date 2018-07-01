@@ -114,6 +114,7 @@
         android:gravity="end">
 
         <TextView
+            android:id="@+id/tv_cancel_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_circle_black"
@@ -126,6 +127,7 @@
             android:textSize="@dimen/text_normal" />
 
         <TextView
+            android:id="@+id/tv_friend_pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/text_normal"
@@ -139,6 +141,7 @@
             android:textSize="@dimen/text_normal" />
 
         <TextView
+            android:id="@+id/tv_pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/text_normal"
@@ -148,6 +151,20 @@
             android:paddingStart="10dp"
             android:paddingTop="2dp"
             android:text="付款"
+            android:textColor="@color/text_black_33"
+            android:textSize="@dimen/text_normal" />
+
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_normal"
+            android:background="@drawable/bg_circle_black"
+            android:paddingBottom="2dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:text="删除订单"
             android:textColor="@color/text_black_33"
             android:textSize="@dimen/text_normal" />
 

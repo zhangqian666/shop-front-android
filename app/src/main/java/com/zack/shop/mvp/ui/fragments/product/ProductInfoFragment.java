@@ -1,4 +1,4 @@
-package com.zack.shop.mvp.ui.fragments;
+package com.zack.shop.mvp.ui.fragments.product;
 
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -30,7 +30,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * @Author 张迁-zhangqian
@@ -46,8 +45,8 @@ public class ProductInfoFragment extends BaseSupportFragment implements SlideDet
     ScrollView scrollView;
     @BindView(R.id.vp_item_goods_img)
     Banner bannerTitle;
-    @BindView(R.id.vp_recommend)
-    Banner bannerRecommend;
+//    @BindView(R.id.vp_recommend)
+//    Banner bannerRecommend;
     @BindView(R.id.tv_goods_title)
     TextView productTitle;
     @BindView(R.id.tv_new_price)
@@ -62,8 +61,8 @@ public class ProductInfoFragment extends BaseSupportFragment implements SlideDet
     TextView goodCommentCount;
     @BindView(R.id.ll_empty_comment)
     LinearLayout llEmptyComment;
-    @BindView(R.id.ll_recommend)
-    LinearLayout llRecommend;
+//    @BindView(R.id.ll_recommend)
+//    LinearLayout llRecommend;
     @BindView(R.id.ll_pull_up)
     LinearLayout llPullUp;
     @BindView(R.id.ll_current_goods)
@@ -76,7 +75,6 @@ public class ProductInfoFragment extends BaseSupportFragment implements SlideDet
     ImageView ivEnsure;
     @BindView(R.id.ll_comment)
     LinearLayout llComment;
-    Unbinder unbinder;
     private Product productBean;
 
 
@@ -136,15 +134,15 @@ public class ProductInfoFragment extends BaseSupportFragment implements SlideDet
                 bannerTitle.start();
             }
             {
-                bannerRecommend.setImageLoader(new GlideImageLoader());
-//                //设置自动轮播，默认为true
-                bannerRecommend.isAutoPlay(false);
-//                //设置轮播时间
-//                bannerRecommend.setDelayTime(1500);
-                //设置指示器位置（当banner模式中有指示器时）
-                bannerRecommend.setIndicatorGravity(BannerConfig.CENTER);
-                bannerRecommend.setImages(subImages);
-                bannerRecommend.start();
+//                bannerRecommend.setImageLoader(new GlideImageLoader());
+////                //设置自动轮播，默认为true
+//                bannerRecommend.isAutoPlay(false);
+////                //设置轮播时间
+////                bannerRecommend.setDelayTime(1500);
+//                //设置指示器位置（当banner模式中有指示器时）
+//                bannerRecommend.setIndicatorGravity(BannerConfig.CENTER);
+//                bannerRecommend.setImages(subImages);
+//                bannerRecommend.start();
             }
         }
     }

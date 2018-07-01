@@ -48,4 +48,17 @@ public class OrderManagePresenter extends BasePresenter<IModel, OrderManageListC
                 });
     }
 
+    public void cancelOrder(Long orderNo) {
+        orderModel.orderCancel(orderNo)
+                .compose(RxUtils.applySchedulers(mRootView))
+                .subscribe(new ErrorHandleSubscriber<BaseResponse>(rxErrorHandler) {
+                    @Override
+                    public void onNext(BaseResponse baseResponse) {
+                        if (baseResponse.isSuccess())
+                            mRootView.cancelOrderSuccess(baseResponse.getData());
+                        else mRootView.showMessage(baseResponse.getMsg());
+                    }
+                });
+    }
+
 }

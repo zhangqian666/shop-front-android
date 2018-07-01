@@ -48,4 +48,14 @@ public class MomentModel extends BaseModel implements FindContract.Model {
                 .createMoments(title, subTitle, details, mainImage, subImages);
     }
 
+    public Observable<BaseResponse> momentsComment(
+            Integer momentsId,
+            String content,
+            Integer replyId,
+            String images
+    ) {
+        return mRepositoryManager.obtainRetrofitService(MomentService.class)
+                .momentsComment(momentsId, content, replyId, images);
+    }
+
 }

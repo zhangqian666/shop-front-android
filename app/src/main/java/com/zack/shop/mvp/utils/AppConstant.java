@@ -24,6 +24,8 @@ public interface AppConstant {
         String PRODUCT_IDS = "PRODUCT_IDS";
 
         String ORDER_STATUS = "ORDER_STATUS";
+        String SEARCH_CONTENT = "SEARCH_CONTENT";
+        String IMAGE_URL = "IMAGE_URL";
     }
 
     interface Image {

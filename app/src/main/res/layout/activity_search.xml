@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".mvp.ui.activity.product.SearchActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normal_height"
+        android:background="@color/normal_back_ground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_left_right"
+            android:layout_weight="1"
+            android:background="@drawable/bg_search_home"
+            android:gravity="center_vertical"
+            android:hint="请输入您要搜索的商品"
+            android:imeOptions="actionSearch"
+            android:maxLines="1"
+            android:paddingBottom="5dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="@dimen/margin_left_right"
+            android:paddingTop="5dp"
+            android:textColor="@color/text_black_33"
+            android:textColorHint="@color/text_black_99"
+            android:textSize="@dimen/text_normal" />
+
+        <TextView
+            android:id="@+id/tv_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_left_right"
+            android:layout_marginStart="5dp"
+            android:text="搜索"
+            android:textColor="@color/text_black_33"
+            android:textSize="@dimen/text_normal" />
+    </LinearLayout>
+</LinearLayout>

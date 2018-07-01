@@ -15,6 +15,9 @@ public interface OrderManageListContract {
     interface View extends IView {
 
         void orderList(List<OrderBean> data);
+
+        void cancelOrderSuccess(Object data);
+
     }
 
     interface Model extends IModel {

@@ -72,8 +72,9 @@ public interface MomentService {
     @FormUrlEncoded
     @POST("/user/moments/comment/create")
     Observable<BaseResponse> momentsComment(
-            @Field("momentId") Integer momentsId,
+            @Field("momentsId") Integer momentsId,
             @Field("content") String content,
+                @Field("replyId") Integer replyId,
             @Field("images") String images
     );
 }

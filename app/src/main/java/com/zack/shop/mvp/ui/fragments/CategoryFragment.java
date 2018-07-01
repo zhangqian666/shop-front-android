@@ -23,8 +23,10 @@ import com.zack.shop.di.module.CategoryModule;
 import com.zack.shop.mvp.contract.CategoryContract;
 import com.zack.shop.mvp.http.entity.category.CategoryBean;
 import com.zack.shop.mvp.presenter.CategoryPresenter;
+import com.zack.shop.mvp.ui.activity.product.SearchProductListActivity;
 import com.zack.shop.mvp.ui.adapter.CategoryLeftAdapter;
 import com.zack.shop.mvp.ui.adapter.CategoryRightAdapter;
+import com.zack.shop.mvp.utils.AppConstant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,6 +97,13 @@ public class CategoryFragment extends BaseSupportFragment<CategoryPresenter> imp
         recyclerRight.setLayoutManager(gridLayoutManager);
         recyclerRight.setAdapter(categoryRightAdapter);
         categoryRightAdapter.setEmptyView(LayoutInflater.from(_mActivity).inflate(R.layout.view_empty, null));
+
+        categoryRightAdapter.setOnItemClickListener((adapter, view, position) -> {
+            CategoryBean categoryBean = (CategoryBean) adapter.getData().get(position);
+            Intent intent = new Intent(_mActivity, SearchProductListActivity.class);
+            intent.putExtra(AppConstant.ActivityIntent.SEARCH_CONTENT, categoryBean.getName());
+            _mActivity.startActivity(intent);
+        });
     }
 
     private void initLeftRecycler() {

@@ -22,6 +22,8 @@ public interface FindContract {
         void refreshView(List<MomentBean> data);
 
         void starSuccess();
+
+        void commentSuccess();
     }
 
     interface Model extends IModel {
@@ -30,5 +32,13 @@ public interface FindContract {
         Observable<BaseResponse<MomentDetails>> momentsDetails(int momentId);
 
         Observable<BaseResponse> starMoment(int momentId);
+
+        Observable<BaseResponse> momentsComment(
+                Integer momentsId,
+                String content,
+                Integer replyId,
+                String images
+        );
+
     }
 }

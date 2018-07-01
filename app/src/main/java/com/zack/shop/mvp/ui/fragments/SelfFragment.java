@@ -33,13 +33,8 @@ import com.zack.shop.mvp.ui.activity.set.AppSetActivity;
 import com.zack.shop.mvp.utils.AppConstant;
 import com.zack.shop.mvp.utils.PicChooserHelper;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.rong.imkit.RongIM;
-import io.rong.imlib.model.Conversation;
 
 import static com.zack.shop.mvp.utils.PicChooserHelper.PicType.Avatar;
 
@@ -53,6 +48,8 @@ public class SelfFragment extends BaseSupportFragment<SelfPresenter> implements 
     ImageView ivHeader;
     @BindView(R.id.tv_name)
     TextView tvName;
+    @BindView(R.id.tv_role)
+    TextView tvRole;
     private PicChooserHelper picChooserHelper;
 
     private UserBean userBean;
@@ -93,7 +90,7 @@ public class SelfFragment extends BaseSupportFragment<SelfPresenter> implements 
 
     }
 
-    @OnClick({R.id.iv_header, R.id.iv_set, R.id.iv_message, R.id.ll_header, R.id.ll_wait_pay, R.id.ll_wait_send, R.id.ll_wait_receive, R.id.ll_pay_after, R.id.ll_create_product, R.id.ll_manage_product})
+    @OnClick({R.id.iv_header, R.id.iv_set, R.id.ll_header, R.id.ll_wait_pay, R.id.ll_wait_send, R.id.ll_wait_receive, R.id.ll_pay_after, R.id.ll_create_product, R.id.ll_manage_product, R.id.tv_see_more_order})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_header:
@@ -109,12 +106,6 @@ public class SelfFragment extends BaseSupportFragment<SelfPresenter> implements 
                     _mActivity.startActivity(intent);
                 }
                 break;
-            case R.id.iv_message:
-                //启动聊天列表界面
-                Map<String, Boolean> supportedConversation = new HashMap<>();
-                supportedConversation.put(Conversation.ConversationType.PRIVATE.getName(), false);
-                RongIM.getInstance().startConversationList(_mActivity, supportedConversation);
-                break;
             case R.id.ll_header:
                 break;
             case R.id.ll_wait_pay:
@@ -126,6 +117,9 @@ public class SelfFragment extends BaseSupportFragment<SelfPresenter> implements 
             case R.id.ll_wait_receive:
                 _mActivity.startActivity(new Intent(_mActivity, OrderManageListActivity.class));
                 break;
+            case R.id.tv_see_more_order:
+                _mActivity.startActivity(new Intent(_mActivity, OrderManageListActivity.class));
+                break;
             case R.id.ll_pay_after:
                 ArmsUtils.snackbarText("售后");
                 break;
@@ -135,6 +129,7 @@ public class SelfFragment extends BaseSupportFragment<SelfPresenter> implements 
             case R.id.ll_manage_product:
                 _mActivity.startActivity(new Intent(_mActivity, ManageProductActivity.class));
                 break;
+
         }
     }
 
@@ -178,6 +173,18 @@ public class SelfFragment extends BaseSupportFragment<SelfPresenter> implements 
                 .apply(new RequestOptions().transforms(new CenterCrop(), new RoundedCorners(120)))
                 .into(ivHeader);
         tvName.setText(data.getUsername());
+        switch (data.getRole()) {
+            case 0:
+                tvRole.setText("VVip用户");
+                break;
+            case 1:
+                tvRole.setText("Vip用户");
+                break;
+            case 2:
+                tvRole.setText("普通用户");
+                break;
+
+        }
         this.userBean = data;
     }
 

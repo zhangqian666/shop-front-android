@@ -16,7 +16,11 @@ public class MomentCommentBean {
     private String username;
     private String userImage;
     private Integer status;
+    private Integer followId;
+    private Integer replyUserId;
+    private String replyUserName;
     private Integer momentsId;
     private String content;
     private String images;
+    private int momentPosition;
 }

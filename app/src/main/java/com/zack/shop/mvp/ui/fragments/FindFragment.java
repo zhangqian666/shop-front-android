@@ -1,6 +1,7 @@
 package com.zack.shop.mvp.ui.fragments;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,10 +22,12 @@ import com.zack.shop.app.base.BaseSupportFragment;
 import com.zack.shop.di.component.DaggerFindComponent;
 import com.zack.shop.di.module.FindModule;
 import com.zack.shop.mvp.contract.FindContract;
+import com.zack.shop.mvp.http.entity.moment.CommentBean;
 import com.zack.shop.mvp.http.entity.moment.MomentBean;
 import com.zack.shop.mvp.presenter.FindPresenter;
 import com.zack.shop.mvp.ui.activity.comment.PublishCommentActivity;
 import com.zack.shop.mvp.ui.adapter.FindAdapter;
+import com.zack.shop.mvp.ui.widget.WexinCommentInputView;
 
 import java.util.List;
 
@@ -52,7 +55,11 @@ public class FindFragment extends BaseSupportFragment<FindPresenter> implements 
     TextView toolbarTitle;
     @BindView(R.id.toolbar_right)
     TextView toolbarRight;
-
+    private LinearLayoutManager linearLayoutManager;
+    private int selectCircleItemH;
+    private double currentKeyboardH;
+    private int screenHeight;
+    private CommentBean commentBean;
 
     public FindFragment() {
         // Required empty public constructor
@@ -73,6 +80,7 @@ public class FindFragment extends BaseSupportFragment<FindPresenter> implements 
         return inflater.inflate(R.layout.fragment_find, container, false);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
         toolbarRight.setVisibility(View.VISIBLE);
@@ -82,7 +90,9 @@ public class FindFragment extends BaseSupportFragment<FindPresenter> implements 
         });
         toolbarTitle.setText("发现");
         swipeRefreshLayout.setOnRefreshListener(this);
-        recyclerFindList.setLayoutManager(new LinearLayoutManager(_mActivity));
+        linearLayoutManager = new LinearLayoutManager(_mActivity);
+
+        recyclerFindList.setLayoutManager(linearLayoutManager);
         recyclerFindList.setAdapter(findAdapter);
         findAdapter.setEmptyView(LayoutInflater.from(_mActivity).inflate(R.layout.view_empty, null));
         findAdapter.setOnHeartClickListener(new FindAdapter.OnHeartClickListener() {
@@ -96,11 +106,30 @@ public class FindFragment extends BaseSupportFragment<FindPresenter> implements 
             @Override
             public void onHeaderClick(Integer userId, String username) {
                 RongIM.getInstance().startPrivateChat(_mActivity, userId.toString(), username);
+            }
 
+            @Override
+            public void onCommentClick(View view, CommentBean item) {
+                new WexinCommentInputView(_mActivity, view, (b, result) -> {
+                    if (mPresenter != null) {
+                        commentBean = item;
+                        mPresenter.publishComment(item.getMomentId(), result, null);
+                    }
+                });
+            }
+
+            @Override
+            public void onMomentCommentBeanClick(View view, CommentBean item) {
+                new WexinCommentInputView(_mActivity, view, (b, result) -> {
+                    if (mPresenter != null) {
+                        commentBean = item;
+                        mPresenter.publishComment(item.getMomentId(), result, item.getReplyId());
+                    }
+                });
             }
         });
-
     }
+
 
     @Override
     public void onStart() {
@@ -123,6 +152,13 @@ public class FindFragment extends BaseSupportFragment<FindPresenter> implements 
 
     @Override
     public void starSuccess() {
+        if (mPresenter != null) {
+            mPresenter.getMoments();
+        }
+    }
+
+    @Override
+    public void commentSuccess() {
         if (mPresenter != null) {
             mPresenter.getMoments();
         }
@@ -163,5 +199,13 @@ public class FindFragment extends BaseSupportFragment<FindPresenter> implements 
         if (mPresenter != null) {
             mPresenter.getMoments();
         }
+
     }
+
+
 }
+
+
+
+
+

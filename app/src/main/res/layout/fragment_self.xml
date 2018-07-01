@@ -62,6 +62,7 @@
                             android:textSize="@dimen/text_title" />
 
                         <TextView
+                            android:id="@+id/tv_role"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
@@ -90,19 +91,8 @@
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
                         android:src="@mipmap/icon_set_white" />
-
-                    <ImageView
-                        android:id="@+id/iv_message"
-                        android:layout_width="23dp"
-                        android:layout_height="23dp"
-                        android:layout_marginEnd="10dp"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/icon_message_white"
-                        android:visibility="gone" />
                 </LinearLayout>
             </LinearLayout>
-
 
         </LinearLayout>
 
@@ -125,7 +115,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="33"
+                    android:text="0"
                     android:textColor="@color/text_black_33"
                     android:textSize="@dimen/text_normal" />
 
@@ -133,7 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="待付款"
+                    android:text="关注的商品"
                     android:textColor="@color/text_black_99"
                     android:textSize="@dimen/text_small" />
             </LinearLayout>
@@ -148,7 +138,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="33"
+                    android:text="0"
                     android:textColor="@color/text_black_33"
                     android:textSize="@dimen/text_normal" />
 
@@ -156,7 +146,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="待付款"
+                    android:text="关注的人"
                     android:textColor="@color/text_black_99"
                     android:textSize="@dimen/text_small" />
             </LinearLayout>
@@ -171,7 +161,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="33"
+                    android:text="0"
                     android:textColor="@color/text_black_33"
                     android:textSize="@dimen/text_normal" />
 
@@ -179,7 +169,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="待付款"
+                    android:text="已发表文章"
                     android:textColor="@color/text_black_99"
                     android:textSize="@dimen/text_small" />
             </LinearLayout>
@@ -194,7 +184,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="33"
+                    android:text="0"
                     android:textColor="@color/text_black_33"
                     android:textSize="@dimen/text_normal" />
 
@@ -202,7 +192,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="待付款"
+                    android:text="收到的评论"
                     android:textColor="@color/text_black_99"
                     android:textSize="@dimen/text_small" />
             </LinearLayout>
@@ -223,6 +213,7 @@
                 android:textSize="@dimen/text_normal" />
 
             <TextView
+                android:id="@+id/tv_see_more_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"

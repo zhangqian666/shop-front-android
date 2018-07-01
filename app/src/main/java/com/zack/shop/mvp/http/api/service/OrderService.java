@@ -55,7 +55,7 @@ public interface OrderService {
     @POST("/user/order/cancel")
     @FormUrlEncoded
     Observable<BaseResponse> orderCancel(
-            @Field("orderNo") Long orderNo
+            @Field("orderId") Long orderNo
     );
 
 }
