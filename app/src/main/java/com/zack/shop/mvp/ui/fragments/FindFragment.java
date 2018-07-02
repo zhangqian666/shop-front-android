@@ -2,8 +2,11 @@ package com.zack.shop.mvp.ui.fragments;
 
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +16,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.jess.arms.di.component.AppComponent;
@@ -27,7 +31,6 @@ import com.zack.shop.mvp.http.entity.moment.MomentBean;
 import com.zack.shop.mvp.presenter.FindPresenter;
 import com.zack.shop.mvp.ui.activity.comment.PublishCommentActivity;
 import com.zack.shop.mvp.ui.adapter.FindAdapter;
-import com.zack.shop.mvp.ui.widget.WexinCommentInputView;
 
 import java.util.List;
 
@@ -60,6 +63,8 @@ public class FindFragment extends BaseSupportFragment<FindPresenter> implements 
     private double currentKeyboardH;
     private int screenHeight;
     private CommentBean commentBean;
+    private Dialog showInputdialog;
+    private int previousKeyboardHeight = -1;
 
     public FindFragment() {
         // Required empty public constructor
@@ -110,26 +115,74 @@ public class FindFragment extends BaseSupportFragment<FindPresenter> implements 
 
             @Override
             public void onCommentClick(View view, CommentBean item) {
-                new WexinCommentInputView(_mActivity, view, (b, result) -> {
-                    if (mPresenter != null) {
-                        commentBean = item;
-                        mPresenter.publishComment(item.getMomentId(), result, null);
-                    }
-                });
+//                new WexinCommentInputView(_mActivity, view, (b, result) -> {
+//                    if (mPresenter != null) {
+//                        commentBean = item;
+//                        mPresenter.publishComment(item.getMomentId(), result, null);
+//                    }
+//                });
+                showInputComment(view, 0, item);
             }
 
             @Override
             public void onMomentCommentBeanClick(View view, CommentBean item) {
-                new WexinCommentInputView(_mActivity, view, (b, result) -> {
-                    if (mPresenter != null) {
-                        commentBean = item;
-                        mPresenter.publishComment(item.getMomentId(), result, item.getReplyId());
+//                new WexinCommentInputView(_mActivity, view, (b, result) -> {
+//                    if (mPresenter != null) {
+//                        commentBean = item;
+//
+//                    }
+//                });
+                showInputComment(view, 0, item);
+            }
+        });
+
+
+        _mActivity.getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+            Rect rect = new Rect();
+            _mActivity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+            Integer displayHeight = rect.bottom - rect.top;
+            int height = _mActivity.getWindow().getDecorView().getHeight();
+            int keyboardHeight = height - displayHeight;
+            if (previousKeyboardHeight != keyboardHeight) {
+                boolean hide = displayHeight.doubleValue() / height > 0.8;
+                if (hide) {
+                    if (showInputdialog != null) {
+                        showInputdialog.dismiss();
                     }
-                });
+                }
             }
         });
     }
 
+    private void showInputComment(View commentView, Integer position, CommentBean commentBean) {
+        // RV中评论区起始Y的位置
+        int rvInputY = getY(commentView);
+        int rvInputHeight = commentView.getHeight();
+
+        showInputdialog = new Dialog(_mActivity, android.R.style.Theme_Translucent_NoTitleBar);
+        showInputdialog.setContentView(R.layout.view_popup_window);
+        showInputdialog.show();
+
+        new Handler().postDelayed(() -> {
+            int dialogY = getY(showInputdialog.findViewById(R.id.dialog_layout_comment));
+            recyclerFindList.smoothScrollBy(0, rvInputY - (dialogY - rvInputHeight));
+        }, 500);
+
+        showInputdialog.findViewById(R.id.tv_commit).setOnClickListener(v -> {
+            if (mPresenter != null) {
+                String str = ((EditText) showInputdialog.findViewById(R.id.et_comment)).getText().toString().trim();
+                mPresenter.publishComment(commentBean.getMomentId(), str, commentBean.getReplyId());
+            }
+            showInputdialog.dismiss();
+        });
+    }
+
+    private int getY(View view) {
+        int[] rect = new int[2];
+        view.getLocationOnScreen(rect);
+        return rect[1];
+
+    }
 
     @Override
     public void onStart() {

@@ -121,10 +121,10 @@ public class FindAdapter extends BaseQuickAdapter<MomentBean, BaseViewHolder> {
             findCommentAdapter.setNewData(momentCommentVoList);
         } else commentList.setVisibility(View.GONE);
 
-        findCommentAdapter.setOnFindCommentAdapterClickListener(commentBean -> {
+        findCommentAdapter.setOnFindCommentAdapterClickListener((view, commentBean) -> {
             if (onHeartClickListener != null) {
                 commentBean.setPosition(helper.getAdapterPosition());
-                onHeartClickListener.onMomentCommentBeanClick(helper.getView(R.id.iv_bottom_comment), commentBean);
+                onHeartClickListener.onMomentCommentBeanClick(view, commentBean);
             }
         });
 

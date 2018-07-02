@@ -2,12 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ll_comment"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/normal_height"
-    android:background="@color/normal_back_ground">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </ScrollView>
 
     <LinearLayout
+        android:id="@+id/dialog_layout_comment"
         android:layout_width="match_parent"
         android:layout_height="@dimen/normal_height"
+        android:background="@color/normal_back_ground"
         android:focusable="true"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -23,6 +33,7 @@
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:background="@drawable/bg_search_home"
+            android:maxLines="1"
             android:paddingEnd="@dimen/margin_left_right"
             android:paddingStart="@dimen/margin_left_right" />
 

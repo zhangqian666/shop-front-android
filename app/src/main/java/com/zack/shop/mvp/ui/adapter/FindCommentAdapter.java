@@ -1,5 +1,7 @@
 package com.zack.shop.mvp.ui.adapter;
 
+import android.view.View;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zack.shop.R;
@@ -28,14 +30,14 @@ public class FindCommentAdapter extends BaseQuickAdapter<MomentCommentBean, Base
                 CommentBean commentBean = new CommentBean();
                 commentBean.setReplyId(item.getUserId());
                 commentBean.setMomentId(item.getMomentsId());
-                onFindCommentAdapterClickListener.onClick(commentBean);
+                onFindCommentAdapterClickListener.onClick(helper.getView(R.id.tv_comment), commentBean);
             }
 
         });
     }
 
     public interface OnFindCommentAdapterClickListener {
-        void onClick(CommentBean momentCommentBean);
+        void onClick(View view, CommentBean commentBean);
     }
 
     private OnFindCommentAdapterClickListener onFindCommentAdapterClickListener;
