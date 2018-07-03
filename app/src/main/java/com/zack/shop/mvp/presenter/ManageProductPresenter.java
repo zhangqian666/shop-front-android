@@ -36,7 +36,7 @@ public class ManageProductPresenter extends BasePresenter<IModel, ManageProductC
     }
 
     public void list() {
-        productModel.list()
+        productModel.list(null)
                 .compose(RxUtils.applySchedulers(mRootView))
                 .subscribe(new ErrorHandleSubscriber<BaseResponse<List<Product>>>(rxErrorHandler) {
                     @Override

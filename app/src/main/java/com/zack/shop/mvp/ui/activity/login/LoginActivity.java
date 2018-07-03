@@ -57,12 +57,7 @@ public class LoginActivity extends BaseSupportActivity<LoginPresenter> implement
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-        String token = (String) SpUtils.get(mContext, AppConstant.Api.TOKEN, "");
-        Timber.e(token + "===" + !TextUtils.isEmpty(token));
-        if (!TextUtils.isEmpty(token)) {
-            startActivity(new Intent(mContext, MainActivity.class));
-            finish();
-        }
+
     }
 
     @OnClick({R.id.btn_login, R.id.btn_register})

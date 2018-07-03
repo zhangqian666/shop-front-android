@@ -21,7 +21,7 @@
     <color name="white">#ffffff</color>
     <color name="red">#c20c0c</color>
     <color name="red_66">#ec0f38</color>
-    <color name="red_transparent_66">#66c20c0c</color>
+    <color name="red_transparent_66">#33c20c0c</color>
     <color name="main_color">@color/red</color>
     <!--<color name="main_color">#7EABF4</color>-->
     <color name="main_color_aa">#aac20c0c</color>

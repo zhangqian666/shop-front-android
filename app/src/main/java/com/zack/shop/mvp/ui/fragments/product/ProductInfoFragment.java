@@ -1,6 +1,5 @@
 package com.zack.shop.mvp.ui.fragments.product;
 
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,7 +8,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -45,36 +43,24 @@ public class ProductInfoFragment extends BaseSupportFragment implements SlideDet
     ScrollView scrollView;
     @BindView(R.id.vp_item_goods_img)
     Banner bannerTitle;
-//    @BindView(R.id.vp_recommend)
-//    Banner bannerRecommend;
     @BindView(R.id.tv_goods_title)
     TextView productTitle;
+    @BindView(R.id.tv_goods_sub_title)
+    TextView productSubTitle;
     @BindView(R.id.tv_new_price)
     TextView newPrice;
-    @BindView(R.id.tv_old_price)
-    TextView oldPrice;
-    @BindView(R.id.tv_current_goods)
-    TextView currentProductType;
+    @BindView(R.id.tv_user_role)
+    TextView tvUserRole;
     @BindView(R.id.tv_comment_count)
     TextView commentCount;
-    @BindView(R.id.tv_good_comment)
-    TextView goodCommentCount;
     @BindView(R.id.ll_empty_comment)
     LinearLayout llEmptyComment;
-//    @BindView(R.id.ll_recommend)
-//    LinearLayout llRecommend;
     @BindView(R.id.ll_pull_up)
     LinearLayout llPullUp;
     @BindView(R.id.ll_current_goods)
     LinearLayout llCurrentProduct;
     @BindView(R.id.fab_up_slide)
     FloatingActionButton fabUpSlide;
-    @BindView(R.id.ll_activity)
-    LinearLayout llActivity;
-    @BindView(R.id.iv_ensure)
-    ImageView ivEnsure;
-    @BindView(R.id.ll_comment)
-    LinearLayout llComment;
     private Product productBean;
 
 
@@ -105,17 +91,15 @@ public class ProductInfoFragment extends BaseSupportFragment implements SlideDet
     }
 
     private void initFab() {
-        oldPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         fabUpSlide.hide();
     }
 
     private void initText() {
         productTitle.setText(productBean.getName());
+        productSubTitle.setText(productBean.getSubtitle());
         newPrice.setText(String.format("%s", productBean.getPrice()));
-        oldPrice.setText(String.format("%s", productBean.getPrice()));
-        currentProductType.setText("普通类型，1件");
-        commentCount.setText("0");
-        goodCommentCount.setText("0");
+        tvUserRole.setText(String.format("%s", "普通会员"));
+        commentCount.setText(String.format("(%s)", "0"));
     }
 
     private void initBanner() {
@@ -132,17 +116,6 @@ public class ProductInfoFragment extends BaseSupportFragment implements SlideDet
                 bannerTitle.setIndicatorGravity(BannerConfig.CENTER);
                 bannerTitle.setImages(subImages);
                 bannerTitle.start();
-            }
-            {
-//                bannerRecommend.setImageLoader(new GlideImageLoader());
-////                //设置自动轮播，默认为true
-//                bannerRecommend.isAutoPlay(false);
-////                //设置轮播时间
-////                bannerRecommend.setDelayTime(1500);
-//                //设置指示器位置（当banner模式中有指示器时）
-//                bannerRecommend.setIndicatorGravity(BannerConfig.CENTER);
-//                bannerRecommend.setImages(subImages);
-//                bannerRecommend.start();
             }
         }
     }

@@ -35,9 +35,9 @@ public class ProductModel extends BaseModel implements RecommendContract.Model, 
                 .getRecommendedProducts(0, 0, "");
     }
 
-    public Observable<BaseResponse<List<Product>>> list() {
+    public Observable<BaseResponse<List<Product>>> list(Integer userId) {
         return mRepositoryManager.obtainRetrofitService(ProductService.class)
-                .list();
+                .list(userId);
     }
 
 

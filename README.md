@@ -48,7 +48,7 @@
   * **CSDN**: <https://blog.csdn.net/u014365133?viewmode=contents>
   * **GITHUB**: <https://github.com/zhangqian666>
   ## Thank support
-  * **UI美工**: <1069937433@qq.com>  
+  * **UI美工产品**: <1069937433@qq.com>  
   * **MvpArms框架**: https://github.com/JessYanCoding/MVPArms
   
 

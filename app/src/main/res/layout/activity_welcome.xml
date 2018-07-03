@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mvp.ui.activity.login.WelcomeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_left_right"
+            android:text="权限声明"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_margin="@dimen/margin_left_right"
+            android:text="      本APP仅用于学习用(不可以用于其他用途)，里面的接口请大家谨慎使用。目前APP可以使用默认的服务器，回调速度还是可以学习用的，请不要用于其他用途。
+       本项目开源是用于大家学习专用，如果大家觉得项目有可借鉴的地方希望大家可以在github上点赞，关注一下我。
+       该项目的顺利进行还要感谢很多支持本项目的人（见项目readme），希望大家在项目里面可以学到自己希望学到的知识。"
+            android:textColor="@color/text_black_33"
+            android:textSize="@dimen/text_normal" />
+
+
+        <CheckBox
+            android:id="@+id/cb_agree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="100dp"
+            android:text="同意该权限声明" />
+
+        <Button
+            android:id="@+id/btn_complete"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/margin_left_right"
+            android:background="@drawable/bg_login_btn"
+            android:text="完成"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</ScrollView>

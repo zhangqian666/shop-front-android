@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 
 import com.jaeger.library.StatusBarUtil;
 import com.jess.arms.di.component.AppComponent;
+import com.jess.arms.utils.ArmsUtils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zack.shop.R;
 import com.zack.shop.app.base.BaseSupportActivity;
@@ -50,6 +51,7 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
     private BottomBarTab cartTab;
     private BottomBarTab findTab;
     private BottomBarTab selfTab;
+    private double firstTime = 0;
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
@@ -224,5 +226,14 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
         StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, null);
     }
 
-
+    @Override
+    public void onBackPressedSupport() {
+        long secondTime = System.currentTimeMillis();
+        if (secondTime - firstTime > 2000) {
+            ArmsUtils.snackbarText("再按一次退出程序");
+            firstTime = secondTime;
+        } else {
+            ArmsUtils.exitApp();
+        }
+    }
 }

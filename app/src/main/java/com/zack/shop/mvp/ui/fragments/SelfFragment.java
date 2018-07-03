@@ -175,10 +175,10 @@ public class SelfFragment extends BaseSupportFragment<SelfPresenter> implements 
         tvName.setText(data.getUsername());
         switch (data.getRole()) {
             case 0:
-                tvRole.setText("VVip用户");
+                tvRole.setText("超级管理员");
                 break;
             case 1:
-                tvRole.setText("Vip用户");
+                tvRole.setText("管理员");
                 break;
             case 2:
                 tvRole.setText("普通用户");

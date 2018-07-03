@@ -15,6 +15,7 @@ public interface AppConstant {
 
     interface User {
         String INFO = "userInfo";
+        String ID = "id";
     }
 
     interface ActivityIntent {
@@ -32,4 +33,6 @@ public interface AppConstant {
         String FILE_PROVIDER = "com.zack.shop.FileProvider";
 
     }
+
+    String FIRST_OPEN = "FIRST_OPEN";
 }

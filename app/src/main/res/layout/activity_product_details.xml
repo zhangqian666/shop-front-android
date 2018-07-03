@@ -38,6 +38,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             app:tabIndicatorColor="@color/red"
+            app:tabMaxWidth="60dp"
             app:tabSelectedTextColor="@color/text_black_33"
             app:tabTextColor="@color/text_black_99" />
 
@@ -73,6 +74,7 @@
             android:id="@+id/ll_connect_sale"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/margin_left_right"
             android:layout_marginStart="@dimen/margin_left_right"
             android:gravity="center"
             android:orientation="vertical">
@@ -120,6 +122,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="@dimen/margin_left_right"
+            android:layout_marginStart="@dimen/margin_left_right"
             android:elevation="@dimen/normal_elevation_height"
             android:gravity="center"
             android:orientation="vertical">

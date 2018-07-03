@@ -10,9 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jess.arms.di.component.AppComponent;
-import com.jess.arms.utils.ArmsUtils;
 import com.zack.shop.R;
 import com.zack.shop.app.base.BaseSupportActivity;
 import com.zack.shop.di.component.DaggerLoginComponent;
@@ -96,7 +96,7 @@ public class RegisterActivity extends BaseSupportActivity<LoginPresenter> implem
 
     @Override
     public void showMessage(@NonNull String message) {
-        ArmsUtils.snackbarText(message);
+        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

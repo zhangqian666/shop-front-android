@@ -27,11 +27,6 @@ public interface ProductService {
             @Query("orderBy") String orderBy
     );
 
-    @GET("/user/product/recommend")
-    Observable<BaseResponse<Product>> getRecommendedImages(
-            @Query("type") int type
-    );
-
 
     @POST("/user/product/list")
     @FormUrlEncoded
@@ -58,10 +53,10 @@ public interface ProductService {
             @Field("status") Integer status
     );
 
+    @FormUrlEncoded
     @POST("/manage/product/list")
     Observable<BaseResponse<List<Product>>> list(
-
-    );
+            @Field("userId") Integer userId);
 
     @FormUrlEncoded
     @POST("/manage/product/status")

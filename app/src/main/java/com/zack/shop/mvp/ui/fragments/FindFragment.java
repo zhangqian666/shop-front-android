@@ -29,15 +29,16 @@ import com.zack.shop.mvp.contract.FindContract;
 import com.zack.shop.mvp.http.entity.moment.CommentBean;
 import com.zack.shop.mvp.http.entity.moment.MomentBean;
 import com.zack.shop.mvp.presenter.FindPresenter;
+import com.zack.shop.mvp.ui.activity.UserDetailsActivity;
 import com.zack.shop.mvp.ui.activity.comment.PublishCommentActivity;
 import com.zack.shop.mvp.ui.adapter.FindAdapter;
+import com.zack.shop.mvp.utils.AppConstant;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import io.rong.imkit.RongIM;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -110,7 +111,9 @@ public class FindFragment extends BaseSupportFragment<FindPresenter> implements 
 
             @Override
             public void onHeaderClick(Integer userId, String username) {
-                RongIM.getInstance().startPrivateChat(_mActivity, userId.toString(), username);
+                Intent intent = new Intent(_mActivity, UserDetailsActivity.class);
+                intent.putExtra(AppConstant.User.ID, userId);
+                startActivity(intent);
             }
 
             @Override

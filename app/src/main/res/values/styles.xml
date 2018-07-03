@@ -7,6 +7,10 @@
         <item name="colorPrimaryDark">@color/main_color</item>
         <item name="colorAccent">@color/main_color</item>
         <item name="android:windowSoftInputMode">adjustPan</item>
+    </style> <!-- Base application theme. -->
+    <style name="Splash_Theme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@mipmap/icon_splash_2</item>
     </style>
 
 </resources>
