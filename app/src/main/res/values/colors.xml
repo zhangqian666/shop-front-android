@@ -28,4 +28,8 @@
     <color name="bottom_navigation_unselected">#515151</color>
     <color name="bottom_navigation_selected">@color/red</color>
     <color name="black_transparent_cc">#33000000</color>
+    <color name="yellow">#FF9402</color>
+
+    <color name="text_click_bg">#E6E9EB</color>
+    <color name="text_click_bg_press">@color/text_black_99</color>
 </resources>

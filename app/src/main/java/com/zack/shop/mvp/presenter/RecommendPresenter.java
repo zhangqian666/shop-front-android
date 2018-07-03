@@ -22,12 +22,12 @@ import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 
 @FragmentScope
 public class RecommendPresenter extends BasePresenter<RecommendContract.Model, RecommendContract.View> {
-    private RxErrorHandler rxErrorHandler;
+    @Inject
+    RxErrorHandler rxErrorHandler;
 
     @Inject
-    public RecommendPresenter(RecommendContract.Model model, RecommendContract.View rootView, RxErrorHandler rxErrorHandler) {
+    public RecommendPresenter(RecommendContract.Model model, RecommendContract.View rootView) {
         super(model, rootView);
-        this.rxErrorHandler = rxErrorHandler;
     }
 
 

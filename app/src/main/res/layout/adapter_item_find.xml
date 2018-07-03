@@ -71,6 +71,7 @@
             android:layout_weight="1" />
 
         <ImageView
+            android:id="@+id/iv_bottom_comment"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:scaleType="fitXY"
@@ -108,6 +109,16 @@
 
 
     </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_comment_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_left_right"
+        android:layout_marginEnd="@dimen/margin_left_right"
+        android:layout_marginStart="@dimen/margin_left_right"
+        android:background="@mipmap/icon_find_bg"
+        android:padding="5dp" />
 
     <View
         android:layout_width="match_parent"

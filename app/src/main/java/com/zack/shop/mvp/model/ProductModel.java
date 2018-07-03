@@ -40,6 +40,16 @@ public class ProductModel extends BaseModel implements RecommendContract.Model, 
                 .list();
     }
 
+
+    public Observable<BaseResponse<List<Product>>> searchProductByKeyWordOrCategoryId(String keyword,
+                                                                                      Integer categoryId,
+                                                                                      int pageNum,
+                                                                                      int pageSize,
+                                                                                      String orderBy) {
+        return mRepositoryManager.obtainRetrofitService(ProductService.class)
+                .searchProductByKeyWordOrCategoryId(keyword, categoryId, pageNum, pageSize, orderBy);
+    }
+
     public Observable<BaseResponse> updateStatus(Integer productId,
                                                  Integer status) {
         return mRepositoryManager.obtainRetrofitService(ProductService.class)
@@ -63,7 +73,7 @@ public class ProductModel extends BaseModel implements RecommendContract.Model, 
             Integer stock,
             Integer status) {
         return mRepositoryManager.obtainRetrofitService(ProductService.class)
-                .createProduct(id,categoryId, name, subtitle, mainImage, subImage, "", price, stock, status);
+                .createProduct(id, categoryId, name, subtitle, mainImage, subImage, "", price, stock, status);
     }
 
     public Observable<BaseResponse<String>> upLoadImage(MultipartBody.Part upload_file) {

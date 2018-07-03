@@ -33,7 +33,7 @@ public interface CartService {
     @FormUrlEncoded
     @POST("/user/cart/delete")
     Observable<BaseResponse> deleteProduct(
-            @Field("productIds") String productIds
+            @Field("PRODUCT_IDS") String productIds
     );
 
     @FormUrlEncoded

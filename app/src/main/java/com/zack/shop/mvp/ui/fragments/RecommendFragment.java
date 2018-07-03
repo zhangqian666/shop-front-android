@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.jess.arms.di.component.AppComponent;
 import com.youth.banner.Banner;
@@ -29,6 +30,7 @@ import com.zack.shop.mvp.http.entity.product.Product;
 import com.zack.shop.mvp.http.entity.product.RecommendBean;
 import com.zack.shop.mvp.presenter.RecommendPresenter;
 import com.zack.shop.mvp.ui.activity.product.ProductDetailsActivity;
+import com.zack.shop.mvp.ui.activity.product.SearchActivity;
 import com.zack.shop.mvp.ui.adapter.RecommendQuickAdapter;
 import com.zack.shop.mvp.ui.widget.RecommendItemDecoration;
 import com.zack.shop.mvp.utils.AppConstant;
@@ -71,6 +73,9 @@ public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> i
 
     @BindView(R.id.iv_red_point)
     ImageView ivRedPoint;
+
+    @BindView(R.id.rl_search_bar)
+    RelativeLayout rlSearchBar;
 
     @Inject
     List<Product> recommendProductsBeans;
@@ -131,6 +136,10 @@ public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> i
                     RongIM.getInstance().startConversationList(_mActivity, supportedConversation)
             );
         }
+        rlSearchBar.setOnClickListener(v -> {
+            _mActivity.startActivity(new Intent(_mActivity, SearchActivity.class));
+        });
+
     }
 
     private void initRecycler() {
@@ -145,7 +154,7 @@ public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> i
         recommendQuickAdapter.setOnItemClickListener((adapter, view, position) -> {
                     Intent intent = new Intent(_mActivity, ProductDetailsActivity.class);
                     Bundle extras = new Bundle();
-                    extras.putSerializable(AppConstant.ActivityIntent.Bean,
+                    extras.putSerializable(AppConstant.ActivityIntent.BEAN,
                             ((Product) (adapter.getData()).get(position)));
                     intent.putExtras(extras);
                     startActivity(intent);

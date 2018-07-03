@@ -1,4 +1,4 @@
-package com.zack.shop.mvp.ui.fragments;
+package com.zack.shop.mvp.ui.fragments.product;
 
 
 import android.os.Bundle;

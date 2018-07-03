@@ -95,7 +95,11 @@
         <activity android:name=".mvp.ui.activity.comment.PublishCommentActivity" />
         <activity android:name=".mvp.ui.activity.order.CreateOrderActivity" />
         <activity android:name=".mvp.ui.activity.product.CreateProductActivity" />
-        <activity android:name=".mvp.ui.activity.product.ManageProductActivity"/>
+        <activity android:name=".mvp.ui.activity.product.ManageProductActivity" />
+        <activity android:name=".mvp.ui.activity.order.OrderManageListActivity" />
+        <activity android:name=".mvp.ui.activity.product.SearchActivity" />
+        <activity android:name=".mvp.ui.activity.product.SearchProductListActivity" />
+        <activity android:name=".mvp.ui.activity.PhotoViewActivity"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,7 @@
 package com.zack.shop.mvp.http.entity.moment;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,5 +29,7 @@ public class MomentBean {
     private Integer star;
     private Integer starEnable;
     private Integer seeTimes;
-    private Integer momentCommentTimes;
+
+    private int position;
+    private List<MomentCommentBean> momentCommentVoList;
 }

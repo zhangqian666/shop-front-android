@@ -37,7 +37,7 @@ public interface ProductService {
     @FormUrlEncoded
     Observable<BaseResponse<List<Product>>> searchProductByKeyWordOrCategoryId(
             @Field("keyword") String keyword,
-            @Field("categoryId") int categoryId,
+            @Field("categoryId") Integer categoryId,
             @Field("pageNum") int pageNum,
             @Field("pageSize") int pageSize,
             @Field("orderBy") String orderBy

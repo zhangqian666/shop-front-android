@@ -18,9 +18,14 @@ public interface AppConstant {
     }
 
     interface ActivityIntent {
-        String Bean = "Bean";
+        String BEAN = "BEAN";
         String USER_BEAN = "user_bean";
         String PRODUCT_BEAN = "product_bean";
+        String PRODUCT_IDS = "PRODUCT_IDS";
+
+        String ORDER_STATUS = "ORDER_STATUS";
+        String SEARCH_CONTENT = "SEARCH_CONTENT";
+        String IMAGE_URL = "IMAGE_URL";
     }
 
     interface Image {

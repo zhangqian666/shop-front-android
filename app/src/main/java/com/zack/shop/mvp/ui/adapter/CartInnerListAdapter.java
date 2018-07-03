@@ -57,7 +57,7 @@ public class CartInnerListAdapter extends BaseQuickAdapter<CartBean, BaseViewHol
         helper.getView(R.id.iv_product).setOnClickListener(v -> {
             Intent intent = new Intent(mContext, ProductDetailsActivity.class);
             Bundle extras = new Bundle();
-            extras.putSerializable(AppConstant.ActivityIntent.Bean, item.getProductVo());
+            extras.putSerializable(AppConstant.ActivityIntent.BEAN, item.getProductVo());
             intent.putExtras(extras);
             mContext.startActivity(intent);
         });

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_comment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/dialog_layout_comment"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normal_height"
+        android:background="@color/normal_back_ground"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/margin_left_right"
+        android:paddingStart="@dimen/margin_left_right">
+
+        <EditText
+            android:id="@+id/et_comment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="@dimen/margin_left_right"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_search_home"
+            android:maxLines="1"
+            android:paddingEnd="@dimen/margin_left_right"
+            android:paddingStart="@dimen/margin_left_right" />
+
+        <TextView
+            android:id="@+id/tv_commit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_circle_black"
+            android:paddingBottom="5dp"
+            android:paddingEnd="@dimen/margin_left_right"
+            android:paddingStart="@dimen/margin_left_right"
+            android:paddingTop="5dp"
+            android:text="发表"
+            android:textColor="@color/text_black_33"
+            android:textSize="@dimen/text_normal" />
+    </LinearLayout>
+</LinearLayout>

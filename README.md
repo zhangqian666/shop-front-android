@@ -1,9 +1,10 @@
 ## shop-front-android
+希望大家多多点赞 点赞多的话 我写完后会出个教程（由于我最近搬家更新比较慢，但是我会尽快写完，不过目前也可以用）
+* 如果对该项目有什么疑问的话 可以在app的发现界面提出问题，我看到后会评论进行解答
 
 #[`shop-back-java`](https://github.com/zhangqian666/shop-back-java)对应的android前端
 
-基于https://github.com/JessYanCoding/MVPArms 这个框架开发的商城
-
+####所用的技术点：
 1. [`Mvp` Google's official` Mvp` architecture project, which contains several different schema branches (this is the Dagger branch).](https://github.com/googlesamples/android-architecture/tree/todo-mvp-dagger/)
 2. [`Dagger2`](https://github.com/google/dagger)
 3. [`RxJava`](https://github.com/ReactiveX/RxJava)
@@ -46,7 +47,9 @@
   * **Email**: <415677303@qq.com>  
   * **CSDN**: <https://blog.csdn.net/u014365133?viewmode=contents>
   * **GITHUB**: <https://github.com/zhangqian666>
-  
+  ## Thank support
+  * **UI美工**: <1069937433@qq.com>  
+  * **MvpArms框架**: https://github.com/JessYanCoding/MVPArms
   
 
   

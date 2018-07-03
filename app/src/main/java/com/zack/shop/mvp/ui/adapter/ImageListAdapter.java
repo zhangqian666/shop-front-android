@@ -1,5 +1,6 @@
 package com.zack.shop.mvp.ui.adapter;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
@@ -7,6 +8,8 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zack.shop.R;
+import com.zack.shop.mvp.ui.activity.PhotoViewActivity;
+import com.zack.shop.mvp.utils.AppConstant;
 
 import java.util.List;
 
@@ -17,14 +20,21 @@ import java.util.List;
  **/
 public class ImageListAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
-    public ImageListAdapter(int layoutResId, @Nullable List<String> data) {
-        super(layoutResId, data);
+    public ImageListAdapter(@Nullable List<String> data) {
+        super(R.layout.adapter_item_image_list, data);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, String item) {
+        ImageView itemView = helper.getView(R.id.iv_item);
+        itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, PhotoViewActivity.class);
+            intent.putExtra(AppConstant.ActivityIntent.IMAGE_URL, item);
+            mContext.startActivity(intent);
+        });
         Glide.with(mContext).load(item)
-                .into(((ImageView) helper.getView(R.id.iv_item)));
+                .into(itemView);
+
     }
 
 }

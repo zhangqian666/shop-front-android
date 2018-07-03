@@ -27,8 +27,10 @@ import com.zack.shop.mvp.contract.CartContract;
 import com.zack.shop.mvp.http.entity.cart.CartBean;
 import com.zack.shop.mvp.http.entity.cart.StoreBean;
 import com.zack.shop.mvp.presenter.CartPresenter;
+import com.zack.shop.mvp.ui.activity.order.CreateOrderActivity;
 import com.zack.shop.mvp.ui.adapter.CartListAdapter;
 import com.zack.shop.mvp.ui.widget.AmountView;
+import com.zack.shop.mvp.utils.AppConstant;
 import com.zack.shop.mvp.utils.ProgressDialogUtils;
 
 import java.util.List;
@@ -143,25 +145,30 @@ public class CartFragment extends BaseSupportFragment<CartPresenter> implements 
 
     @OnClick(R.id.btn_balance)
     public void onViewClicked() {
+        List<CartBean> allCheckedCartBean = cartListAdapter.getAllCheckedCartBean();
+        if (allCheckedCartBean.size() == 0) {
+            showMessage("选中商品不能为空");
+            return;
+        }
+
+        //拼接字符串
+        StringBuilder productIds = new StringBuilder();
+        for (CartBean cb : allCheckedCartBean) {
+            productIds.append(cb.getProductId()).append(",");
+        }
+        productIds.deleteCharAt(productIds.length() - 1);
+
         if (isEdite) {
-            List<CartBean> allCheckedCartBean = cartListAdapter.getAllCheckedCartBean();
-            if (allCheckedCartBean.size() == 0) {
-                return;
-            }
             //删除当前选中的产品
-            {
-                StringBuilder productIds = new StringBuilder();
-                for (CartBean cb : allCheckedCartBean) {
-                    productIds.append(cb.getProductId()).append(",");
-                }
-                productIds.deleteCharAt(productIds.length() - 1);
-                if (mPresenter != null) {
-                    mPresenter.deleteProduct(productIds.toString());
-                }
+            if (mPresenter != null) {
+                mPresenter.deleteProduct(productIds.toString());
             }
             changeToComplete(false);
         } else {
-            ArmsUtils.snackbarText("去结算");
+            //去生成订单
+            Intent intent = new Intent(_mActivity, CreateOrderActivity.class);
+            intent.putExtra(AppConstant.ActivityIntent.PRODUCT_IDS, productIds.toString());
+            startActivity(intent);
         }
 
     }

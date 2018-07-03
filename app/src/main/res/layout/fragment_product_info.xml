@@ -23,7 +23,7 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="203dp"
+                    android:layout_height="350dp"
                     android:background="@color/white">
 
                     <com.youth.banner.Banner
@@ -266,32 +266,32 @@
                         android:textSize="@dimen/text_small" />
                 </LinearLayout>
 
-                <!-- 小二推荐 -->
-                <LinearLayout
-                    android:id="@+id/ll_recommend"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="#ffffff"
-                    android:orientation="vertical"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="12dp">
+                <!--&lt;!&ndash; 小二推荐 &ndash;&gt;-->
+                <!--<LinearLayout-->
+                <!--android:id="@+id/ll_recommend"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:background="#ffffff"-->
+                <!--android:orientation="vertical"-->
+                <!--android:paddingLeft="12dp"-->
+                <!--android:paddingRight="12dp">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="14dp"
-                        android:layout_marginTop="14dp"
-                        android:text="小二推荐"
-                        android:textColor="@color/text_black_33"
-                        android:textSize="@dimen/text_small" />
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="14dp"-->
+                <!--android:layout_marginTop="14dp"-->
+                <!--android:text="小二推荐"-->
+                <!--android:textColor="@color/text_black_33"-->
+                <!--android:textSize="@dimen/text_small" />-->
 
-                    <com.youth.banner.Banner
-                        android:id="@+id/vp_recommend"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_marginBottom="5dp" />
-                </LinearLayout>
+                <!--<com.youth.banner.Banner-->
+                <!--android:id="@+id/vp_recommend"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="200dp"-->
+                <!--android:layout_marginBottom="5dp" />-->
+                <!--</LinearLayout>-->
 
                 <!-- 上拉查看图文详情 -->
                 <LinearLayout
