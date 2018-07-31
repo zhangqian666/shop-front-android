@@ -17,4 +17,5 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="login_register">还没有账号，<u><font color='#c20c0c'>立即注册</font></u></string>
 </resources>

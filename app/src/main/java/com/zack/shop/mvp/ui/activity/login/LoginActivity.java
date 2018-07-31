@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
@@ -25,6 +26,7 @@ import com.zack.shop.mvp.utils.ProgressDialogUtils;
 import com.zack.shop.mvp.utils.SpUtils;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import timber.log.Timber;
 
@@ -39,6 +41,10 @@ public class LoginActivity extends BaseSupportActivity<LoginPresenter> implement
 
     @BindView(R.id.password)
     EditText mPasswordView;
+
+    @BindView(R.id.btn_login_forget)
+    TextView btnLoginForget;
+
     private ProgressDialogUtils progressDialogUtils;
 
     @Override
@@ -146,6 +152,5 @@ public class LoginActivity extends BaseSupportActivity<LoginPresenter> implement
     public void killMyself() {
 
     }
-
 }
 
