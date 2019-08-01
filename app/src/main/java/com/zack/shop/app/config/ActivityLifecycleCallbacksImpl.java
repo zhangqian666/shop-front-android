@@ -20,7 +20,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.zack.shop.R;
 import com.zack.shop.app.base.BaseSupportActivity;

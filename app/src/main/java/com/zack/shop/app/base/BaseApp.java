@@ -3,7 +3,7 @@ package com.zack.shop.app.base;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.jess.arms.base.App;
 import com.jess.arms.base.delegate.AppDelegate;

@@ -42,7 +42,7 @@
         android:textColor="@color/text_black_33"
         android:textSize="@dimen/text_sub_title" />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_image_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_comment_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

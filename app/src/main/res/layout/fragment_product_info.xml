@@ -271,7 +271,7 @@
     </com.zack.shop.mvp.ui.widget.SlideDetailsLayout>
 
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_up_slide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

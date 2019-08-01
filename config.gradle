@@ -1,38 +1,38 @@
 ext {
 
     android = [
-            compileSdkVersion: 27,
-            buildToolsVersion: "27.0.3",
+            compileSdkVersion: 28,
+            buildToolsVersion: "28.0.3",
             minSdkVersion    : 21,
-            targetSdkVersion : 27,
-            versionCode      : 2,
-            versionName      : "2.4.1"
+            targetSdkVersion : 28,
+            versionCode      : 186,
+            versionName      : "2.5.2"
     ]
 
     version = [
-            androidSupportSdkVersion: "27.1.1",
-            retrofitSdkVersion      : "2.4.0",
-            dagger2SdkVersion       : "2.15",
-            glideSdkVersion         : "4.6.1",
-            butterknifeSdkVersion   : "8.8.1",
+            androidSupportSdkVersion: "28.0.0",
+            retrofitSdkVersion      : "2.6.0",
+            dagger2SdkVersion       : "2.23.2",
+            glideSdkVersion         : "4.9.0",
             rxlifecycleSdkVersion   : "1.0",
-            rxlifecycle2SdkVersion  : "2.2.1",
+            rxlifecycle2SdkVersion  : "2.2.2",
             espressoSdkVersion      : "3.0.1",
-            canarySdkVersion        : "1.5.4",
+            canarySdkVersion        : "1.6.3",
+            butterknifeSdkVersion   : "10.0.0",
             constraint              : "1.0.2",
             fragmentationVersion    : "1.1.6"
     ]
 
     dependencies = [
             //support
-            "appcompat-v7"             : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
-            "design"                   : "com.android.support:design:${version["androidSupportSdkVersion"]}",
-            "support-v4"               : "com.android.support:support-v4:${version["androidSupportSdkVersion"]}",
-            "cardview-v7"              : "com.android.support:cardview-v7:${version["androidSupportSdkVersion"]}",
+            "appcompat-v7"             : 'androidx.appcompat:appcompat:1.0.0',
+            "design"                   : 'com.google.android.material:material:1.0.0',
+            "support-v4"               : 'androidx.legacy:legacy-support-v4:1.0.0',
+            "cardview-v7"              : 'androidx.cardview:cardview:1.0.0',
             "annotations"              : "com.android.support:support-annotations:${version["androidSupportSdkVersion"]}",
             "recyclerview-v7"          : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
-            "constraint"               : "com.android.support.constraint:constraint-layout:${version["constraint"]}",
-            "support-compat"           : "com.android.support:support-compat:${version["androidSupportSdkVersion"]}",
+            "constraint"               : 'androidx.constraintlayout:constraintlayout:1.1.3',
+            "support-compat"           : 'androidx.core:core:1.0.0',
 
             //network
             "retrofit"                 : "com.squareup.retrofit2:retrofit:${version["retrofitSdkVersion"]}",

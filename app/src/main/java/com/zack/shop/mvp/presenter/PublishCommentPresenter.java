@@ -91,7 +91,7 @@ public class PublishCommentPresenter extends BasePresenter<IModel, PublishCommen
         for (String image : subImages) {
             subImagesBuilder.append(image).append(",");
         }
-        subImagesBuilder.deleteCharAt(subImagesBuilder.length() - 1);
+//        subImagesBuilder.deleteCharAt(subImagesBuilder.length() - 1);
 
         momentModel.createMoments(title, subTitle, details, mainImage, subImagesBuilder.toString())
                 .compose(RxUtils.applySchedulers(mRootView))
