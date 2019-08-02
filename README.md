@@ -1,9 +1,11 @@
 ## shop-front-android
-希望大家多多点赞 点赞多的话 我写完后会出个教程（由于我最近搬家更新比较慢，但是我会尽快写完，不过目前也可以用）
+希望大家多多点赞 点赞多的话 我写完后会出个教程
 * 如果对该项目有什么疑问的话 可以在app的发现界面提出问题，我看到后会评论进行解答
+* 开始继续对项目进行更新，目前项目更新了对androidx的支持。
+* 多谢大家的支持和对Android的热爱，希望大家在项目中学到知识。
 
-# [`shop-back-java`](https://github.com/zhangqian666/shop-back-java)对应的android前端
-# [`app 可以下载试用`](https://github.com/zhangqian666/shop-front-android/app/release/zack-shop-2019.8.1.apk)
+####  [`shop-back-java`](https://github.com/zhangqian666/shop-back-java)对应的android前端
+####  [`下载app试用`](https://github.com/zhangqian666/shop-front-android/app/release/zack-shop-2019.8.1.apk)
 
 #### 所用的技术点：
 1. [`Mvp` Google's official` Mvp` architecture project, which contains several different schema branches (this is the Dagger branch).](https://github.com/googlesamples/android-architecture/tree/todo-mvp-dagger/)
@@ -31,7 +33,7 @@
   2. >商品分类界面
   
      <img src="https://github.com/zhangqian666/shop-front-android/blob/master/image/33CF3C3B-4CBA-4AA8-9AFA-D4A9BE771F0E.jpeg" width = "200" height = "360">
-   
+  
   3. >购物车界面
   
   4. >朋友圈
@@ -41,7 +43,7 @@
   5. >个人界面
   
      <img src="https://github.com/zhangqian666/shop-front-android/blob/master/image/36BE4255-EE1D-454A-BB56-A8DC41365D07.jpeg" width = "200" height = "360">
-    
+  
   
   
   ## About Me
@@ -51,6 +53,4 @@
   ## Thank support
   * **UI美工产品**: <1069937433@qq.com>  
   * **MvpArms框架**: https://github.com/JessYanCoding/MVPArms
-  
-
-  
+ 
