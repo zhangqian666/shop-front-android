@@ -31,8 +31,8 @@ public interface Api {
 //    String APP_DOMAIN = "http://192.168.199.115:8080";
 //    String APP_DOMAIN = "http://172.20.10.4:8080";
 //    String APP_DOMAIN = "http://10.0.0.1:8080";
-//    String APP_DOMAIN = "http://39.105.121.160:8080";
-    String APP_DOMAIN = "http://172.16.27.138:8080";
+    String APP_DOMAIN = "http://39.105.121.160:8080";
+//    String APP_DOMAIN = "http://172.16.27.138:8080";
 
     int RequestSuccess = 0;
 }

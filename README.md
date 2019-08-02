@@ -2,9 +2,10 @@
 希望大家多多点赞 点赞多的话 我写完后会出个教程（由于我最近搬家更新比较慢，但是我会尽快写完，不过目前也可以用）
 * 如果对该项目有什么疑问的话 可以在app的发现界面提出问题，我看到后会评论进行解答
 
-#[`shop-back-java`](https://github.com/zhangqian666/shop-back-java)对应的android前端
+# [`shop-back-java`](https://github.com/zhangqian666/shop-back-java)对应的android前端
+# [`app 可以下载试用`](https://github.com/zhangqian666/shop-front-android/app/release/zack-shop-2019.8.1.apk)
 
-####所用的技术点：
+#### 所用的技术点：
 1. [`Mvp` Google's official` Mvp` architecture project, which contains several different schema branches (this is the Dagger branch).](https://github.com/googlesamples/android-architecture/tree/todo-mvp-dagger/)
 2. [`Dagger2`](https://github.com/google/dagger)
 3. [`RxJava`](https://github.com/ReactiveX/RxJava)
