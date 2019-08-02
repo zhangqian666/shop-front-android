@@ -5,7 +5,7 @@
 * 多谢大家的支持和对Android的热爱，希望大家在项目中学到知识。
 
 ####  [`shop-back-java`](https://github.com/zhangqian666/shop-back-java)对应的android前端
-####  [`下载app试用`](https://github.com/zhangqian666/shop-front-android/app/release/zack-shop-2019.8.1.apk)
+####  [`下载app试用`](https://github.com/zhangqian666/shop-front-android/blob/master/app/release/zack-shop-2019.8.1.apk)
 
 #### 所用的技术点：
 1. [`Mvp` Google's official` Mvp` architecture project, which contains several different schema branches (this is the Dagger branch).](https://github.com/googlesamples/android-architecture/tree/todo-mvp-dagger/)
