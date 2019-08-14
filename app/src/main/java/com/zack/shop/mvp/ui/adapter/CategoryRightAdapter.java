@@ -6,10 +6,12 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.jess.arms.utils.ArmsUtils;
+import com.jess.arms.utils.LogUtils;
 import com.zack.shop.R;
 import com.zack.shop.mvp.http.entity.category.CategoryBean;
 
 import java.util.List;
+
 
 
 /**

@@ -38,7 +38,7 @@ public class SplashActivity extends BaseSupportActivity {
         }
 
         // 如果不是第一次启动app，则正常显示启动屏
-        new Handler().postDelayed(this::enterHomeActivity, 2000);
+        new Handler().postDelayed(this::enterHomeActivity, 1000);
     }
 
     private void enterHomeActivity() {

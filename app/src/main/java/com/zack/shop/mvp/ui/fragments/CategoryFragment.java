@@ -118,7 +118,6 @@ public class CategoryFragment extends BaseSupportFragment<CategoryPresenter> imp
         });
         recyclerLeft.setAdapter(categoryLeftAdapter);
         categoryLeftAdapter.setEmptyView(LayoutInflater.from(_mActivity).inflate(R.layout.view_empty, null));
-
     }
 
     @Override

@@ -18,6 +18,7 @@ package com.zack.shop.app;
 import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -34,8 +35,8 @@ import com.zack.shop.app.config.AppLifecyclesImpl;
 import com.zack.shop.app.config.applyOptions.MyGlobalHttpHandler;
 import com.zack.shop.app.config.applyOptions.MyGsonConfiguration;
 import com.zack.shop.app.config.applyOptions.MyResponseErrorListener;
-import com.zack.shop.app.config.applyOptions.MyRetrofitConfiguration;
 import com.zack.shop.app.config.applyOptions.MyRxCacheConfiguration;
+import com.zack.shop.app.config.applyOptions.interceptor.HeaderInterceptor;
 import com.zack.shop.mvp.http.api.Api;
 
 import java.io.File;
@@ -68,9 +69,8 @@ public final class GlobalConfiguration implements ConfigModule {
         Timber.e("applyOptions");
         //使用builder可以为框架配置一些配置信息
         builder.baseurl(Api.APP_DOMAIN)
-                .retrofitConfiguration(new MyRetrofitConfiguration())
-                // 使用统一UserAgent
-//                .addInterceptor(new UserAgentInterceptor())
+                //使用自定义App-Token
+                .addInterceptor(new HeaderInterceptor())
                 .rxCacheConfiguration(new MyRxCacheConfiguration())
                 .globalHttpHandler(new MyGlobalHttpHandler())
                 .responseErrorListener(new MyResponseErrorListener())
