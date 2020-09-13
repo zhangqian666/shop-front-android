@@ -3,6 +3,7 @@
 * 如果对该项目有什么疑问的话 可以在app的发现界面提出问题，我看到后会评论进行解答
 * 开始继续对项目进行更新，目前项目更新了对androidx的支持。
 * 多谢大家的支持和对Android的热爱，希望大家在项目中学到知识。
+* 2020-9-13 更新内容：服务器已经可以正常使用，app可以正常的注册登陆。
 
 ####  [`shop-back-java`](https://github.com/zhangqian666/shop-back-java)对应的android前端
 ####  [`下载app试用`](https://github.com/zhangqian666/shop-front-android/blob/master/app/release/zack-shop-2019.8.1.apk)
